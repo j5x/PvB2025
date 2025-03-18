@@ -72,3 +72,43 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# ===== Android Specific =====
+/[Mm]emory[Tt]rackers/
+/.gradle/
+/.cxx/
+/[Ii]ntermediates/
+/[Oo]ut/
+/[Aa]ssets/Plugins/Android/.gradle/
+/[Aa]ssets/Plugins/Android/.idea/
+/[Aa]ssets/Plugins/Android/libs/
+/[Aa]ssets/Plugins/Android/obj/
+/[Aa]ssets/Plugins/Android/bin/
+/[Aa]ssets/Plugins/Android/gradle/
+/[Aa]ssets/Plugins/Android/.cxx/
+/[Aa]ssets/Plugins/Android/.externalNativeBuild/
+/[Aa]ssets/Plugins/Android/build/
+/[Aa]ssets/Plugins/Android/app/build/
+/[Aa]ssets/Plugins/Android/.settings/
+
+# Android Studio specific
+/.idea/
+/local.properties
+*.iml
+
+# ===== iOS Specific =====
+/Pods/
+/xcuserdata/
+/DerivedData/
+/tmp/
+/build/
+/[Aa]ssets/Plugins/iOS/*.meta
+/[Aa]ssets/Plugins/iOS/Frameworks/
+/[Aa]ssets/Plugins/iOS/Pods/
+/[Aa]ssets/Plugins/iOS/xcuserdata/
+/[Aa]ssets/Plugins/iOS/*.xcworkspace
+/[Aa]ssets/Plugins/iOS/DerivedData/
+/[Aa]ssets/Plugins/iOS/*.pbxuser
+/[Aa]ssets/Plugins/iOS/*.mode1v3
+/[Aa]ssets/Plugins/iOS/*.mode2v3
+/[Aa]ssets/Plugins/iOS/*.xcuserstate
