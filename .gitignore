@@ -112,3 +112,18 @@ crashlytics-build.properties
 /[Aa]ssets/Plugins/iOS/*.mode1v3
 /[Aa]ssets/Plugins/iOS/*.mode2v3
 /[Aa]ssets/Plugins/iOS/*.xcuserstate
+
+# ===== macOS Specific =====
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Folder attributes
+Icon?
+._*
+
+# macOS system files
+.Spotlight-V100
+.Trashes
+.fseventsd
+/Volumes
