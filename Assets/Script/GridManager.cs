@@ -1,157 +1,193 @@
 using UnityEngine;
+using System.Collections.Generic;
 
-public class GridManager : MonoBehaviour
+namespace Gameplay.Match3
 {
-    public int width = 8; // Grid width
-    public int height = 8; // Grid height
-    public float tileSize = 1.0f; // Size of each tile
-    public GameObject tilePrefab; // Prefab for the tile
-
-    private GameObject[,] grid; // 2D array to store the grid
-    private Tile selectedTile; // Currently selected tile
-
-    void Start()
+    public class GridManager : MonoBehaviour
     {
-        grid = new GameObject[width, height];
-        GenerateGrid();
-    }
+        [SerializeField] private int width = 8;
+        [SerializeField] private int height = 8;
+        [SerializeField] private float tileSize = 1.0f;
 
-    // Generates the grid and places tiles
-    void GenerateGrid()
-    {
-        for (int x = 0; x < width; x++)
+        [SerializeField] private GameObject redTilePrefab;
+        [SerializeField] private GameObject blueTilePrefab;
+        [SerializeField] private GameObject greenTilePrefab;
+
+        private GameObject[,] _grid;
+        private Tile _selectedTile;
+
+        private void Start()
         {
-            for (int y = 0; y < height; y++)
+            _grid = new GameObject[width, height];
+            GenerateGrid();
+        }
+
+        private void GenerateGrid()
+        {
+            for (int x = 0; x < width; x++)
             {
-                // Instantiate a tile at the correct position
-                GameObject tile = Instantiate(tilePrefab, new Vector2(x * tileSize, y * tileSize), Quaternion.identity);
-                tile.transform.parent = this.transform;
-
-                // Set the tile's grid position and type
-                Tile tileComponent = tile.GetComponent<Tile>();
-                tileComponent.gridPosition = new Vector2Int(x, y);
-                tileComponent.type = Random.Range(0, 5); // Random type (0-4 for example)
-
-                grid[x, y] = tile;
-            }
-        }
-    }
-
-    // Called when a tile is clicked
-    public void SelectTile(Tile tile)
-    {
-        if (selectedTile == null)
-        {
-            // Select the first tile
-            selectedTile = tile;
-        }
-        else
-        {
-            // Swap the selected tile with the clicked tile
-            SwapTiles(selectedTile, tile);
-            selectedTile = null;
-
-            // Check for matches after swapping
-            CheckMatches();
-        }
-    }
-
-    // Swaps two tiles in the grid
-    void SwapTiles(Tile tile1, Tile tile2)
-    {
-        // Swap their positions in the grid array
-        grid[tile1.gridPosition.x, tile1.gridPosition.y] = tile2.gameObject;
-        grid[tile2.gridPosition.x, tile2.gridPosition.y] = tile1.gameObject;
-
-        // Swap their world positions
-        Vector2 tempPosition = tile1.transform.position;
-        tile1.transform.position = tile2.transform.position;
-        tile2.transform.position = tempPosition;
-
-        // Update their grid positions
-        Vector2Int tempGridPosition = tile1.gridPosition;
-        tile1.gridPosition = tile2.gridPosition;
-        tile2.gridPosition = tempGridPosition;
-    }
-
-    // Checks for matches in the grid
-    void CheckMatches()
-    {
-        bool matchFound = false;
-
-        for (int x = 0; x < width; x++)
-        {
-            for (int y = 0; y < height; y++)
-            {
-                // Check horizontal matches
-                if (x < width - 2 &&
-                    grid[x, y].GetComponent<Tile>().type == grid[x + 1, y].GetComponent<Tile>().type &&
-                    grid[x, y].GetComponent<Tile>().type == grid[x + 2, y].GetComponent<Tile>().type)
+                for (int y = 0; y < height; y++)
                 {
-                    ClearMatch(x, y, true);
-                    matchFound = true;
-                }
-
-                // Check vertical matches
-                if (y < height - 2 &&
-                    grid[x, y].GetComponent<Tile>().type == grid[x, y + 1].GetComponent<Tile>().type &&
-                    grid[x, y].GetComponent<Tile>().type == grid[x, y + 2].GetComponent<Tile>().type)
-                {
-                    ClearMatch(x, y, false);
-                    matchFound = true;
+                    SpawnTile(x, y);
                 }
             }
         }
 
-        // Refill the grid if matches were found
-        if (matchFound)
+        private void SpawnTile(int x, int y)
         {
-            RefillGrid();
-        }
-    }
-
-    // Clears a match of 3 or more tiles
-    void ClearMatch(int x, int y, bool isHorizontal)
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            if (isHorizontal)
+            GameObject tilePrefab;
+            do
             {
-                Destroy(grid[x + i, y]);
-                grid[x + i, y] = null;
+                tilePrefab = GetRandomTilePrefab();
+            }
+            while (WouldCreateMatch(x, y, tilePrefab));
+
+            GameObject tile = Instantiate(tilePrefab, new Vector2(x * tileSize, y * tileSize), Quaternion.identity);
+            tile.transform.parent = transform;
+
+            Tile tileComponent = tile.GetComponent<Tile>();
+            tileComponent.SetGridPosition(new Vector2Int(x, y));
+
+            _grid[x, y] = tile;
+        }
+
+        private GameObject GetRandomTilePrefab()
+        {
+            int rand = Random.Range(0, 3);
+            if (rand == 0) return redTilePrefab;
+            if (rand == 1) return blueTilePrefab;
+            return greenTilePrefab;
+        }
+
+        private bool WouldCreateMatch(int x, int y, GameObject tilePrefab)
+        {
+            string tileTag = tilePrefab.tag;
+
+            if (x >= 2 && 
+                _grid[x - 1, y] != null && _grid[x - 1, y].tag == tileTag &&
+                _grid[x - 2, y] != null && _grid[x - 2, y].tag == tileTag)
+            {
+                return true;
+            }
+
+            if (y >= 2 &&
+                _grid[x, y - 1] != null && _grid[x, y - 1].tag == tileTag &&
+                _grid[x, y - 2] != null && _grid[x, y - 2].tag == tileTag)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool SelectTile(Tile tile)
+        {
+            if (_selectedTile != null)
+            {
+                _selectedTile.Deselect(); // Deselect the previous tile
+            }
+
+            if (_selectedTile == tile)
+            {
+                _selectedTile = null; // If clicking the same tile again, deselect it
+                return false;
             }
             else
             {
-                Destroy(grid[x, y + i]);
-                grid[x, y + i] = null;
+                _selectedTile = tile;
+                return true;
             }
         }
-    }
 
-    // Refills the grid after clearing matches
-    void RefillGrid()
-    {
-        for (int x = 0; x < width; x++)
+
+
+        private bool AreTilesAdjacent(Tile tile1, Tile tile2)
         {
-            for (int y = 0; y < height; y++)
+            Vector2Int pos1 = tile1.GetGridPosition();
+            Vector2Int pos2 = tile2.GetGridPosition();
+
+            return (Mathf.Abs(pos1.x - pos2.x) == 1 && pos1.y == pos2.y) || 
+                   (Mathf.Abs(pos1.y - pos2.y) == 1 && pos1.x == pos2.x);
+        }
+
+        private void SwapTiles(Tile tile1, Tile tile2)
+        {
+            _grid[tile1.GetGridPosition().x, tile1.GetGridPosition().y] = tile2.gameObject;
+            _grid[tile2.GetGridPosition().x, tile2.GetGridPosition().y] = tile1.gameObject;
+
+            Vector2 tempPosition = tile1.transform.position;
+            tile1.transform.position = tile2.transform.position;
+            tile2.transform.position = tempPosition;
+
+            Vector2Int tempGridPosition = tile1.GetGridPosition();
+            tile1.SetGridPosition(tile2.GetGridPosition());
+            tile2.SetGridPosition(tempGridPosition);
+        }
+
+        private bool CheckMatches()
+        {
+            List<Vector2Int> matchedTiles = new List<Vector2Int>();
+
+            for (int x = 0; x < width; x++)
             {
-                if (grid[x, y] == null)
+                for (int y = 0; y < height; y++)
                 {
-                    // Create a new tile at the empty position
-                    GameObject tile = Instantiate(tilePrefab, new Vector2(x * tileSize, y * tileSize), Quaternion.identity);
-                    tile.transform.parent = this.transform;
+                    if (_grid[x, y] == null) continue;
 
-                    // Set the tile's grid position and type
-                    Tile tileComponent = tile.GetComponent<Tile>();
-                    tileComponent.gridPosition = new Vector2Int(x, y);
-                    tileComponent.type = Random.Range(0, 5); // Random type (0-4 for example)
+                    if (x < width - 2 &&
+                        _grid[x, y].tag == _grid[x + 1, y].tag &&
+                        _grid[x, y].tag == _grid[x + 2, y].tag)
+                    {
+                        matchedTiles.Add(new Vector2Int(x, y));
+                        matchedTiles.Add(new Vector2Int(x + 1, y));
+                        matchedTiles.Add(new Vector2Int(x + 2, y));
+                    }
 
-                    grid[x, y] = tile;
+                    if (y < height - 2 &&
+                        _grid[x, y].tag == _grid[x, y + 1].tag &&
+                        _grid[x, y].tag == _grid[x, y + 2].tag)
+                    {
+                        matchedTiles.Add(new Vector2Int(x, y));
+                        matchedTiles.Add(new Vector2Int(x, y + 1));
+                        matchedTiles.Add(new Vector2Int(x, y + 2));
+                    }
+                }
+            }
+
+            if (matchedTiles.Count > 0)
+            {
+                ClearMatches(matchedTiles);
+                return true;
+            }
+            return false;
+        }
+
+        private void ClearMatches(List<Vector2Int> matchedTiles)
+        {
+            foreach (var pos in matchedTiles)
+            {
+                if (_grid[pos.x, pos.y] != null)
+                {
+                    Destroy(_grid[pos.x, pos.y]);
+                    _grid[pos.x, pos.y] = null;
                 }
             }
         }
 
-        // Check for new matches after refilling
-        CheckMatches();
+        private void RefillGrid()
+        {
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    if (_grid[x, y] == null)
+                    {
+                        SpawnTile(x, y);
+                    }
+                }
+            }
+
+            if (CheckMatches()) RefillGrid(); 
+        }
     }
 }
