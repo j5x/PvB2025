@@ -39,8 +39,7 @@ namespace Gameplay.Match3
             do
             {
                 tilePrefab = GetRandomTilePrefab();
-            }
-            while (WouldCreateMatch(x, y, tilePrefab));
+            } while (WouldCreateMatch(x, y, tilePrefab));
 
             GameObject tile = Instantiate(tilePrefab, new Vector2(x * tileSize, y * tileSize), Quaternion.identity);
             tile.transform.parent = transform;
@@ -63,7 +62,7 @@ namespace Gameplay.Match3
         {
             string tileTag = tilePrefab.tag;
 
-            if (x >= 2 && 
+            if (x >= 2 &&
                 _grid[x - 1, y] != null && _grid[x - 1, y].tag == tileTag &&
                 _grid[x - 2, y] != null && _grid[x - 2, y].tag == tileTag)
             {
@@ -82,24 +81,31 @@ namespace Gameplay.Match3
 
         public bool SelectTile(Tile tile)
         {
-            if (_selectedTile != null)
+            if (_selectedTile == null)
             {
-                _selectedTile.Deselect(); // Deselect the previous tile
-            }
-
-            if (_selectedTile == tile)
-            {
-                _selectedTile = null; // If clicking the same tile again, deselect it
-                return false;
+                _selectedTile = tile;
             }
             else
             {
-                _selectedTile = tile;
-                return true;
+                if (AreTilesAdjacent(_selectedTile, tile))
+                {
+                    SwapTiles(_selectedTile, tile);
+
+                    if (!CheckMatches())
+                    {
+                        SwapTiles(_selectedTile, tile);
+                    }
+                    else
+                    {
+                        Invoke("RefillGrid", 0.2f);
+                    }
+                }
+
+                _selectedTile = null;
             }
+
+            return false;
         }
-
-
 
         private bool AreTilesAdjacent(Tile tile1, Tile tile2)
         {
@@ -157,10 +163,11 @@ namespace Gameplay.Match3
             if (matchedTiles.Count > 0)
             {
                 ClearMatches(matchedTiles);
-                return true;
+                return true; //Return true if a match was found
             }
-            return false;
+            return false; // Return false if no matches
         }
+
 
         private void ClearMatches(List<Vector2Int> matchedTiles)
         {
@@ -187,7 +194,7 @@ namespace Gameplay.Match3
                 }
             }
 
-            if (CheckMatches()) RefillGrid(); 
+            if (CheckMatches()) Invoke("RefillGrid", 0.2f);
         }
     }
 }
