@@ -73,9 +73,8 @@ buffed --> |oh he sick | matching;
 ```mermaid
 classDiagram
 
-Unit <|-- Tower:Is A
-Unit <|-- Monster
-Unit <|-- Boss
+Unit <|-- Enemy
+Unit <|-- Player
 Unit : +int life
 Unit : +int speed
 Unit : +bool alive
