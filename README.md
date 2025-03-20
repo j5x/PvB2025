@@ -85,12 +85,12 @@ class Tower{
 +target()
 +shoot()
 }
-class Monster{
--int reward
+class Enemy{
+-int dmg+
 -regenerates()
 }
-class Boss{
-+bool is_unique
+class Player{
++bool dmg+
 +specialSkill()
 }
 ```
