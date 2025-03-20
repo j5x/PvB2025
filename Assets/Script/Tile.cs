@@ -1,20 +1,57 @@
 using UnityEngine;
 
-public class Tile : MonoBehaviour
+namespace Gameplay.Match3
 {
-    public int type; // Type of the tile (e.g., color or shape)
-    public Vector2Int gridPosition; // Position of the tile in the grid
-
-    private GridManager gridManager;
-
-    void Start()
+    public class Tile : MonoBehaviour
     {
-        gridManager = FindObjectOfType<GridManager>();
-    }
+        private Vector2Int gridPosition;
+        private GridManager gridManager;
+        private Vector3 originalScale;
+        private bool isSelected = false;
 
-    // Called when the tile is clicked
-    void OnMouseDown()
-    {
-        gridManager.SelectTile(this);
+        private void Start()
+        {
+            gridManager = FindObjectOfType<GridManager>();
+            originalScale = transform.localScale;
+        }
+
+        private void OnMouseDown()
+        {
+            isSelected = gridManager.SelectTile(this);
+            UpdateScale();
+        }
+
+        private void OnMouseEnter()
+        {
+            if (!isSelected)
+                transform.localScale = originalScale * 1.1f; // Slightly bigger when hovering
+        }
+
+        private void OnMouseExit()
+        {
+            if (!isSelected)
+                transform.localScale = originalScale; // Reset when not hovering
+        }
+
+        public void SetGridPosition(Vector2Int newPosition)
+        {
+            gridPosition = newPosition;
+        }
+
+        public Vector2Int GetGridPosition()
+        {
+            return gridPosition;
+        }
+
+        public void Deselect()
+        {
+            isSelected = false;
+            UpdateScale();
+        }
+
+        private void UpdateScale()
+        {
+            transform.localScale = isSelected ? originalScale * 1.2f : originalScale; // Bigger when selected
+        }
     }
 }
