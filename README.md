@@ -80,11 +80,6 @@ Unit : +int speed
 Unit : +bool alive
 Unit: +isMovable()
 Unit: +Destroy()
-class Tower{
-+String turretType
-+target()
-+shoot()
-}
 class Enemy{
 -int dmg+
 -regenerates()
