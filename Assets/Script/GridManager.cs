@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -89,16 +90,7 @@ namespace Gameplay.Match3
             {
                 if (AreTilesAdjacent(_selectedTile, tile))
                 {
-                    SwapTiles(_selectedTile, tile);
-
-                    if (!CheckMatches())
-                    {
-                        SwapTiles(_selectedTile, tile);
-                    }
-                    else
-                    {
-                        Invoke("RefillGrid", 0.2f);
-                    }
+                    StartCoroutine(SwapAndCheckMatches(_selectedTile, tile));
                 }
 
                 _selectedTile = null;
@@ -106,6 +98,24 @@ namespace Gameplay.Match3
 
             return false;
         }
+
+        private IEnumerator SwapAndCheckMatches(Tile tile1, Tile tile2)
+        {
+            SwapTiles(tile1, tile2);
+
+            yield return new WaitForSeconds(0.25f); // Wait for swap animation
+
+            if (!CheckMatches())
+            {
+                // No match → Swap them back
+                SwapTiles(tile1, tile2);
+            }
+            else
+            {
+                Invoke("RefillGrid", 0.2f);
+            }
+        }
+
 
         private bool AreTilesAdjacent(Tile tile1, Tile tile2)
         {
@@ -118,17 +128,41 @@ namespace Gameplay.Match3
 
         private void SwapTiles(Tile tile1, Tile tile2)
         {
-            _grid[tile1.GetGridPosition().x, tile1.GetGridPosition().y] = tile2.gameObject;
-            _grid[tile2.GetGridPosition().x, tile2.GetGridPosition().y] = tile1.gameObject;
+            Vector2Int pos1 = tile1.GetGridPosition();
+            Vector2Int pos2 = tile2.GetGridPosition();
 
-            Vector2 tempPosition = tile1.transform.position;
-            tile1.transform.position = tile2.transform.position;
-            tile2.transform.position = tempPosition;
+            // Swap references in the grid
+            _grid[pos1.x, pos1.y] = tile2.gameObject;
+            _grid[pos2.x, pos2.y] = tile1.gameObject;
 
-            Vector2Int tempGridPosition = tile1.GetGridPosition();
-            tile1.SetGridPosition(tile2.GetGridPosition());
-            tile2.SetGridPosition(tempGridPosition);
+            // Swap their logical positions
+            tile1.SetGridPosition(pos2);
+            tile2.SetGridPosition(pos1);
+
+            // Animate the movement
+            StartCoroutine(MoveTile(tile1, tile2.transform.position));
+            StartCoroutine(MoveTile(tile2, tile1.transform.position));
         }
+
+        /// <summary>
+        /// Moves a tile smoothly to a target position.
+        /// </summary>
+        private IEnumerator MoveTile(Tile tile, Vector3 targetPos)
+        {
+            float duration = 0.2f; // Swap animation duration
+            float elapsedTime = 0f;
+            Vector3 startPos = tile.transform.position;
+
+            while (elapsedTime < duration)
+            {
+                tile.transform.position = Vector3.Lerp(startPos, targetPos, elapsedTime / duration);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            tile.transform.position = targetPos; // Ensure exact position at the end
+        }
+
 
         private bool CheckMatches()
         {
