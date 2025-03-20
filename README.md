@@ -81,11 +81,11 @@ Unit : +bool alive
 Unit: +isMovable()
 Unit: +Destroy()
 class Enemy{
--int dmg+
+-int life
 -regenerates()
 }
 class Player{
-+bool dmg+
++int dmg
 +specialSkill()
 }
 ```
