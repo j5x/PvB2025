@@ -2,11 +2,11 @@ using UnityEngine;
 
 public abstract class Character : MonoBehaviour
 {
+    [SerializeField] protected string characterName;
     [SerializeField] protected float health;
-    [SerializeField] protected float speed;
 
-    public float Health => health; // Read-only property
-    public float Speed => speed;   // Read-only property
+    public string Name => name;
+    public float Health => health;
 
     public CharacterType CharacterType { get; protected set; }
     
@@ -16,9 +16,7 @@ public abstract class Character : MonoBehaviour
     {
         animator = GetComponent<Animator>();
     }
-
-    //Abstract Methods -> REQUIRED by inherited classes.
-    protected abstract void Move();
+    
     protected abstract void Attack();
     protected abstract void Defend();
     
@@ -26,9 +24,6 @@ public abstract class Character : MonoBehaviour
     {
         switch (actionType)
         {
-            case ActionType.Move:
-                Move();
-                break;
             case ActionType.Attack:
                 Attack();
                 break;

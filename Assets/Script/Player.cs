@@ -3,12 +3,7 @@ using UnityEngine;
 public class Player : Character
 {
     private float attackPower;
-
-    protected override void Move()
-    {
-        transform.position = new Vector2(-5, 0);
-    }
-
+    
     protected override void Attack()
     {
         throw new System.NotImplementedException();
@@ -21,6 +16,6 @@ public class Player : Character
 
     private void Start()
     {
-        Move();
+        Attack();
     }
 }

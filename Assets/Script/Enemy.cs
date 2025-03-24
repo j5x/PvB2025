@@ -2,11 +2,7 @@ using UnityEngine;
 
 public class Enemy : Character
 {
-    protected override void Move()
-    {
-        transform.position = new Vector2(5, 0);
-    }
-
+    
     protected override void Attack()
     {
         throw new System.NotImplementedException();
@@ -19,6 +15,6 @@ public class Enemy : Character
 
     public void Start()
     {
-        Move();
+        Attack();
     }
 }
