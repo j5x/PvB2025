@@ -213,7 +213,45 @@ namespace Gameplay.Match3
                     _grid[pos.x, pos.y] = null;
                 }
             }
+        
+            StartCoroutine(ApplyGravity()); // Make tiles fall before refilling
         }
+        private IEnumerator ApplyGravity()
+        {
+            bool tilesMoved = false;
+
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 1; y < height; y++) // Start from 1 to check tiles above
+                {
+                    if (_grid[x, y] != null && _grid[x, y - 1] == null)
+                    {
+                        int fallY = y;
+                        while (fallY > 0 && _grid[x, fallY - 1] == null)
+                        {
+                            fallY--; // Keep falling down
+                        }
+
+                        // Move tile down
+                        _grid[x, fallY] = _grid[x, y];
+                        _grid[x, y] = null;
+
+                        Tile tileComponent = _grid[x, fallY].GetComponent<Tile>();
+                        tileComponent.SetGridPosition(new Vector2Int(x, fallY));
+                        StartCoroutine(MoveTile(tileComponent, new Vector2(x * tileSize, fallY * tileSize)));
+
+                        tilesMoved = true;
+                    }
+                }
+            }
+
+            // Wait for the falling animation before refilling the grid
+            if (tilesMoved) yield return new WaitForSeconds(0.3f);
+
+            RefillGrid();
+        }
+
+
 
         private void RefillGrid()
         {
@@ -230,5 +268,6 @@ namespace Gameplay.Match3
 
             if (CheckMatches()) Invoke("RefillGrid", 0.2f);
         }
+
     }
 }
