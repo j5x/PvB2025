@@ -73,18 +73,17 @@ buffed --> |oh he sick | matching;
 ```mermaid
 classDiagram
 
-Unit <|-- Enemy
-Unit <|-- Player
-Unit : +int life
-Unit : +int speed
-Unit : +bool alive
-Unit: +isMovable()
-Unit: +Destroy()
-class Enemy{
+Character --|> Enemy
+Character --|> Player
+Character : +string name
+Character : +float health
+Character: +Attack()
+Character: +Defend()
+class Player{
 -int life
 -regenerates()
 }
-class Player{
+class Enemy{
 +int dmg
 +specialSkill()
 }
