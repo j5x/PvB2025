@@ -3,23 +3,30 @@ using UnityEngine;
 public abstract class Character : MonoBehaviour
 {
     [SerializeField] protected string characterName;
-    [SerializeField] protected float health;
+    [SerializeField] protected HealthConfig healthConfig;
 
-    public string Name => name;
-    public float Health => health;
-
+    public string Name => characterName;
+    private HealthComponent HealthComponent { get; set; }
     public CharacterType CharacterType { get; protected set; }
-    
+
     protected Animator animator;
-    
+
     protected virtual void Awake()
     {
         animator = GetComponent<Animator>();
+        
+        HealthComponent = gameObject.GetComponent<HealthComponent>();
+        if (HealthComponent == null)
+        {
+            HealthComponent = gameObject.AddComponent<HealthComponent>();
+        }
+        HealthComponent.InitializeHealth(healthConfig);
+        HealthComponent.OnDeath += Die;
     }
-    
+
     protected abstract void Attack();
     protected abstract void Defend();
-    
+
     public virtual void PerformAction(ActionType actionType)
     {
         switch (actionType)
@@ -32,14 +39,10 @@ public abstract class Character : MonoBehaviour
                 break;
         }
     }
-    
+
     public virtual void TakeDamage(float damage)
     {
-        health -= damage;
-        if (health <= 0)
-        {
-            Die();
-        }
+        HealthComponent.TakeDamage((int)damage);
     }
 
     protected virtual void Die()

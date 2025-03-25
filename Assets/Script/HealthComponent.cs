@@ -1,31 +1,22 @@
+using UnityEngine;
 using System;
 using System.Collections;
-using UnityEngine;
-
-[CreateAssetMenu(fileName = "SO_HealthConfig", menuName = "Health/HealthConfig")]
-public class SO_HealthConfig : ScriptableObject
-{
-    public int maxHealth = 100;
-    public bool canRegenerate = false;
-    public float regenRate = 1f; // HP per second
-    public int regenAmount = 1;
-}
 
 public class HealthComponent : MonoBehaviour
 {
     [Header("Health Settings")]
-    [SerializeField] private SO_HealthConfig healthConfig;
+    [SerializeField] private HealthConfig healthConfig;
 
     private int baseMaxHealth;
     private int currentHealth;
     private float regenMultiplier = 1f;
     private float damageMultiplier = 1f;
+    
     public bool IsDead => currentHealth <= 0;
-
     public event Action<int> OnHealthChanged;
     public event Action OnDeath;
 
-    private void Start()
+    /*private void Start()
     {
         if (healthConfig == null)
         {
@@ -37,6 +28,29 @@ public class HealthComponent : MonoBehaviour
         currentHealth = baseMaxHealth;
         if (healthConfig.canRegenerate)
             InvokeRepeating(nameof(RegenerateHealth), 1f / (healthConfig.regenRate * regenMultiplier), 1f / (healthConfig.regenRate * regenMultiplier));
+    }*/
+    
+    public void InitializeHealth(HealthConfig config)
+    {
+        healthConfig = config;
+
+        if (healthConfig == null)
+        {
+            Debug.LogError("HealthConfig is missing! Using default fallback values.");
+            baseMaxHealth = 100;
+        }
+        else
+        {
+            baseMaxHealth = healthConfig.maxHealth;
+        }
+
+        currentHealth = baseMaxHealth;
+
+        if (healthConfig != null && healthConfig.canRegenerate)
+        {
+            InvokeRepeating(nameof(RegenerateHealth), 1f / (healthConfig.regenRate * regenMultiplier),
+                1f / (healthConfig.regenRate * regenMultiplier));
+        }
     }
 
     public void TakeDamage(int amount)
@@ -61,7 +75,7 @@ public class HealthComponent : MonoBehaviour
 
     private void RegenerateHealth()
     {
-        if (healthConfig.canRegenerate && !IsDead && currentHealth < baseMaxHealth)
+        if (healthConfig != null && healthConfig.canRegenerate && !IsDead && currentHealth < baseMaxHealth)
         {
             Heal(Mathf.RoundToInt(healthConfig.regenAmount * regenMultiplier));
         }
