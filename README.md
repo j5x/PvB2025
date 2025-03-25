@@ -15,7 +15,7 @@ Maak ook een overzicht van alle onderdelen met een link naar de map waarin deze 
 Bijv..
 
 ### Student Jason Siegersma:
-  * [Wave System](https://github.com/erwinhenraat/VoorbeeldExamenRepo/tree/master/src/some)
+  * [Match 3 System]()
   * [Some other mechanic X](https://github.com/erwinhenraat/VoorbeeldExamenRepo/tree/master/src/mechanic_x)
   * [Some other mechanic Y](https://github.com/erwinhenraat/VoorbeeldExamenRepo/tree/master/src/mechanic_y)
 ### Student Jahvairo Monkau:
@@ -27,9 +27,81 @@ Bijv..
   * Some other Game object
 
 
-## Wave System by Student Jason Siegersma
+# Match 3 System - Jason Siegersma
 
-Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line.
+## Overview
+This Match-3 system is built using Unity and written in C#. It allows tiles to be swapped, matched, cleared, and refilled dynamically. The system ensures that tiles fall into empty spaces rather than respawning in the same spot. 
+
+A special **white tile** is included, which can match with any color. When matched, it clears all tiles of that color from the grid.
+
+## Features
+✅ No pre-existing matches at the start.  
+✅ Swappable tiles with valid match detection.  
+✅ Tile gravity ensures tiles fall into empty spaces.  
+✅ Grid automatically refills after matches.  
+✅ Special **white tile** that clears all of one color when matched.  
+
+---
+
+## 🔹 Scripts Included
+
+### 1. `GridManager.cs`
+**Responsibilities:**
+- Initializes the grid with random tiles.
+- Ensures no matches are present at the start.
+- Handles tile swapping and match detection.
+- Applies gravity so tiles fall after matches.
+- Refills the grid when tiles are cleared.
+
+**Key Variables:**
+```csharp
+[SerializeField] private int width = 8;
+[SerializeField] private int height = 8;
+[SerializeField] private float tileSize = 1.0f;
+```
+width and height: Define the grid size.
+
+tileSize: Controls the spacing between tiles.
+
+### 2. Tile.cs
+**Responsibilities:**
+
+- Represents individual tiles in the game.
+- Handles tile selection, visual feedback, and position updates.
+flowchart for Match 3
+```mermaid
+graph TD;
+start((Start)) -->|Initialize Grid| setup[Setup Grid];
+setup -->|Wait for Player Input| playerTurn[Player's Turn];
+playerTurn --> |Swap Tiles| swap[Swap Tiles];
+swap --> |Check for Matches| checkMatches{Match Found?};
+checkMatches -- No --> playerTurn;
+checkMatches -- Yes --> removeTiles[Remove Matched Tiles];
+removeTiles --> applyGravity[Apply Gravity];
+applyGravity --> refillGrid[Refill Grid];
+refillGrid --> |Check for New Matches| checkNewMatches{New Matches?};
+checkNewMatches -- Yes --> removeTiles;
+checkNewMatches -- No --> playerTurn;
+```
+```mermaid
+classDiagram
+
+class GridManager{
+    +int width
+    +int height
+    +void SwapTiles()
+    +void CheckMatches()
+    +void ApplyGravity()
+}
+
+class Tile{
+    +int tileType
+    +bool isWhiteTile
+    +void Select()
+    +void Match()
+}
+GridManager --> Tile
+```
 
 ![Animation](https://user-images.githubusercontent.com/1262745/217570184-90dc4701-d60d-4816-80d0-5007fdd3f6be.gif)
 
