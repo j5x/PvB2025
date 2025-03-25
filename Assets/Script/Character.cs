@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class Character : MonoBehaviour
 {
     [SerializeField] protected string characterName;
-    [SerializeField] protected SO_HealthConfig healthConfig;
+    [SerializeField] protected HealthConfig healthConfig;
 
     public string Name => characterName;
     private HealthComponent HealthComponent { get; set; }

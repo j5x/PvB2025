@@ -2,8 +2,8 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SO_HealthConfig", menuName = "Health/HealthConfig")]
-public class SO_HealthConfig : ScriptableObject
+[CreateAssetMenu(fileName = "HealthConfig", menuName = "Health/HealthConfig")]
+public class HealthConfig : ScriptableObject
 {
     public int maxHealth = 100;
     public bool canRegenerate = false;

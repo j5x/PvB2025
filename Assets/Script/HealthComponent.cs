@@ -5,7 +5,7 @@ using System.Collections;
 public class HealthComponent : MonoBehaviour
 {
     [Header("Health Settings")]
-    [SerializeField] private SO_HealthConfig healthConfig;
+    [SerializeField] private HealthConfig healthConfig;
 
     private int baseMaxHealth;
     private int currentHealth;
@@ -30,7 +30,7 @@ public class HealthComponent : MonoBehaviour
             InvokeRepeating(nameof(RegenerateHealth), 1f / (healthConfig.regenRate * regenMultiplier), 1f / (healthConfig.regenRate * regenMultiplier));
     }*/
     
-    public void InitializeHealth(SO_HealthConfig config)
+    public void InitializeHealth(HealthConfig config)
     {
         healthConfig = config;
 
