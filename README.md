@@ -15,7 +15,7 @@ Maak ook een overzicht van alle onderdelen met een link naar de map waarin deze 
 Bijv..
 
 ### Student Jason Siegersma:
-  * [Match 3 System]()
+  * [Match 3 System](https://github.com/j5x/PvB2025/tree/feature/grid)
   * [Some other mechanic X](https://github.com/erwinhenraat/VoorbeeldExamenRepo/tree/master/src/mechanic_x)
   * [Some other mechanic Y](https://github.com/erwinhenraat/VoorbeeldExamenRepo/tree/master/src/mechanic_y)
 ### Student Jahvairo Monkau:
@@ -23,8 +23,8 @@ Bijv..
   * [Some textured and rigged model](https://github.com/erwinhenraat/VoorbeeldExamenRepo/tree/master/assets/monsters)
 
 ### Student Gael Griffith:
-  * [Health System Script](https://github.com/j5x/PvB2025/tree/feature/round-timer)
-  * Some other Game object
+  * [Health System Script](https://github.com/j5x/PvB2025/tree/feature/modularHealthComponent)
+  * [Round-Timer Script](https://github.com/j5x/PvB2025/tree/feature/round-timer)
 
 
 # Match 3 System - Jason Siegersma
