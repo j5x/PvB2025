@@ -15,7 +15,7 @@ Maak ook een overzicht van alle onderdelen met een link naar de map waarin deze 
 Bijv..
 
 ### Student Jason Siegersma:
-  * [Match 3 System](https://github.com/j5x/PvB2025/tree/feature/grid)
+  * [Match 3 System](https://github.com/j5x/PvB2025/tree/feature/grid/Assets/Script)
   * [Some other mechanic X](https://github.com/erwinhenraat/VoorbeeldExamenRepo/tree/master/src/mechanic_x)
   * [Some other mechanic Y](https://github.com/erwinhenraat/VoorbeeldExamenRepo/tree/master/src/mechanic_y)
 ### Student Jahvairo Monkau:
