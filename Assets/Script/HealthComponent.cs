@@ -1,24 +1,22 @@
+using UnityEngine;
 using System;
 using System.Collections;
-using UnityEngine;
 
-namespace Script
+public class HealthComponent : MonoBehaviour
 {
-    public class HealthComponent : MonoBehaviour
-    {
-        [Header("Health Settings")]
-        [SerializeField] private HealthConfig healthConfig;
+    [Header("Health Settings")]
+    [SerializeField] private HealthConfig healthConfig;
 
-        private int baseMaxHealth;
-        private int currentHealth;
-        private float regenMultiplier = 1f;
-        private float damageMultiplier = 1f;
+    private int baseMaxHealth;
+    private int currentHealth;
+    private float regenMultiplier = 1f;
+    private float damageMultiplier = 1f;
     
-        public bool IsDead => currentHealth <= 0;
-        public event Action<int> OnHealthChanged;
-        public event Action OnDeath;
+    public bool IsDead => currentHealth <= 0;
+    public event Action<int> OnHealthChanged;
+    public event Action OnDeath;
 
-        /*private void Start()
+    /*private void Start()
     {
         if (healthConfig == null)
         {
@@ -32,118 +30,106 @@ namespace Script
             InvokeRepeating(nameof(RegenerateHealth), 1f / (healthConfig.regenRate * regenMultiplier), 1f / (healthConfig.regenRate * regenMultiplier));
     }*/
     
-        public void InitializeHealth(HealthConfig config)
+    public void InitializeHealth(HealthConfig config)
+    {
+        healthConfig = config;
+
+        if (healthConfig == null)
         {
-            healthConfig = config;
-
-            if (healthConfig == null)
-            {
-                Debug.LogError("HealthConfig is missing! Using default fallback values.");
-                baseMaxHealth = 100;
-            }
-            else
-            {
-                baseMaxHealth = healthConfig.maxHealth;
-            }
-
-            currentHealth = baseMaxHealth;
-
-            if (healthConfig != null && healthConfig.canRegenerate)
-            {
-                InvokeRepeating(nameof(RegenerateHealth), 1f / (healthConfig.regenRate * regenMultiplier),
-                    1f / (healthConfig.regenRate * regenMultiplier));
-            }
+            Debug.LogError("HealthConfig is missing! Using default fallback values.");
+            baseMaxHealth = 100;
+        }
+        else
+        {
+            baseMaxHealth = healthConfig.maxHealth;
         }
 
-        public void TakeDamage(int amount)
+        currentHealth = baseMaxHealth;
+
+        if (healthConfig != null && healthConfig.canRegenerate)
         {
-            if (IsDead) return;
-
-            int finalDamage = Mathf.RoundToInt(amount * damageMultiplier);
-            currentHealth = Mathf.Max(currentHealth - finalDamage, 0);
-            OnHealthChanged?.Invoke(currentHealth);
-
-            if (IsDead)
-                Die();
+            InvokeRepeating(nameof(RegenerateHealth), 1f / (healthConfig.regenRate * regenMultiplier),
+                1f / (healthConfig.regenRate * regenMultiplier));
         }
+    }
 
-        public void Heal(int amount)
+    public void TakeDamage(int amount)
+    {
+        if (IsDead) return;
+
+        int finalDamage = Mathf.RoundToInt(amount * damageMultiplier);
+        currentHealth = Mathf.Max(currentHealth - finalDamage, 0);
+        OnHealthChanged?.Invoke(currentHealth);
+
+        if (IsDead)
+            Die();
+    }
+
+    public void Heal(int amount)
+    {
+        if (IsDead) return;
+
+        currentHealth = Mathf.Min(currentHealth + amount, baseMaxHealth);
+        OnHealthChanged?.Invoke(currentHealth);
+    }
+
+    private void RegenerateHealth()
+    {
+        if (healthConfig != null && healthConfig.canRegenerate && !IsDead && currentHealth < baseMaxHealth)
         {
-            if (IsDead) return;
-
-            currentHealth = Mathf.Min(currentHealth + amount, baseMaxHealth);
-            OnHealthChanged?.Invoke(currentHealth);
+            Heal(Mathf.RoundToInt(healthConfig.regenAmount * regenMultiplier));
         }
+    }
 
-        private void RegenerateHealth()
-        {
-            if (healthConfig != null && healthConfig.canRegenerate && !IsDead && currentHealth < baseMaxHealth)
-            {
-                Heal(Mathf.RoundToInt(healthConfig.regenAmount * regenMultiplier));
-            }
-        }
+    private void Die()
+    {
+        OnDeath?.Invoke();
+        CancelInvoke(nameof(RegenerateHealth)); // Stop regeneration if dead
+        Debug.Log(gameObject.name + " has died.");
+    }
 
-        private void Die()
-        {
-            OnDeath?.Invoke();
-            CancelInvoke(nameof(RegenerateHealth)); // Stop regeneration if dead
-            Debug.Log(gameObject.name + " has died.");
+    // Buffs and Debuffs
+    public void ApplyHealthBuff(int extraHealth, float duration)
+    {
+        baseMaxHealth += extraHealth;
+        currentHealth += extraHealth;
+        OnHealthChanged?.Invoke(currentHealth);
+        StartCoroutine(RemoveHealthBuff(extraHealth, duration));
+    }
 
-            RoundTimer roundTimer = FindObjectOfType<RoundTimer>(); // Find the timer script
-            if (roundTimer != null)
-            {
-                roundTimer.EnemyDefeated(); // Tell the timer the enemy is dead
-            }
-            else
-            {
-                Debug.LogWarning("RoundTimer not found! Make sure it's in the scene.");
-            }
-        }
+    private IEnumerator RemoveHealthBuff(int extraHealth, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        baseMaxHealth -= extraHealth;
+        currentHealth = Mathf.Min(currentHealth, baseMaxHealth);
+        OnHealthChanged?.Invoke(currentHealth);
+    }
 
+    public void ApplyDamageMultiplier(float multiplier, float duration)
+    {
+        damageMultiplier *= multiplier;
+        StartCoroutine(RemoveDamageMultiplier(multiplier, duration));
+    }
 
-        // Buffs and Debuffs
-        public void ApplyHealthBuff(int extraHealth, float duration)
-        {
-            baseMaxHealth += extraHealth;
-            currentHealth += extraHealth;
-            OnHealthChanged?.Invoke(currentHealth);
-            StartCoroutine(RemoveHealthBuff(extraHealth, duration));
-        }
+    private IEnumerator RemoveDamageMultiplier(float multiplier, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        damageMultiplier /= multiplier;
+    }
 
-        private IEnumerator RemoveHealthBuff(int extraHealth, float duration)
-        {
-            yield return new WaitForSeconds(duration);
-            baseMaxHealth -= extraHealth;
-            currentHealth = Mathf.Min(currentHealth, baseMaxHealth);
-            OnHealthChanged?.Invoke(currentHealth);
-        }
+    public void ApplyRegenMultiplier(float multiplier, float duration)
+    {
+        regenMultiplier *= multiplier;
+        CancelInvoke(nameof(RegenerateHealth));
+        InvokeRepeating(nameof(RegenerateHealth), 1f / (healthConfig.regenRate * regenMultiplier), 1f / (healthConfig.regenRate * regenMultiplier));
+        StartCoroutine(RemoveRegenMultiplier(multiplier, duration));
+    }
 
-        public void ApplyDamageMultiplier(float multiplier, float duration)
-        {
-            damageMultiplier *= multiplier;
-            StartCoroutine(RemoveDamageMultiplier(multiplier, duration));
-        }
-
-        private IEnumerator RemoveDamageMultiplier(float multiplier, float duration)
-        {
-            yield return new WaitForSeconds(duration);
-            damageMultiplier /= multiplier;
-        }
-
-        public void ApplyRegenMultiplier(float multiplier, float duration)
-        {
-            regenMultiplier *= multiplier;
-            CancelInvoke(nameof(RegenerateHealth));
-            InvokeRepeating(nameof(RegenerateHealth), 1f / (healthConfig.regenRate * regenMultiplier), 1f / (healthConfig.regenRate * regenMultiplier));
-            StartCoroutine(RemoveRegenMultiplier(multiplier, duration));
-        }
-
-        private IEnumerator RemoveRegenMultiplier(float multiplier, float duration)
-        {
-            yield return new WaitForSeconds(duration);
-            regenMultiplier /= multiplier;
-            CancelInvoke(nameof(RegenerateHealth));
-            InvokeRepeating(nameof(RegenerateHealth), 1f / (healthConfig.regenRate * regenMultiplier), 1f / (healthConfig.regenRate * regenMultiplier));
-        }
+    private IEnumerator RemoveRegenMultiplier(float multiplier, float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        regenMultiplier /= multiplier;
+        CancelInvoke(nameof(RegenerateHealth));
+        InvokeRepeating(nameof(RegenerateHealth), 1f / (healthConfig.regenRate * regenMultiplier), 1f / (healthConfig.regenRate * regenMultiplier));
     }
 }

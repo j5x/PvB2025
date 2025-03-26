@@ -3,8 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Script
-{
+
     public class RoundTimer : MonoBehaviour
     {
         public UnityEvent<int> OnRoundStart = new UnityEvent<int>(); // Notify UI when a round starts
@@ -92,4 +91,4 @@ namespace Script
             isEnemyDead = true;
         }
     }
-}
+
