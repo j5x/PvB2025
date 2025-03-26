@@ -19,6 +19,9 @@ namespace Gameplay.Match3
 
         private Dictionary<string, int> matchCount = new Dictionary<string, int>();
 
+        // Event to notify when a match is made
+        public event System.Action OnMatchMade;
+
         private void Start()
         {
             _grid = new GameObject[width, height];
@@ -30,6 +33,7 @@ namespace Gameplay.Match3
             matchCount["Green"] = 0;
             matchCount["Yellow"] = 0; // Add more colors if needed
         }
+
 
         private void GenerateGrid()
         {
@@ -205,9 +209,10 @@ namespace Gameplay.Match3
             if (matchedTiles.Count > 0)
             {
                 ClearMatches(matchedTiles);
-                return true; //Return true if a match was found
+                OnMatchMade?.Invoke(); // Notify the player when a match is made
+                return true;
             }
-            return false; // Return false if no matches
+            return false;
         }
 
         public void TrackMatch(string color, int count)
