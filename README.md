@@ -23,8 +23,9 @@ Bijv..
   * [Some textured and rigged model](https://github.com/erwinhenraat/VoorbeeldExamenRepo/tree/master/assets/monsters)
 
 ### Student Gael Griffith:
-  * [Health System Script](https://github.com/j5x/PvB2025/tree/feature/modularHealthComponent)
-  * [Round-Timer Script](https://github.com/j5x/PvB2025/tree/feature/round-timer)
+  * [Health-System Script](https://github.com/j5x/PvB2025/blob/develop/Assets/Script/HealthComponent.cs)
+  * [Round-Timer Script](https://github.com/j5x/PvB2025/blob/feature/round-timer/Assets/Script/RoundTimer.cs)
+  * [Candy-Collector Script]
 
 
 # Match 3 System - Jason Siegersma
