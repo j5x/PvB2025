@@ -17,11 +17,23 @@ namespace Gameplay.Match3
         private GameObject[,] _grid;
         private Tile _selectedTile;
 
+        private Dictionary<string, int> matchCount = new Dictionary<string, int>();
+
+        // Event to notify when a match is made
+        public event System.Action OnMatchMade;
+
         private void Start()
         {
             _grid = new GameObject[width, height];
             GenerateGrid();
+            
+            // Initialize the match counter for each tile color
+            matchCount["Red"] = 0;
+            matchCount["Blue"] = 0;
+            matchCount["Green"] = 0;
+            matchCount["Yellow"] = 0; // Add more colors if needed
         }
+
 
         private void GenerateGrid()
         {
@@ -197,25 +209,69 @@ namespace Gameplay.Match3
             if (matchedTiles.Count > 0)
             {
                 ClearMatches(matchedTiles);
-                return true; //Return true if a match was found
+                OnMatchMade?.Invoke(); // Notify the player when a match is made
+                return true;
             }
-            return false; // Return false if no matches
+            return false;
         }
 
+        public void TrackMatch(string color, int count)
+        {
+            if (matchCount.ContainsKey(color))
+            {
+                matchCount[color] += count;
+            }
+            else
+            {
+                matchCount[color] = count;
+            }
+
+            Debug.Log($"Updated match count: {color} = {matchCount[color]}");
+        }
+
+        public void PrintMatchCounts()
+        {
+            foreach (var match in matchCount)
+            {
+                Debug.Log($"{match.Key} matches: {match.Value}");
+            }
+        }
+        
 
         private void ClearMatches(List<Vector2Int> matchedTiles)
         {
+            Dictionary<string, int> matchCounter = new Dictionary<string, int>();
+
             foreach (var pos in matchedTiles)
             {
                 if (_grid[pos.x, pos.y] != null)
                 {
+                    string color = _grid[pos.x, pos.y].tag; // Get color from the tile's tag
+            
+                    // Count how many of each color matched
+                    if (matchCounter.ContainsKey(color))
+                    {
+                        matchCounter[color]++;
+                    }
+                    else
+                    {
+                        matchCounter[color] = 1;
+                    }
+
                     Destroy(_grid[pos.x, pos.y]);
                     _grid[pos.x, pos.y] = null;
                 }
             }
-        
+
+            // Track the counted matches
+            foreach (var match in matchCounter)
+            {
+                TrackMatch(match.Key, match.Value);
+            }
+
             StartCoroutine(ApplyGravity()); // Make tiles fall before refilling
         }
+
         private IEnumerator ApplyGravity()
         {
             bool tilesMoved = false;
