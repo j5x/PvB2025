@@ -1,59 +1,66 @@
 using UnityEngine;
-using System;
+using System.Collections;
 using System.Collections.Generic;
 
 public class Enemy : Character
 {
-    [SerializeField] private List<AttackPattern> attackPatterns; // List of attack patterns
-    private int currentAttackIndex = 0; // Index to select the current attack
+    [SerializeField] private List<AttackPattern> attackPatterns;
+    [SerializeField] private float attackInterval = 5f;
+    private Coroutine attackRoutine;
+    private AttackPattern currentPattern;
 
-    // Use this method to set the target (could be a player or another NPC)
-    // You don’t need a new reference for HealthComponent, just use the one inherited from Character
-    public void SetTarget(Character target)
+    protected override void Awake()
     {
-        // Now we can access the target's HealthComponent directly
-        HealthComponent targetHealth = target.GetComponent<HealthComponent>();
-        if (targetHealth != null)
+        base.Awake();
+        StartAttacking(); // Start the attack cycle when the enemy is spawned
+    }
+
+    private void StartAttacking()
+    {
+        if (attackRoutine != null)
+            StopCoroutine(attackRoutine);
+
+        attackRoutine = StartCoroutine(AttackCycle());
+    }
+
+    private IEnumerator AttackCycle()
+    {
+        while (true)
         {
-            // Use the target's HealthComponent to apply damage
-            targetHealth.TakeDamage(10);  // Example of how to apply damage
+            yield return new WaitForSeconds(attackInterval);
+            Attack(); // Perform an attack at each interval
         }
     }
 
     protected override void Attack()
     {
-        if (attackPatterns.Count == 0) return; // No attack patterns available
+        if (attackPatterns == null || attackPatterns.Count == 0) return;
 
-        var pattern = attackPatterns[currentAttackIndex];
+        // Randomly select an attack pattern from the list and store it
+        currentPattern = attackPatterns[Random.Range(0, attackPatterns.Count)];
 
-        // Trigger the animation
-        animator.SetTrigger(pattern.animationTriggerName);
+        // Trigger the animation for the selected attack pattern
+        animator.SetTrigger(currentPattern.animatorParameter);
 
-        // Execute the attack after a delay to match the animation timing
-        Invoke(nameof(PerformAttack), pattern.attackDelay);
+        // Execute attack logic after the animation delay
+        Invoke(nameof(PerformAttack), currentPattern.attackDelay);
     }
 
     private void PerformAttack()
     {
-        if (attackPatterns.Count == 0) return;
-
-        var pattern = attackPatterns[currentAttackIndex];
-
-        // Apply damage to the target
-        Debug.Log($"{gameObject.name} performs an attack dealing {pattern.damage} damage!");
-
-        // Use the HealthComponent in the base class to apply damage
-        HealthComponent.TakeDamage(Mathf.RoundToInt(pattern.damage));
+        if (currentPattern != null)
+        {
+            Debug.Log($"{gameObject.name} performs a {currentPattern.animatorParameter} attack, dealing {currentPattern.damage} damage!");
+        }
     }
 
     protected override void Defend()
     {
-        // Implement defend logic, e.g., play defend animation, reduce damage, etc.
+        Debug.Log($"{gameObject.name} is defending!");
     }
 
     protected override void Die()
     {
-        // Enemy dies - trigger any animations or behaviors needed
         Debug.Log($"{gameObject.name} has died.");
         base.Die();
     }
