@@ -23,7 +23,7 @@ Bijv..
   * [Some textured and rigged model](https://github.com/erwinhenraat/VoorbeeldExamenRepo/tree/master/assets/monsters)
 
 ### Student Gael Griffith:
-  * [Some beautifull script](https://github.com/erwinhenraat/VoorbeeldExamenRepo/tree/master/src/beautifull)
+  * [Health System Script](https://github.com/j5x/PvB2025/tree/feature/round-timer)
   * Some other Game object
 
 
