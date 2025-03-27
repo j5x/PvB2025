@@ -6,9 +6,9 @@ namespace Gameplay.Match3
 {
     public class GridManager : MonoBehaviour
     {
-        public int width = 8;
-        public int height = 8;
-        public float tileSize = 1.0f;
+        [SerializeField] public int width = 8;
+        [SerializeField] public int height = 8;
+        [SerializeField] public float tileSize = 1.0f;
 
         [SerializeField] private GameObject redTilePrefab;
         [SerializeField] private GameObject blueTilePrefab;
@@ -62,6 +62,7 @@ namespace Gameplay.Match3
 
             _grid[x, y] = tile;
         }
+
 
 
         private GameObject GetRandomTilePrefab()
