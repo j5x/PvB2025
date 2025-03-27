@@ -6,9 +6,9 @@ namespace Gameplay.Match3
 {
     public class GridManager : MonoBehaviour
     {
-        [SerializeField] private int width = 8;
-        [SerializeField] private int height = 8;
-        [SerializeField] private float tileSize = 1.0f;
+        public int width = 8;
+        public int height = 8;
+        public float tileSize = 1.0f;
 
         [SerializeField] private GameObject redTilePrefab;
         [SerializeField] private GameObject blueTilePrefab;
@@ -42,14 +42,15 @@ namespace Gameplay.Match3
                 tilePrefab = GetRandomTilePrefab();
             } while (WouldCreateMatch(x, y, tilePrefab));
 
-            GameObject tile = Instantiate(tilePrefab, new Vector2(x * tileSize, y * tileSize), Quaternion.identity);
-            tile.transform.parent = transform;
+            Vector3 spawnPosition = new Vector3(x * tileSize, y * tileSize, 0);
+            GameObject tile = Instantiate(tilePrefab, spawnPosition, Quaternion.identity, transform); // 👈 Parent to GridManager
 
             Tile tileComponent = tile.GetComponent<Tile>();
             tileComponent.SetGridPosition(new Vector2Int(x, y));
 
             _grid[x, y] = tile;
         }
+
 
         private GameObject GetRandomTilePrefab()
         {
