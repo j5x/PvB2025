@@ -2,31 +2,47 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    [SerializeField] private int attackDamage = 10; // Adjust as needed
+    [SerializeField] private LayerMask enemyLayer; // Define the enemy layer
+    [SerializeField] private Collider weaponCollider; // Reference to the weapon's collider (hitbox)
+
     private Animator animator;
+    private bool isAttacking = false;
+    private bool hasHit = false; // Flag to track if the weapon has already hit an enemy during the attack
 
-    public float attackCooldown = 1f; // Time between attacks
-    private float lastAttackTime;
-
-    void Start()
+    private void Start()
     {
-        // Get the Animator component
         animator = GetComponent<Animator>();
-        lastAttackTime = Time.time;
+        weaponCollider.enabled = false;  // Disable the collider initially, it'll be enabled during the attack
     }
 
-    void Update()
+    // Call this function through the Animation Event when the attack starts
+    public void StartAttack()
     {
-        // Check if "E" key is pressed and attack is off cooldown
-        if (Input.GetKeyDown(KeyCode.E) && Time.time >= lastAttackTime + attackCooldown)
+        isAttacking = true;
+        hasHit = false; // Reset the hit flag at the start of the new attack
+        weaponCollider.enabled = true;  // Enable the weapon collider to detect hits
+    }
+
+    // Call this function through the Animation Event when the attack ends
+    public void EndAttack()
+    {
+        isAttacking = false;
+        weaponCollider.enabled = false;  // Disable the weapon collider after the attack
+    }
+
+    // This function will be triggered by the Animation Event to deal damage to enemies
+    private void OnTriggerEnter(Collider other)
+    {
+        if (isAttacking && !hasHit && other.CompareTag("Enemy"))  // Only deal damage if attacking and hasn't hit yet
         {
-            TriggerAttack();
-            lastAttackTime = Time.time; // Reset cooldown
+            HealthComponent enemyHealth = other.GetComponent<HealthComponent>();
+            if (enemyHealth != null)
+            {
+                enemyHealth.TakeDamage(attackDamage); // Deal damage
+                Debug.Log($"Damaged {other.gameObject.name} for {attackDamage} HP!");
+                hasHit = true; // Set the flag to true to prevent further damage in this attack
+            }
         }
-    }
-
-    void TriggerAttack()
-    {
-        // Trigger the attack animation by setting the trigger in Animator
-        animator.SetTrigger("Attack1");
     }
 }
