@@ -492,6 +492,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &781306116
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 781306118}
+  - component: {fileID: 781306117}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &781306117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781306116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a4ff2b25561703439c65af5b352ed82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundMusic: {fileID: 8300000, guid: cfdda7a40025781408493f167a81aefe, type: 3}
+  loopMusic: 1
+--- !u!4 &781306118
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781306116}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.6956155, y: 4.307395, z: 4.029971}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1082031753
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,11 +772,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3748654468632068363, guid: 45096812e298449418bfbfab4055922d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.014151
+      value: 3.86
       objectReference: {fileID: 0}
     - target: {fileID: 3748654468632068363, guid: 45096812e298449418bfbfab4055922d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.35
+      value: 5.27
       objectReference: {fileID: 0}
     - target: {fileID: 3748654468632068363, guid: 45096812e298449418bfbfab4055922d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -895,3 +941,4 @@ SceneRoots:
   - {fileID: 963187791317306345}
   - {fileID: 5591156647423752514}
   - {fileID: 1450921745}
+  - {fileID: 781306118}
