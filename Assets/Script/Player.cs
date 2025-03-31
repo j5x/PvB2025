@@ -1,113 +1,100 @@
 using Gameplay.Match3;
 using UnityEngine;
 using System.Collections;
+
 public class Player : Character
 {
-    private GridManager gridManager; // Reference to the GridManager
-    [SerializeField] private Animator animator; // Reference to the Animator component
+    private GridManager gridManager;
+    [SerializeField] private Animator animator;
+    [SerializeField] private Collider2D weaponCollider; // Assign the weapon's collider in the Inspector
 
-    private bool isAttacking = false;  // Flag to check if the player is currently attacking
-    private float attackCooldown = 1f; // Time in seconds between attacks (adjust as needed)
+    private bool isAttacking = false;
+    private float attackCooldown = 1f; // Adjust cooldown as needed
 
     protected override void Awake()
     {
         base.Awake();
-        animator = GetComponent<Animator>(); // Assuming you have an Animator component on the Player
+        animator = GetComponent<Animator>();
+
+        if (weaponCollider != null)
+        {
+            weaponCollider.enabled = false; // Ensure hitbox starts disabled
+        }
+        else
+        {
+            Debug.LogError("Weapon hitbox collider is not assigned to the player!");
+        }
     }
 
-    // Implementing the abstract method 'Defend()' from the Character class
     protected override void Defend()
     {
-        // This could be a block, dodge, or other defense actions
         Debug.Log("Player is defending!");
-
-        // Example of defense logic:
-        // You can play a defense animation or make the player invincible for a moment
-        if (animator != null)
-        {
-            animator.SetTrigger("Defend"); // Assuming you have a "Defend" trigger in your Animator
-        }
+        if (animator != null) animator.SetTrigger("Defend");
     }
 
     protected override void Attack()
     {
-        // If the player is already attacking, return early
-        if (isAttacking) return;
+        if (isAttacking) return; // Prevent attack spamming
 
-        // Set attacking flag to prevent further attacks during the animation or cooldown
         isAttacking = true;
-
-        // Trigger the attack animation
         if (animator != null)
         {
-            animator.SetTrigger("Attack"); // Assuming you have an "Attack" trigger in your Animator
+            animator.SetTrigger("Attack"); // Play attack animation
         }
 
-        // Perform the attack logic to deal damage
-        PerformAttack();
-
-        // Start a coroutine to reset the attack flag after the attack cooldown or animation is complete
         StartCoroutine(ResetAttackCooldown());
     }
 
-    private void PerformAttack()
+    /// <summary>
+    /// Called from an Animation Event when the weapon should deal damage.
+    /// </summary>
+    public void ActivateWeaponHitbox()
     {
-        // Create a hitbox (could be a collider or a raycast) to detect enemies
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, 1f, LayerMask.GetMask("Enemy")); // Adjust the radius as needed
-
-        foreach (var enemyCollider in hitEnemies)
+        if (weaponCollider != null)
         {
-            // Check if the collider is an enemy
-            if (enemyCollider.CompareTag("Enemy"))
-            {
-                Enemy enemy = enemyCollider.GetComponent<Enemy>(); // Assuming Enemy script is on the enemy
+            weaponCollider.enabled = true; // Enable the hitbox when the weapon swings
+            StartCoroutine(DisableHitboxAfterDelay(0.2f)); // Disable it after a short time
+        }
+    }
 
-                if (enemy != null)
-                {
-                    // Call the existing TakeDamage method on the enemy
-                    enemy.TakeDamage(10); // You can adjust the damage value as needed
-                }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy") && weaponCollider.enabled)
+        {
+            Enemy enemy = collision.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(10); // Adjust damage as needed
             }
         }
     }
 
     private void Start()
     {
-        // Find the GridManager in the scene
         gridManager = FindObjectOfType<GridManager>();
-
-        // Subscribe to the OnMatchMade event
-        if (gridManager != null)
-        {
-            gridManager.OnMatchMade += OnMatchMade; // Subscribe to the event
-        }
-        else
-        {
-            Debug.LogError("GridManager not found in the scene!");
-        }
+        if (gridManager != null) gridManager.OnMatchMade += OnMatchMade;
+        else Debug.LogError("GridManager not found in the scene!");
     }
 
     private void OnDestroy()
     {
-        // Unsubscribe from the event when the player is destroyed
-        if (gridManager != null)
-        {
-            gridManager.OnMatchMade -= OnMatchMade;
-        }
+        if (gridManager != null) gridManager.OnMatchMade -= OnMatchMade;
     }
 
     private void OnMatchMade()
     {
-        // Trigger the attack when a match is made
         Attack();
     }
 
     private IEnumerator ResetAttackCooldown()
     {
-        // Wait for the cooldown duration before allowing another attack
         yield return new WaitForSeconds(attackCooldown);
-
-        // Reset the attacking flag so another attack can happen
         isAttacking = false;
+    }
+
+    private IEnumerator DisableHitboxAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (weaponCollider != null) weaponCollider.enabled = false;
     }
 }
