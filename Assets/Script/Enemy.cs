@@ -50,7 +50,7 @@ public class Enemy : Character
         PerformRandomAttack(); // Now this method gets called via inheritance
     }
 
-    private void PerformRandomAttack()
+    public void PerformRandomAttack()
     {
         if (attackConfigs == null || attackConfigs.Count == 0) return;
 

@@ -14,6 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackName: Default Attack
   attackDamage: 10
-  attackInterval: 5
-  attackDelay: 0
+  attackDelay: 10
   animatorParameter: Attack01

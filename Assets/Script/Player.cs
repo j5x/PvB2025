@@ -57,14 +57,14 @@ public class Player : Character
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy") && weaponCollider.enabled)
         {
             Enemy enemy = collision.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.TakeDamage(10); // Adjust damage as needed
+                enemy.TakeDamage(100); // Adjust damage as needed
             }
         }
     }
@@ -92,7 +92,7 @@ public class Player : Character
         isAttacking = false;
     }
 
-    private IEnumerator DisableHitboxAfterDelay(float delay)
+    public IEnumerator DisableHitboxAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
         if (weaponCollider != null) weaponCollider.enabled = false;
