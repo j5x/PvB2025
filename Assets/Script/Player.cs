@@ -5,85 +5,90 @@ using System.Collections;
 public class Player : Character
 {
     private GridManager gridManager;
-    [SerializeField] private Animator animator;
-    [SerializeField] private Collider2D weaponCollider; // Assign the weapon's collider in the Inspector
-
     private bool isAttacking = false;
-    private float attackCooldown = 1f; // Adjust cooldown as needed
+    private float attackCooldown = 1f;
+    private HealthComponent healthComponent;
+    private AttackComponent attackComponent;
 
     protected override void Awake()
     {
         base.Awake();
-        animator = GetComponent<Animator>();
+        gridManager = FindObjectOfType<GridManager>();
+        healthComponent = GetComponent<HealthComponent>();
+        attackComponent = GetComponent<AttackComponent>();
 
-        if (weaponCollider != null)
+        if (gridManager != null)
+            gridManager.OnMatchMade += OnMatchMade;
+        else
+            Debug.LogError("GridManager not found in the scene!");
+
+        if (healthComponent == null)
         {
-            weaponCollider.enabled = false; // Ensure hitbox starts disabled
+            Debug.LogWarning($"{gameObject.name}: HealthComponent is missing!");
+            healthComponent = gameObject.AddComponent<HealthComponent>();
         }
         else
         {
-            Debug.LogError("Weapon hitbox collider is not assigned to the player!");
+            // ✅ Subscribe to the OnDeath event
+            healthComponent.OnDeath += HandleDeath;
         }
-    }
 
-    protected override void Defend()
-    {
-        Debug.Log("Player is defending!");
-        if (animator != null) animator.SetTrigger("Defend");
-    }
-
-    protected override void Attack()
-    {
-        if (isAttacking) return; // Prevent attack spamming
-
-        isAttacking = true;
-        if (animator != null)
+        if (attackComponent == null || attackComponent.attackConfigs.Count == 0)
         {
-            animator.SetTrigger("Attack"); // Play attack animation
+            Debug.LogError($"{gameObject.name}: No AttackConfig assigned in AttackComponent!");
         }
-
-        StartCoroutine(ResetAttackCooldown());
-    }
-
-    /// <summary>
-    /// Called from an Animation Event when the weapon should deal damage.
-    /// </summary>
-    public void ActivateWeaponHitbox()
-    {
-        if (weaponCollider != null)
-        {
-            weaponCollider.enabled = true; // Enable the hitbox when the weapon swings
-            StartCoroutine(DisableHitboxAfterDelay(0.2f)); // Disable it after a short time
-        }
-    }
-
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Enemy") && weaponCollider.enabled)
-        {
-            Enemy enemy = collision.GetComponent<Enemy>();
-            if (enemy != null)
-            {
-                enemy.TakeDamage(100); // Adjust damage as needed
-            }
-        }
-    }
-
-    private void Start()
-    {
-        gridManager = FindObjectOfType<GridManager>();
-        if (gridManager != null) gridManager.OnMatchMade += OnMatchMade;
-        else Debug.LogError("GridManager not found in the scene!");
     }
 
     private void OnDestroy()
     {
-        if (gridManager != null) gridManager.OnMatchMade -= OnMatchMade;
+        if (gridManager != null)
+            gridManager.OnMatchMade -= OnMatchMade;
+
+        if (healthComponent != null)
+            healthComponent.OnDeath -= HandleDeath; // ✅ Unsubscribe from event to avoid memory leaks
     }
 
     private void OnMatchMade()
     {
         Attack();
+    }
+
+    protected override void Attack()
+    {
+        if (isAttacking || attackComponent == null || attackComponent.attackConfigs.Count == 0) return;
+
+        isAttacking = true;
+        attackComponent.PerformAttack(0);
+        StartCoroutine(ResetAttackCooldown());
+    }
+
+    protected override void Defend()
+    {
+        Debug.Log($"{gameObject.name} is defending!");
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (healthComponent == null) return;
+
+        healthComponent.TakeDamage(damage);
+    }
+
+    private void HandleDeath()
+    {
+        Debug.Log($"{gameObject.name} has died!");
+        
+        // ✅ Ensure the player is properly removed
+        Destroy(gameObject);
+    }
+
+    public void ActivateWeaponHitbox()
+    {
+        if (weaponCollider != null)
+        {
+            weaponCollider.enabled = true;
+            StartCoroutine(DisableHitboxAfterDelay(0.2f));
+        }
     }
 
     private IEnumerator ResetAttackCooldown()
@@ -92,9 +97,15 @@ public class Player : Character
         isAttacking = false;
     }
 
-    public IEnumerator DisableHitboxAfterDelay(float delay)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        yield return new WaitForSeconds(delay);
-        if (weaponCollider != null) weaponCollider.enabled = false;
+        if (collision.CompareTag("Enemy") && weaponCollider.enabled)
+        {
+            Enemy enemy = collision.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(attackComponent.attackConfigs[0].attackDamage);
+            }
+        }
     }
 }
