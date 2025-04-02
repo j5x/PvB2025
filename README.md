@@ -222,7 +222,7 @@ Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots 
 
 ## BackgroundMusicManager Script by Gael Griffith
 
-# How It Works (In Simple Terms)
+### How It Works (In Simple Terms)
 * When the game starts, it checks if there’s already background music playing.
 
 * If music is already playing, it doesn’t start a new one (so there’s no overlap).
@@ -231,7 +231,7 @@ Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots 
 
 * The script is set up so that the music continues playing across different scenes instead of restarting every time the player moves to a new area.
 
-# Why It’s Important
+### Why It’s Important
 * ✅ Prevents annoying music overlaps.
 * ✅ Makes the game feel smoother by keeping music consistent.
 * ✅ Ensures music doesn't restart every time the player moves to a new scene.
