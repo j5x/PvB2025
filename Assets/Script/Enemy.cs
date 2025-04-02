@@ -59,7 +59,7 @@ public class Enemy : Character
     Debug.Log($"{gameObject.name} AFTER DAMAGE: HP = {healthComponent.CurrentHealth}");
 }
 
-\
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && weaponCollider.enabled)
