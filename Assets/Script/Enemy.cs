@@ -1,74 +1,74 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 
 public class Enemy : Character
 {
-    [SerializeField] private List<AttackConfig> attackConfigs; 
-    [SerializeField] private float attackInterval = 5f; 
-    private Coroutine attackRoutine;
-    private AttackComponent attackComponent;
+    [SerializeField] private AttackComponent attackComponent;
+    [SerializeField] private HealthComponent healthComponent;
+    [SerializeField] private float attackInterval = 5f;
 
     protected override void Awake()
     {
         base.Awake();
 
-        attackComponent = gameObject.GetComponent<AttackComponent>();
+        attackComponent = GetComponent<AttackComponent>();
+        healthComponent = GetComponent<HealthComponent>();
+
         if (attackComponent == null)
         {
-            attackComponent = gameObject.AddComponent<AttackComponent>();
+            Debug.LogWarning($"{gameObject.name}: AttackComponent is missing!");
+            attackComponent = gameObject.AddComponent<AttackComponent>(); // Ensure it's there
         }
 
-        // Initialize the first attack pattern
-        if (attackConfigs is { Count: > 0 })
+        if (healthComponent == null)
         {
-            attackComponent.InitializeAttack(attackConfigs[0]);
+            Debug.LogWarning($"{gameObject.name}: HealthComponent is missing!");
+            healthComponent = gameObject.AddComponent<HealthComponent>(); // Ensure it's there
         }
 
-        StartAttacking();
-    }
-
-    private void StartAttacking()
-    {
-        if (attackRoutine != null)
-            StopCoroutine(attackRoutine);
-        attackRoutine = StartCoroutine(AttackCycle());
-    }
-
-    private IEnumerator AttackCycle()
-    {
-        while (true)
+        if (attackComponent.attackConfigs.Count > 0)
         {
-            yield return new WaitForSeconds(attackInterval);
-            Attack(); // Using the parent class method (now functional)
+            attackComponent.InitializeAttack(attackComponent.attackConfigs[0]); // Set default attack
         }
+        else
+        {
+            Debug.LogError($"{gameObject.name}: No AttackConfig assigned!");
+        }
+
+        attackComponent.AIControlledAttackLoop(attackInterval);
     }
 
-    // Refactored to call PerformRandomAttack
     protected override void Attack()
     {
-        PerformRandomAttack(); // Now this method gets called via inheritance
+        int attackIndex = Random.Range(0, attackComponent.attackConfigs.Count);
+        attackComponent.PerformAttack(attackIndex);
     }
-
-    private void PerformRandomAttack()
-    {
-        if (attackConfigs == null || attackConfigs.Count == 0) return;
-
-        int randomIndex = Random.Range(0, attackConfigs.Count); // Select random attack index
-        AttackConfig selectedAttack = attackConfigs[randomIndex];
-
-        attackComponent.PerformAttack(selectedAttack, randomIndex); // Pass the attack index
-    }
-
 
     protected override void Defend()
     {
         Debug.Log($"{gameObject.name} is defending!");
     }
 
-    protected override void Die()
+    public void TakeDamage(int damage)
+{
+    if (healthComponent == null) return;
+
+    Debug.Log($"{gameObject.name} BEFORE DAMAGE: HP = {healthComponent.CurrentHealth}");
+
+    healthComponent.TakeDamage(damage);
+
+    Debug.Log($"{gameObject.name} AFTER DAMAGE: HP = {healthComponent.CurrentHealth}");
+}
+
+\
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log($"{gameObject.name} has died.");
-        base.Die();
+        if (collision.CompareTag("Player") && weaponCollider.enabled)
+        {
+            Player player = collision.GetComponent<Player>();
+            if (player != null)
+            {
+                player.TakeDamage(attackComponent.attackConfig.attackDamage);
+            }
+        }
     }
 }

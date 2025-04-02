@@ -1,44 +1,111 @@
+using Gameplay.Match3;
 using UnityEngine;
-using Gameplay.Match3; // Make sure this namespace matches the GridManager's namespace
+using System.Collections;
 
 public class Player : Character
 {
-    private GridManager gridManager; // Reference to the GridManager
+    private GridManager gridManager;
+    private bool isAttacking = false;
+    private float attackCooldown = 1f;
+    private HealthComponent healthComponent;
+    private AttackComponent attackComponent;
 
-    protected override void Attack()
+    protected override void Awake()
     {
-        // Log a message when the player attacks
-        Debug.Log("I am Attacking");
-    }
-
-    protected override void Defend()
-    {
-        // Add defend logic if you want later
-        Debug.Log("Player is defending.");
-    }
-
-    private void Start()
-    {
-        // Find the GridManager in the scene
+        base.Awake();
         gridManager = FindObjectOfType<GridManager>();
-        
-        // Subscribe to the OnMatchMade event
+        healthComponent = GetComponent<HealthComponent>();
+        attackComponent = GetComponent<AttackComponent>();
+
         if (gridManager != null)
+            gridManager.OnMatchMade += OnMatchMade;
+        else
+            Debug.LogError("GridManager not found in the scene!");
+
+        if (healthComponent == null)
         {
-            gridManager.OnMatchMade += Attack;
+            Debug.LogWarning($"{gameObject.name}: HealthComponent is missing!");
+            healthComponent = gameObject.AddComponent<HealthComponent>();
         }
         else
         {
-            Debug.LogError("GridManager not found in the scene!");
+            // ✅ Subscribe to the OnDeath event
+            healthComponent.OnDeath += HandleDeath;
+        }
+
+        if (attackComponent == null || attackComponent.attackConfigs.Count == 0)
+        {
+            Debug.LogError($"{gameObject.name}: No AttackConfig assigned in AttackComponent!");
         }
     }
 
     private void OnDestroy()
     {
-        // Unsubscribe from the event when the player is destroyed
         if (gridManager != null)
+            gridManager.OnMatchMade -= OnMatchMade;
+
+        if (healthComponent != null)
+            healthComponent.OnDeath -= HandleDeath; // ✅ Unsubscribe from event to avoid memory leaks
+    }
+
+    private void OnMatchMade()
+    {
+        Attack();
+    }
+
+    protected override void Attack()
+    {
+        if (isAttacking || attackComponent == null || attackComponent.attackConfigs.Count == 0) return;
+
+        isAttacking = true;
+        attackComponent.PerformAttack(0);
+        StartCoroutine(ResetAttackCooldown());
+    }
+
+    protected override void Defend()
+    {
+        Debug.Log($"{gameObject.name} is defending!");
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (healthComponent == null) return;
+
+        healthComponent.TakeDamage(damage);
+    }
+
+    private void HandleDeath()
+    {
+        Debug.Log($"{gameObject.name} has died!");
+        
+        // ✅ Ensure the player is properly removed
+        Destroy(gameObject);
+    }
+
+    public void ActivateWeaponHitbox()
+    {
+        if (weaponCollider != null)
         {
-            gridManager.OnMatchMade -= Attack;
+            weaponCollider.enabled = true;
+            StartCoroutine(DisableHitboxAfterDelay(0.2f));
+        }
+    }
+
+    private IEnumerator ResetAttackCooldown()
+    {
+        yield return new WaitForSeconds(attackCooldown);
+        isAttacking = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy") && weaponCollider.enabled)
+        {
+            Enemy enemy = collision.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(attackComponent.attackConfigs[0].attackDamage);
+            }
         }
     }
 }
