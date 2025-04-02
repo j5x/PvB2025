@@ -25,7 +25,8 @@ Bijv..
 ### Student Gael Griffith:
   * [Health-System Script](https://github.com/j5x/PvB2025/blob/develop/Assets/Script/HealthComponent.cs)
   * [Round-Timer Script](https://github.com/j5x/PvB2025/blob/feature/round-timer/Assets/Script/RoundTimer.cs)
-  * [Candy-Collector Script]
+  * [Damage-System (Player) Script](https://github.com/j5x/PvB2025/blob/feature/Damage-System/Assets/Script/Player.cs)
+  * [Damage-System (Enemy) Script](https://github.com/j5x/PvB2025/blob/feature/Damage-System/Assets/Script/Enemy.cs)
 
 
 # Match 3 System - Jason Siegersma
