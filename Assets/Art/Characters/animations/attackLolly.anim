@@ -4205,7 +4205,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.55
+  - time: 1.6166667
     functionName: DisableHitboxAfterDelay
     data: 
     objectReferenceParameter: {fileID: 0}

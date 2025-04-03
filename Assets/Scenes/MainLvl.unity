@@ -437,11 +437,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1124864205677568596, guid: 45096812e298449418bfbfab4055922d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 20.142067
+      value: 27.368017
+      objectReference: {fileID: 0}
+    - target: {fileID: 3589118720014562061, guid: 45096812e298449418bfbfab4055922d, type: 3}
+      propertyPath: m_Name
+      value: Weapon Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 3748654468632068363, guid: 45096812e298449418bfbfab4055922d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.1
+      value: 3.75
       objectReference: {fileID: 0}
     - target: {fileID: 3748654468632068363, guid: 45096812e298449418bfbfab4055922d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -479,9 +483,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5493590692370866717, guid: 45096812e298449418bfbfab4055922d, type: 3}
+      propertyPath: weaponCollider
+      value: 
+      objectReference: {fileID: 1224481108}
     - target: {fileID: 6839973432132327380, guid: 45096812e298449418bfbfab4055922d, type: 3}
       propertyPath: m_Name
       value: Lollypop Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6839973432132327380, guid: 45096812e298449418bfbfab4055922d, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -538,15 +550,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3142797075925866383, guid: 30fb68929d28591438b7d6d1621e8f2d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.554081
+      value: 29.045387
       objectReference: {fileID: 0}
     - target: {fileID: 3418149732969637306, guid: 30fb68929d28591438b7d6d1621e8f2d, type: 3}
       propertyPath: m_Name
       value: Lollypop player
       objectReference: {fileID: 0}
-    - target: {fileID: 7648550622147442749, guid: 30fb68929d28591438b7d6d1621e8f2d, type: 3}
-      propertyPath: m_Enabled
-      value: 0
+    - target: {fileID: 3418149732969637306, guid: 30fb68929d28591438b7d6d1621e8f2d, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7167569935198874348, guid: 30fb68929d28591438b7d6d1621e8f2d, type: 3}
+      propertyPath: m_Name
+      value: Weapon Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -640,6 +656,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1224481108 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 3954686043156160971, guid: 45096812e298449418bfbfab4055922d, type: 3}
+  m_PrefabInstance: {fileID: 750861026}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2117260005
 GameObject:
   m_ObjectHideFlags: 0

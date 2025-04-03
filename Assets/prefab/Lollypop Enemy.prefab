@@ -764,7 +764,7 @@ GameObject:
   - component: {fileID: 8763116895941042438}
   - component: {fileID: 3954686043156160971}
   m_Layer: 0
-  m_Name: weapon Copy 2
+  m_Name: Weapon Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -779,7 +779,7 @@ Transform:
   m_GameObject: {fileID: 3589118720014562061}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.839999, y: 10.12, z: 0}
+  m_LocalPosition: {x: 27.368017, y: 10.12, z: 0}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1256,7 +1256,7 @@ GameObject:
   - component: {fileID: 733907467716424843}
   m_Layer: 0
   m_Name: Lollypop Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1433,7 +1433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Enemy lolly
   healthConfig: {fileID: 11400000, guid: b5fa22ad2408cc142ad6f341d2d2edc4, type: 2}
-  weaponCollider: {fileID: 0}
+  weaponCollider: {fileID: 3954686043156160971}
   attackComponent: {fileID: 8740086899380662861}
   healthComponent: {fileID: 733907467716424843}
   attackInterval: 5
