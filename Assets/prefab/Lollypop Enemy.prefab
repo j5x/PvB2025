@@ -762,6 +762,7 @@ GameObject:
   - component: {fileID: 1124864205677568596}
   - component: {fileID: 5661933390270422255}
   - component: {fileID: 8763116895941042438}
+  - component: {fileID: 3954686043156160971}
   m_Layer: 0
   m_Name: weapon Copy 2
   m_TagString: Untagged
@@ -779,7 +780,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4.839999, y: 10.12, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3748654468632068363}
@@ -859,6 +860,42 @@ MonoBehaviour:
     m_Extent: {x: 4.8134193, y: 5.05, z: 0}
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
+--- !u!58 &3954686043156160971
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3589118720014562061}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 1.15, y: 1.5}
+  m_Radius: 5
 --- !u!1 &3909189713874195320
 GameObject:
   m_ObjectHideFlags: 0
@@ -1213,8 +1250,10 @@ GameObject:
   - component: {fileID: 8724385811147731882}
   - component: {fileID: 9214053344251352283}
   - component: {fileID: 3250628771146337743}
-  - component: {fileID: 1739515437760508672}
+  - component: {fileID: 1182377917651406223}
   - component: {fileID: 5493590692370866717}
+  - component: {fileID: 8740086899380662861}
+  - component: {fileID: 733907467716424843}
   m_Layer: 0
   m_Name: Lollypop Enemy
   m_TagString: Untagged
@@ -1230,7 +1269,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6839973432132327380}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.0000029653306}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 4.014151, y: 5.0262504, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1285,7 +1324,7 @@ Animator:
   m_GameObject: {fileID: 6839973432132327380}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8c794e361a61ea64ab0575fb2729cf76, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3ea865410cfe08248bb5d7bb61283f47, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1334,21 +1373,52 @@ CapsuleCollider2D:
   m_Offset: {x: -3, y: 10}
   m_Size: {x: 9, y: 18}
   m_Direction: 0
---- !u!114 &1739515437760508672
-MonoBehaviour:
+--- !u!61 &1182377917651406223
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6839973432132327380}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29effeeb09d2ffa4e8a9d5fe819c27bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterName: LollyPopGirl
-  healthConfig: {fileID: 11400000, guid: b5fa22ad2408cc142ad6f341d2d2edc4, type: 2}
-  animator: {fileID: 9214053344251352283}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -3.3, y: 10}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 10, y: 20}
+  m_EdgeRadius: 0
 --- !u!114 &5493590692370866717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1363,10 +1433,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Enemy lolly
   healthConfig: {fileID: 11400000, guid: b5fa22ad2408cc142ad6f341d2d2edc4, type: 2}
+  weaponCollider: {fileID: 0}
+  attackComponent: {fileID: 8740086899380662861}
+  healthComponent: {fileID: 733907467716424843}
+  attackInterval: 5
+--- !u!114 &8740086899380662861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6839973432132327380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13766a50b196d1e4b88a39ee595eca71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackConfig: {fileID: 11400000, guid: 8aa16abd71bc35149a9c95647ccdd5b9, type: 2}
   attackConfigs:
   - {fileID: 11400000, guid: 8aa16abd71bc35149a9c95647ccdd5b9, type: 2}
   - {fileID: 11400000, guid: f6c65b43636155c41bc981510fa74958, type: 2}
-  attackInterval: 5
+  isAIControlled: 1
+--- !u!114 &733907467716424843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6839973432132327380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 259307a5145c68448bf9e794bbe0dad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthConfig: {fileID: 11400000, guid: b5fa22ad2408cc142ad6f341d2d2edc4, type: 2}
 --- !u!1 &7263243883289597990
 GameObject:
   m_ObjectHideFlags: 0

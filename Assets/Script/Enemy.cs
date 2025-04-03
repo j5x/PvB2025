@@ -52,14 +52,13 @@ public class Enemy : Character
 {
     if (healthComponent == null) return;
 
-    Debug.Log($"{gameObject.name} BEFORE DAMAGE: HP = {healthComponent.CurrentHealth}");
+    //Debug.Log($"{gameObject.name} BEFORE DAMAGE: HP = {healthComponent.currentHealth}");
 
     healthComponent.TakeDamage(damage);
 
-    Debug.Log($"{gameObject.name} AFTER DAMAGE: HP = {healthComponent.CurrentHealth}");
+    //Debug.Log($"{gameObject.name} AFTER DAMAGE: HP = {healthComponent.currentHealth}");
 }
-
-
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && weaponCollider.enabled)
