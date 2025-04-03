@@ -435,13 +435,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1124864205677568596, guid: 45096812e298449418bfbfab4055922d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 20.142067
+      objectReference: {fileID: 0}
     - target: {fileID: 3748654468632068363, guid: 45096812e298449418bfbfab4055922d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.264
+      value: 4.1
       objectReference: {fileID: 0}
     - target: {fileID: 3748654468632068363, guid: 45096812e298449418bfbfab4055922d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.181
+      value: 5.1
       objectReference: {fileID: 0}
     - target: {fileID: 3748654468632068363, guid: 45096812e298449418bfbfab4055922d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -494,11 +498,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 868669390600427806, guid: 30fb68929d28591438b7d6d1621e8f2d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.6206548
+      value: 0.83
       objectReference: {fileID: 0}
     - target: {fileID: 868669390600427806, guid: 30fb68929d28591438b7d6d1621e8f2d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.1687818
+      value: 5.1
       objectReference: {fileID: 0}
     - target: {fileID: 868669390600427806, guid: 30fb68929d28591438b7d6d1621e8f2d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -532,9 +536,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3142797075925866383, guid: 30fb68929d28591438b7d6d1621e8f2d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 21.554081
+      objectReference: {fileID: 0}
     - target: {fileID: 3418149732969637306, guid: 30fb68929d28591438b7d6d1621e8f2d, type: 3}
       propertyPath: m_Name
       value: Lollypop player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7648550622147442749, guid: 30fb68929d28591438b7d6d1621e8f2d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -690,7 +702,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.8}
   m_EdgeRadius: 0
 --- !u!212 &2117260007
 SpriteRenderer:
@@ -756,7 +768,7 @@ Transform:
   m_GameObject: {fileID: 2117260005}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.2059, y: 4.9954, z: 0}
+  m_LocalPosition: {x: 2.2059, y: 4.75, z: 0}
   m_LocalScale: {x: 5.663968, y: 0.384481, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
