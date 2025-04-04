@@ -202,6 +202,31 @@ Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots 
 
 ![Screenshot](https://github.com/user-attachments/assets/64937a8a-185f-4db1-bd6c-4fd7ea339f8a)
 
+# 🧠 Modular Health System - Visual Sheet
+
+This document provides a high-level visual overview of the Modular Health System architecture used in the project.
+
+---
+
+## 📊 System Diagram
+
+```mermaid
+flowchart TD
+    A[Character (Abstract Class)] -->|has| B[HealthComponent]
+    A --> C[Animator]
+    A --> D[HealthConfig (ScriptableObject)]
+
+    B --> E[Takes Damage]
+    B --> F[Invokes OnDeath Event]
+    B --> G[Initializes from HealthConfig]
+
+    H[Player (Derived from Character)] --> A
+    I[Enemy (Derived from Character)] --> A
+
+    H -->|Calls| E
+    I -->|Calls| E
+```
+
 ## Round-Timer Script by Gael Griffith
 
 Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
