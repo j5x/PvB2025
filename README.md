@@ -1,6 +1,8 @@
 # Candy Dandy
 
 Dit project is gemaakt als onderdeel van ons examen voor de opleiding Software/Game Development & Game Artist van Mediacollege Amsterdam. Het doel is om onze vaardigheden in game design te laten zien.
+[Onze Trello](https://trello.com/b/QKXxfOid/pvb2025)
+[Onze Wiki](https://github.com/j5x/PvB2025/wiki)
 
 # Geproduceerde Game Onderdelen
 
@@ -9,8 +11,11 @@ Dit project is gemaakt als onderdeel van ons examen voor de opleiding Software/G
   * [Match 3 System](https://github.com/j5x/PvB2025/tree/feature/grid/Assets/Script)
  
 ### Student Jahvairo Monkau:
-  * Water Shader
-  * [Some textured and rigged model](https://github.com/erwinhenraat/VoorbeeldExamenRepo/tree/master/assets/monsters)
+  * [Character](https://github.com/j5x/PvB2025/blob/develop/Assets/Script/Character.cs)
+  * [Player class](https://github.com/j5x/PvB2025/blob/develop/Assets/Script/Player.cs)
+  * [Enemy class](https://github.com/j5x/PvB2025/blob/develop/Assets/Script/Enemy.cs)
+  * [Enemy AI](https://github.com/j5x/PvB2025/blob/develop/Assets/Script/AttackComponent.cs)
+
 
 ### Student Gael Griffith:
   * [Health-System Script](https://github.com/j5x/PvB2025/blob/develop/Assets/Script/HealthComponent.cs)
