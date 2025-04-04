@@ -206,7 +206,7 @@ This document provides a high-level visual overview of the Modular Health System
 
 ```mermaid
 flowchart TD
-    A[Character (Abstract Class)] -->|has| B[HealthComponent]
+    A --> [Character (Abstract Class)] -->|has| B[HealthComponent]
     A --> C[Animator]
     A --> D[HealthConfig (ScriptableObject)]
 
