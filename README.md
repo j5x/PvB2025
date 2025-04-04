@@ -7,8 +7,7 @@ Dit project is gemaakt als onderdeel van ons examen voor de opleiding Software/G
 
 ### Student Jason Siegersma:
   * [Match 3 System](https://github.com/j5x/PvB2025/tree/feature/grid/Assets/Script)
-  * [Some other mechanic X](https://github.com/erwinhenraat/VoorbeeldExamenRepo/tree/master/src/mechanic_x)
-  * [Some other mechanic Y](https://github.com/erwinhenraat/VoorbeeldExamenRepo/tree/master/src/mechanic_y)
+ 
 ### Student Jahvairo Monkau:
   * Water Shader
   * [Some textured and rigged model](https://github.com/erwinhenraat/VoorbeeldExamenRepo/tree/master/assets/monsters)
