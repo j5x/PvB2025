@@ -1,18 +1,9 @@
-# VoorbeeldExamenRepo
-Een voorbeeld repository voor het examenwerk
+# Candy Dandy
 
-In deze repository vind je de informatie over het examen project.
-
-Omschrijf de examenopdracht evt de klant en wat het doel voor de klant is.
-Omschrijf ook beknopt wat het idee van je game is. 
-Een complete en uitgebreide beschrijving komt in het functioneel ontwerp (onderdeel van de [wiki](https://github.com/erwinhenraat/VoorbeeldExamenRepo/wiki))
+Dit project is gemaakt als onderdeel van ons examen voor de opleiding Software/Game Development & Game Artist van Mediacollege Amsterdam. Het doel is om onze vaardigheden in game design te laten zien.
 
 # Geproduceerde Game Onderdelen
 
-Geef per teammember aan welke game onderdelen je hebt geproduceerd. Doe dit met behulp van omschrijvingen visual sheets en screenshots.
-Maak ook een overzicht van alle onderdelen met een link naar de map waarin deze terug te vinden zijn.
-
-Bijv..
 
 ### Student Jason Siegersma:
   * [Match 3 System](https://github.com/j5x/PvB2025/tree/feature/grid/Assets/Script)
