@@ -281,4 +281,20 @@ Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots 
 
 This makes the game's sound experience more immersive and polished! 🎶
 
-![example](https://user-images.githubusercontent.com/1262745/189135129-34d15823-0311-46b5-a041-f0bbfede9e78.png)
+```mermaid
+    flowchart TD
+    A[BackgroundMusicManager] --> B[Awake]
+    A --> C[StartMusic]
+    A --> D[StopMusic]
+    A --> E[PlayMusicClip]
+    A --> F[FadeInMusic]
+    A --> G[FadeOutMusic]
+
+    B --> H[Checks if MusicSource exists]
+    C --> I[Plays music with a specified clip]
+    D --> J[Stops music immediately]
+    E --> K[Plays music clip with fading effect]
+    F --> L[Gradually increases music volume]
+    G --> M[Gradually decreases music volume]
+
+```
