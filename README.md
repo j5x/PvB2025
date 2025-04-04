@@ -192,11 +192,22 @@ class Enemy{
 }
 ```
 
-## Some textured and rigged model by Jahvairo Monkau
+## Attack System by Jahvairo Monkau
 
-Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+### The AttackComponent handles character attacks using a list of AttackConfig ScriptableObjects. Each AttackConfig defines a unique attack (name, damage, animation trigger, and delay). You can assign any number of attacks via the Inspector.
 
-![example](https://user-images.githubusercontent.com/1262745/189135129-34d15823-0311-46b5-a041-f0bbfede9e78.png)
+### Key features:
+
+* Flexible attack setup using ScriptableObjects
+
+* Optional AI-controlled attack loop
+
+* Easily switch or trigger specific attacks by index
+
+* This setup allows you to mix and match attack behaviors per character without hardcoding logic.
+
+![boom](https://github.com/user-attachments/assets/5bc5f6f0-6095-44fa-aeec-f0d4c918300b)
+
 
 ## Modular Health System Script by Gael Griffith
 
