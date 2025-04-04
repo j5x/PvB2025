@@ -139,9 +139,14 @@ buffed --> |oh he sick | matching;
 
 ## Some other Mechanic Grid Match 3 by Jason Siegersma
 
-Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+### 🔹 Match-3 System Summary
+A dynamic tile-matching system made in Unity (C#). Tiles fall into empty spaces, refill automatically, and include a special white tile that clears all tiles of one color when matched.
 
-![example](https://user-images.githubusercontent.com/1262745/189135129-34d15823-0311-46b5-a041-f0bbfede9e78.png)
+
+![kandy](https://github.com/user-attachments/assets/0d69b7d6-a6bd-48d3-8c93-a9903f299f70)
+![candy](https://github.com/user-attachments/assets/922ef085-1909-4fc0-ab47-0eca6e34bace)
+![ingame phone](https://github.com/user-attachments/assets/81a2cebb-4afe-4e75-947e-8036ea774778)
+
 
 ## Some other Mechanic Y by Jason Siegersma
 
@@ -150,6 +155,19 @@ Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots 
 ![example](https://user-images.githubusercontent.com/1262745/189135129-34d15823-0311-46b5-a041-f0bbfede9e78.png)
 
 ## Character classes by Jahvairo Monkau
+
+### All characters in the game (Player and Enemy) inherit from a shared Character base class. This class contains core functionality and components that every character needs, such as:
+
+* Character name
+
+* Health and attack handling
+
+* Animator reference
+
+* Basic actions: attack, defend, take damage, and die
+
+* This structure ensures consistent behavior and reduces code duplication across different character types.
+
 
 ### class diagram voor game entities:
 
@@ -174,15 +192,13 @@ class Enemy{
 }
 ```
 
-![example](https://user-images.githubusercontent.com/1262745/189135129-34d15823-0311-46b5-a041-f0bbfede9e78.png)
-
 ## Some textured and rigged model by Jahvairo Monkau
 
 Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
 
 ![example](https://user-images.githubusercontent.com/1262745/189135129-34d15823-0311-46b5-a041-f0bbfede9e78.png)
 
-## Health System Script by Gael Griffith
+## Modular Health System Script by Gael Griffith
 
 
 * ✅ Initializes health based on HealthConfig.
@@ -196,29 +212,26 @@ Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots 
 
 ![Screenshot](https://github.com/user-attachments/assets/64937a8a-185f-4db1-bd6c-4fd7ea339f8a)
 
-# 🧠 Modular Health System - Visual Sheet
-
-This document provides a high-level visual overview of the Modular Health System architecture used in the project.
-
----
+# Visual Sheet
 
 ## 📊 System Diagram
 
 ```mermaid
 flowchart TD
-    A --> [Character (Abstract Class)] -->|has| B[HealthComponent]
+    A[Character - abstract class] --> B[HealthComponent]
     A --> C[Animator]
-    A --> D[HealthConfig (ScriptableObject)]
+    A --> D[HealthConfig - ScriptableObject]
 
     B --> E[Takes Damage]
     B --> F[Invokes OnDeath Event]
     B --> G[Initializes from HealthConfig]
 
-    H[Player (Derived from Character)] --> A
-    I[Enemy (Derived from Character)] --> A
+    H[Player - inherits Character] --> A
+    I[Enemy - inherits Character] --> A
 
-    H -->|Calls| E
-    I -->|Calls| E
+    H --> E
+    I --> E
+
 ```
 
 ## Round-Timer Script by Gael Griffith
