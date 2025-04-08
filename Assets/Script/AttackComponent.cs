@@ -58,7 +58,7 @@ public class AttackComponent : MonoBehaviour
             return;
         }
 
-        character.ActivateWeaponHitbox(); // Triggers hit detection
+        //character.ActivateWeaponHitbox(); // Triggers hit detection
     }
 
     public void AIControlledAttackLoop(float interval)
