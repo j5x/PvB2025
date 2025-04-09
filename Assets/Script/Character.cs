@@ -1,42 +1,36 @@
 using UnityEngine;
-using System.Collections;
 
 public abstract class Character : MonoBehaviour
 {
+    [Header("Configuration")]
     [SerializeField] protected string characterName;
     [SerializeField] protected HealthConfig healthConfig;
-    [SerializeField] protected Collider2D weaponCollider;
 
-    public string Name => characterName;
-    private HealthComponent HealthComponent { get; set; }
-    public CharacterType CharacterType { get; protected set; }
-
+    [Header("Components")]
+    [SerializeField] protected AttackComponent attackComponent;
+    [SerializeField] protected HealthComponent healthComponent;
+    
     protected Animator animator;
-    protected AttackComponent attackComponent;
+    
+    public string Name => characterName;
+    public CharacterType CharacterType { get; protected set; }
 
     protected virtual void Awake()
     {
         animator = GetComponent<Animator>();
-        attackComponent = GetComponent<AttackComponent>();
-
+        
         if (attackComponent == null)
         {
-            Debug.LogError($"{gameObject.name}: Missing AttackComponent! Assign it in Inspector.");
-        }
-
-        HealthComponent = GetComponent<HealthComponent>() ?? gameObject.AddComponent<HealthComponent>();    
-        HealthComponent.InitializeHealth(healthConfig);
-        HealthComponent.OnDeath += Die;
-
-        if (weaponCollider == null)
-        {
-            weaponCollider = GetComponentInChildren<Collider2D>(); // Auto-assign if missing
-            if (weaponCollider == null)
+            attackComponent = GetComponent<AttackComponent>();
+            if (attackComponent == null)
             {
-                Debug.LogError($"{gameObject.name}: WeaponCollider is NULL! Assign it in Inspector.");
+                Debug.LogError($"{gameObject.name}: Missing AttackComponent! Assign it in Inspector.");
             }
         }
-        weaponCollider.enabled = false;
+
+        healthComponent = GetComponent<HealthComponent>() ?? gameObject.AddComponent<HealthComponent>();
+        healthComponent.InitializeHealth(healthConfig);
+        healthComponent.OnDeath += Die;
     }
 
     protected abstract void Attack();
@@ -44,39 +38,18 @@ public abstract class Character : MonoBehaviour
 
     public virtual void TakeDamage(float damage)
     {
-        if (HealthComponent == null)
+        if (healthComponent == null)
         {
             Debug.LogError($"{gameObject.name}: HealthComponent is missing!");
             return;
         }
-        HealthComponent.TakeDamage((int)damage);
+
+        healthComponent.TakeDamage((int)damage);
     }
 
     protected virtual void Die()
     {
         Debug.Log($"{gameObject.name} has died.");
         Destroy(gameObject);
-    }
-
-    public void ActivateWeaponHitbox()
-    {
-        if (weaponCollider != null)
-        {
-            weaponCollider.enabled = true;
-            StartCoroutine(DisableHitboxAfterDelay(0.5f));
-        }
-        else
-        {
-            Debug.LogWarning($"{gameObject.name}: WeaponCollider is NULL in ActivateWeaponHitbox!");
-        }
-    }
-
-    protected IEnumerator DisableHitboxAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        if (weaponCollider != null)
-        {
-            weaponCollider.enabled = false;
-        }
     }
 }
