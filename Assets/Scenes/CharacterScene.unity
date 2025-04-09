@@ -775,6 +775,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 143653421}
     m_Modifications:
+    - target: {fileID: 281958334282606045, guid: 30fb68929d28591438b7d6d1621e8f2d, type: 3}
+      propertyPath: healthConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: b5fa22ad2408cc142ad6f341d2d2edc4, type: 2}
+    - target: {fileID: 281958334282606045, guid: 30fb68929d28591438b7d6d1621e8f2d, type: 3}
+      propertyPath: attackComponent
+      value: 
+      objectReference: {fileID: 1321534391}
+    - target: {fileID: 281958334282606045, guid: 30fb68929d28591438b7d6d1621e8f2d, type: 3}
+      propertyPath: healthComponent
+      value: 
+      objectReference: {fileID: 1321534390}
     - target: {fileID: 868669390600427806, guid: 30fb68929d28591438b7d6d1621e8f2d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.1585453
@@ -819,6 +831,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lollypop player
       objectReference: {fileID: 0}
+    - target: {fileID: 8022375522689193435, guid: 30fb68929d28591438b7d6d1621e8f2d, type: 3}
+      propertyPath: 'attackConfigs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 930f0fe8e105d714f875f47bc127f72d, type: 2}
     - target: {fileID: 8417607878610257480, guid: 30fb68929d28591438b7d6d1621e8f2d, type: 3}
       propertyPath: m_Radius
       value: 5
@@ -846,6 +862,28 @@ CircleCollider2D:
   m_CorrespondingSourceObject: {fileID: 8417607878610257480, guid: 30fb68929d28591438b7d6d1621e8f2d, type: 3}
   m_PrefabInstance: {fileID: 1321534384}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1321534390 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7187808787824538468, guid: 30fb68929d28591438b7d6d1621e8f2d, type: 3}
+  m_PrefabInstance: {fileID: 1321534384}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 259307a5145c68448bf9e794bbe0dad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1321534391 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8022375522689193435, guid: 30fb68929d28591438b7d6d1621e8f2d, type: 3}
+  m_PrefabInstance: {fileID: 1321534384}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13766a50b196d1e4b88a39ee595eca71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1381033616
 GameObject:
   m_ObjectHideFlags: 0
@@ -1303,7 +1341,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1343238286153626343, guid: a820c5ac3a1a6d34086bb6be46f4a3f6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.6327295
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1343238286153626343, guid: a820c5ac3a1a6d34086bb6be46f4a3f6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1337,6 +1375,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8396962593329534311, guid: a820c5ac3a1a6d34086bb6be46f4a3f6, type: 3}
+      propertyPath: redTilePrefab
+      value: 
+      objectReference: {fileID: 4673744199498221708, guid: 547281ccd9d1a2b4ab5b9a77a4059d55, type: 3}
+    - target: {fileID: 8396962593329534311, guid: a820c5ac3a1a6d34086bb6be46f4a3f6, type: 3}
+      propertyPath: blueTilePrefab
+      value: 
+      objectReference: {fileID: 1934769908865708105, guid: e3e9816b4c3d0214e930a8254669506e, type: 3}
+    - target: {fileID: 8396962593329534311, guid: a820c5ac3a1a6d34086bb6be46f4a3f6, type: 3}
+      propertyPath: greenTilePrefab
+      value: 
+      objectReference: {fileID: 2801963895294904144, guid: 67b7197f5cd8a994fb582db5f2315b65, type: 3}
     - target: {fileID: 8396962593329534311, guid: a820c5ac3a1a6d34086bb6be46f4a3f6, type: 3}
       propertyPath: tilePrefabs.Array.size
       value: 3
