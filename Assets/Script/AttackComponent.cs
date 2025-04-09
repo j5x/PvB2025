@@ -63,36 +63,23 @@ public class AttackComponent : MonoBehaviour
 
         if (character is Player)
         {
+            // TEMP: Find the enemy and apply damage
             Enemy enemy = FindObjectOfType<Enemy>();
             if (enemy != null)
             {
                 enemy.TakeDamage(currentAttackConfig.attackDamage);
-
-                // Trigger hit flash if available
-                HitFlash flash = enemy.GetComponent<HitFlash>();
-                if (flash != null)
-                {
-                    flash.Flash();
-                }
             }
         }
         else if (character is Enemy)
         {
+            // TEMP: Find the player and apply damage
             Player player = FindObjectOfType<Player>();
             if (player != null)
             {
                 player.TakeDamage(currentAttackConfig.attackDamage);
-
-                // Trigger hit flash if available
-                HitFlash flash = player.GetComponent<HitFlash>();
-                if (flash != null)
-                {
-                    flash.Flash();
-                }
             }
         }
     }
-
 
 
     public void AIControlledAttackLoop(float interval)
