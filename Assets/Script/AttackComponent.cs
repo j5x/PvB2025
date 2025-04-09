@@ -59,11 +59,41 @@ public class AttackComponent : MonoBehaviour
             return;
         }
 
-        // Call Character’s custom damage logic here
-        // Example: character.DealDamageToTarget(currentAttackConfig.attackDamage);
-
         Debug.Log($"{gameObject.name} executes {currentAttackConfig.attackName} for {currentAttackConfig.attackDamage} damage!");
+
+        if (character is Player)
+        {
+            Enemy enemy = FindObjectOfType<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(currentAttackConfig.attackDamage);
+
+                // Trigger hit flash if available
+                HitFlash flash = enemy.GetComponent<HitFlash>();
+                if (flash != null)
+                {
+                    flash.Flash();
+                }
+            }
+        }
+        else if (character is Enemy)
+        {
+            Player player = FindObjectOfType<Player>();
+            if (player != null)
+            {
+                player.TakeDamage(currentAttackConfig.attackDamage);
+
+                // Trigger hit flash if available
+                HitFlash flash = player.GetComponent<HitFlash>();
+                if (flash != null)
+                {
+                    flash.Flash();
+                }
+            }
+        }
     }
+
+
 
     public void AIControlledAttackLoop(float interval)
     {
