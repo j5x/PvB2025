@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 44680acde7857e04293e03d56b96dca3
+guid: 409fb384f64f38c4fbe240b63d2d81ae
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6642412425874491798
-    second: Sharkgirl_HP_0
+      213: -2137967543775184172
+    second: Sharkgirl_HP 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sharkgirl_HP_0
+      name: Sharkgirl_HP 1_0
       rect:
         serializedVersion: 2
         x: 162
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a663c18771961d3a0800000000000000
-      internalID: -6642412425874491798
+      spriteID: 4da37fba8d96452e0800000000000000
+      internalID: -2137967543775184172
       vertices: []
       indices: 
       edges: []
@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Sharkgirl_HP 1_0: -2137967543775184172
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

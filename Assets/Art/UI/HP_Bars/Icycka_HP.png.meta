@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a2de244ea4f7a8543ac537d8ad0ab830
+guid: 4c609f08719370d44941ac325113b271
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 610254880951120976
-    second: Icyka_HP_0
+      213: 5118508449269968452
+    second: Icycka_HP_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Icyka_HP_0
+      name: Icycka_HP_0
       rect:
         serializedVersion: 2
         x: 77
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0543a89b49f087800800000000000000
-      internalID: 610254880951120976
+      spriteID: 44e629ac058980740800000000000000
+      internalID: 5118508449269968452
       vertices: []
       indices: 
       edges: []
