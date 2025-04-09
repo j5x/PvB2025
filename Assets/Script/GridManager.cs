@@ -1,336 +1,346 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Gameplay.Match3;
 using UnityEngine;
+using System.Collections.Generic;
 
-public class GridManager : MonoBehaviour
+namespace Gameplay.Match3
 {
-    [Header("Grid Settings")]
-    public int width;
-    public int height;
-    public float tileSize = 1f;
-    public GameObject[] tilePrefabs;
-
-    private GameObject[,] _grid;
-    private Tile _selectedTile;
-    private Dictionary<string, int> matchCount = new();
-
-    public event Action OnMatchMade;
-
-    #region Unity Methods
-
-    private void Start()
+    public class GridManager : MonoBehaviour
     {
-        _grid = new GameObject[width, height];
-        InitializeGrid();
-    }
+        [SerializeField] public int width = 8;
+        [SerializeField] public int height = 8;
+        [SerializeField] public float tileSize = 1.0f;
 
-    #endregion
+        [SerializeField] private GameObject redTilePrefab;
+        [SerializeField] private GameObject blueTilePrefab;
+        [SerializeField] private GameObject greenTilePrefab;
 
-    #region Grid Initialization
+        private GameObject[,] _grid;
+        private Tile _selectedTile;
 
-    private void InitializeGrid()
-    {
-        for (int x = 0; x < width; x++)
+        private Dictionary<string, int> matchCount = new Dictionary<string, int>();
+
+        // Event to notify when a match is made
+        public event System.Action OnMatchMade;
+
+        private void Start()
         {
-            for (int y = 0; y < height; y++)
-            {
-                SpawnTile(x, y);
-            }
+            _grid = new GameObject[width, height];
+            GenerateGrid();
+            
+            // Initialize the match counter for each tile color
+            matchCount["Red"] = 0;
+            matchCount["Blue"] = 0;
+            matchCount["Green"] = 0;
+            matchCount["Yellow"] = 0; // Add more colors if needed
         }
 
-        while (CheckMatches())
+
+        private void GenerateGrid()
         {
-            RemoveAllMatches();
-            FillEmptyTiles();
-        }
-    }
-
-    private void SpawnTile(int x, int y)
-    {
-        Vector3 position = new Vector3(x * tileSize, y * tileSize);
-        GameObject prefab = tilePrefabs[UnityEngine.Random.Range(0, tilePrefabs.Length)];
-        GameObject tileObj = Instantiate(prefab, position, Quaternion.identity, transform);
-
-        Tile tile = tileObj.GetComponent<Tile>();
-        if (tile != null)
-            tile.SetGridPosition(new Vector2Int(x, y));
-
-        _grid[x, y] = tileObj;
-    }
-
-    private void RemoveAllMatches()
-    {
-        for (int x = 0; x < width; x++)
-        {
-            for (int y = 0; y < height; y++)
+            for (int x = 0; x < width; x++)
             {
-                if (_grid[x, y] == null) continue;
-
-                string tag = _grid[x, y].tag;
-
-                if (x < width - 2 &&
-                    _grid[x + 1, y]?.tag == tag &&
-                    _grid[x + 2, y]?.tag == tag)
+                for (int y = 0; y < height; y++)
                 {
-                    Destroy(_grid[x, y]);
-                    Destroy(_grid[x + 1, y]);
-                    Destroy(_grid[x + 2, y]);
-                    _grid[x, y] = null;
-                    _grid[x + 1, y] = null;
-                    _grid[x + 2, y] = null;
-                }
-
-                if (y < height - 2 &&
-                    _grid[x, y + 1]?.tag == tag &&
-                    _grid[x, y + 2]?.tag == tag)
-                {
-                    Destroy(_grid[x, y]);
-                    Destroy(_grid[x, y + 1]);
-                    Destroy(_grid[x, y + 2]);
-                    _grid[x, y] = null;
-                    _grid[x, y + 1] = null;
-                    _grid[x, y + 2] = null;
-                }
-            }
-        }
-    }
-
-    private void FillEmptyTiles()
-    {
-        for (int x = 0; x < width; x++)
-        {
-            for (int y = 0; y < height; y++)
-            {
-                if (_grid[x, y] == null)
                     SpawnTile(x, y);
+                }
             }
         }
-    }
 
-    #endregion
-
-    #region Tile Selection & Swapping
-
-    public bool SelectTile(Tile tile)
-    {
-        if (_selectedTile == null)
+        private void SpawnTile(int x, int y)
         {
-            _selectedTile = tile;
-        }
-        else
-        {
-            if (AreTilesAdjacent(_selectedTile, tile))
-                StartCoroutine(SwapAndCheckMatches(_selectedTile, tile));
+            GameObject tilePrefab;
+            do
+            {
+                tilePrefab = GetRandomTilePrefab();
+            } while (WouldCreateMatch(x, y, tilePrefab));
 
-            _selectedTile = null;
+            Vector3 spawnPosition = new Vector3(x * tileSize, y * tileSize, 0);
+            GameObject tile = Instantiate(tilePrefab, spawnPosition, Quaternion.identity, transform); // 👈 Parent to GridManager
+
+            Tile tileComponent = tile.GetComponent<Tile>();
+            tileComponent.SetGridPosition(new Vector2Int(x, y));
+
+            _grid[x, y] = tile;
         }
 
-        return false;
-    }
 
-    private bool AreTilesAdjacent(Tile tile1, Tile tile2)
-    {
-        Vector2Int pos1 = tile1.GetGridPosition();
-        Vector2Int pos2 = tile2.GetGridPosition();
 
-        return (Mathf.Abs(pos1.x - pos2.x) == 1 && pos1.y == pos2.y) ||
-               (Mathf.Abs(pos1.y - pos2.y) == 1 && pos1.x == pos2.x);
-    }
-
-    private IEnumerator SwapAndCheckMatches(Tile tile1, Tile tile2)
-    {
-        SwapTiles(tile1, tile2);
-        yield return new WaitForSeconds(0.25f);
-
-        if (!CheckMatches())
+        private GameObject GetRandomTilePrefab()
         {
-            SwapTiles(tile1, tile2); // Swap back
+            int rand = Random.Range(0, 3);
+            if (rand == 0) return redTilePrefab;
+            if (rand == 1) return blueTilePrefab;
+            return greenTilePrefab;
         }
-        else
+
+        private bool WouldCreateMatch(int x, int y, GameObject tilePrefab)
         {
-            Invoke(nameof(RefillGrid), 0.2f);
+            string tileTag = tilePrefab.tag;
+
+            if (x >= 2 &&
+                _grid[x - 1, y] != null && _grid[x - 1, y].tag == tileTag &&
+                _grid[x - 2, y] != null && _grid[x - 2, y].tag == tileTag)
+            {
+                return true;
+            }
+
+            if (y >= 2 &&
+                _grid[x, y - 1] != null && _grid[x, y - 1].tag == tileTag &&
+                _grid[x, y - 2] != null && _grid[x, y - 2].tag == tileTag)
+            {
+                return true;
+            }
+
+            return false;
         }
-    }
 
-    private void SwapTiles(Tile tile1, Tile tile2)
-    {
-        Vector2Int pos1 = tile1.GetGridPosition();
-        Vector2Int pos2 = tile2.GetGridPosition();
+        public bool SelectTile(Tile tile)
+        {
+            if (_selectedTile == null)
+            {
+                _selectedTile = tile;
+            }
+            else
+            {
+                if (AreTilesAdjacent(_selectedTile, tile))
+                {
+                    StartCoroutine(SwapAndCheckMatches(_selectedTile, tile));
+                }
 
-        _grid[pos1.x, pos1.y] = tile2.gameObject;
-        _grid[pos2.x, pos2.y] = tile1.gameObject;
+                _selectedTile = null;
+            }
 
-        tile1.SetGridPosition(pos2);
-        tile2.SetGridPosition(pos1);
+            return false;
+        }
 
-        StartCoroutine(MoveTile(tile1, tile2.transform.position));
-        StartCoroutine(MoveTile(tile2, tile1.transform.position));
-    }
+        private IEnumerator SwapAndCheckMatches(Tile tile1, Tile tile2)
+        {
+            SwapTiles(tile1, tile2);
 
-    private IEnumerator MoveTile(Tile tile, Vector3 targetPos)
-    {
-        if (tile == null || tile.gameObject == null) yield break;
+            yield return new WaitForSeconds(0.25f); // Wait for swap animation
 
-        float duration = 0.2f;
-        float elapsedTime = 0f;
-        Vector3 startPos = tile.transform.position;
+            if (!CheckMatches())
+            {
+                // No match → Swap them back
+                SwapTiles(tile1, tile2);
+            }
+            else
+            {
+                Invoke("RefillGrid", 0.2f);
+            }
+        }
 
-        while (elapsedTime < duration)
+
+        private bool AreTilesAdjacent(Tile tile1, Tile tile2)
+        {
+            Vector2Int pos1 = tile1.GetGridPosition();
+            Vector2Int pos2 = tile2.GetGridPosition();
+
+            return (Mathf.Abs(pos1.x - pos2.x) == 1 && pos1.y == pos2.y) || 
+                   (Mathf.Abs(pos1.y - pos2.y) == 1 && pos1.x == pos2.x);
+        }
+
+        private void SwapTiles(Tile tile1, Tile tile2)
+        {
+            Vector2Int pos1 = tile1.GetGridPosition();
+            Vector2Int pos2 = tile2.GetGridPosition();
+
+            // Swap references in the grid
+            _grid[pos1.x, pos1.y] = tile2.gameObject;
+            _grid[pos2.x, pos2.y] = tile1.gameObject;
+
+            // Swap their logical positions
+            tile1.SetGridPosition(pos2);
+            tile2.SetGridPosition(pos1);
+
+            // Animate the movement
+            StartCoroutine(MoveTile(tile1, tile2.transform.position));
+            StartCoroutine(MoveTile(tile2, tile1.transform.position));
+        }
+
+        /// <summary>
+        /// Moves a tile smoothly to a target position.
+        /// </summary>
+        private IEnumerator MoveTile(Tile tile, Vector3 targetPos)
         {
             if (tile == null || tile.gameObject == null) yield break;
 
-            tile.transform.position = Vector3.Lerp(startPos, targetPos, elapsedTime / duration);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
+            float duration = 0.2f;
+            float elapsedTime = 0f;
+            Vector3 startPos = tile.transform.position;
 
-        if (tile != null && tile.gameObject != null)
-        {
-            tile.transform.position = targetPos;
-        }
-    }
-
-
-    #endregion
-
-    #region Match Checking & Clearing
-
-    private bool CheckMatches()
-    {
-        List<Vector2Int> matchedTiles = new();
-
-        for (int x = 0; x < width; x++)
-        {
-            for (int y = 0; y < height; y++)
+            while (elapsedTime < duration)
             {
-                if (_grid[x, y] == null) continue;
+                if (tile == null || tile.gameObject == null) yield break;
 
-                string tag = _grid[x, y].tag;
+                tile.transform.position = Vector3.Lerp(startPos, targetPos, elapsedTime / duration);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
 
-                if (x < width - 2 &&
-                    _grid[x + 1, y]?.tag == tag &&
-                    _grid[x + 2, y]?.tag == tag)
-                {
-                    matchedTiles.Add(new Vector2Int(x, y));
-                    matchedTiles.Add(new Vector2Int(x + 1, y));
-                    matchedTiles.Add(new Vector2Int(x + 2, y));
-                }
-
-                if (y < height - 2 &&
-                    _grid[x, y + 1]?.tag == tag &&
-                    _grid[x, y + 2]?.tag == tag)
-                {
-                    matchedTiles.Add(new Vector2Int(x, y));
-                    matchedTiles.Add(new Vector2Int(x, y + 1));
-                    matchedTiles.Add(new Vector2Int(x, y + 2));
-                }
+            if (tile != null && tile.gameObject != null)
+            {
+                tile.transform.position = targetPos;
             }
         }
 
-        if (matchedTiles.Count > 0)
+
+
+        private bool CheckMatches()
         {
-            ClearMatches(matchedTiles);
-            OnMatchMade?.Invoke();
-            return true;
-        }
+            List<Vector2Int> matchedTiles = new List<Vector2Int>();
 
-        return false;
-    }
-
-    private void ClearMatches(List<Vector2Int> matchedTiles)
-    {
-        Dictionary<string, int> matchCounter = new();
-
-        foreach (var pos in matchedTiles)
-        {
-            if (_grid[pos.x, pos.y] == null) continue;
-
-            string color = _grid[pos.x, pos.y].tag;
-
-            if (!matchCounter.ContainsKey(color)) matchCounter[color] = 0;
-            matchCounter[color]++;
-
-            Destroy(_grid[pos.x, pos.y]);
-            _grid[pos.x, pos.y] = null;
-        }
-
-        foreach (var match in matchCounter)
-            TrackMatch(match.Key, match.Value);
-
-        StartCoroutine(ApplyGravity());
-    }
-
-    #endregion
-
-    #region Gravity & Refill
-
-    private IEnumerator ApplyGravity()
-    {
-        bool tilesMoved = false;
-
-        for (int x = 0; x < width; x++)
-        {
-            for (int y = 1; y < height; y++)
+            for (int x = 0; x < width; x++)
             {
-                if (_grid[x, y] != null && _grid[x, y - 1] == null)
+                for (int y = 0; y < height; y++)
                 {
-                    int fallY = y;
-                    while (fallY > 0 && _grid[x, fallY - 1] == null)
-                        fallY--;
+                    if (_grid[x, y] == null) continue;
 
-                    GameObject tile = _grid[x, y];
-                    _grid[x, fallY] = tile;
-                    _grid[x, y] = null;
-
-                    Tile tileComponent = tile.GetComponent<Tile>();
-                    if (tileComponent != null)
+                    if (x < width - 2 &&
+                        _grid[x, y].tag == _grid[x + 1, y].tag &&
+                        _grid[x, y].tag == _grid[x + 2, y].tag)
                     {
-                        tileComponent.SetGridPosition(new Vector2Int(x, fallY));
-                        StartCoroutine(MoveTile(tileComponent, new Vector2(x * tileSize, fallY * tileSize)));
-                        tilesMoved = true;
+                        matchedTiles.Add(new Vector2Int(x, y));
+                        matchedTiles.Add(new Vector2Int(x + 1, y));
+                        matchedTiles.Add(new Vector2Int(x + 2, y));
+                    }
+
+                    if (y < height - 2 &&
+                        _grid[x, y].tag == _grid[x, y + 1].tag &&
+                        _grid[x, y].tag == _grid[x, y + 2].tag)
+                    {
+                        matchedTiles.Add(new Vector2Int(x, y));
+                        matchedTiles.Add(new Vector2Int(x, y + 1));
+                        matchedTiles.Add(new Vector2Int(x, y + 2));
                     }
                 }
             }
+
+            if (matchedTiles.Count > 0)
+            {
+                ClearMatches(matchedTiles);
+                OnMatchMade?.Invoke(); // Notify the player when a match is made
+                return true;
+            }
+            return false;
         }
 
-        if (tilesMoved) yield return new WaitForSeconds(0.3f);
-        RefillGrid();
-    }
-
-    private void RefillGrid()
-    {
-        for (int x = 0; x < width; x++)
+        public void TrackMatch(string color, int count)
         {
-            for (int y = 0; y < height; y++)
+            if (matchCount.ContainsKey(color))
             {
-                if (_grid[x, y] == null)
-                    SpawnTile(x, y);
+                matchCount[color] += count;
+            }
+            else
+            {
+                matchCount[color] = count;
+            }
+
+            Debug.Log($"Updated match count: {color} = {matchCount[color]}");
+        }
+
+        public void PrintMatchCounts()
+        {
+            foreach (var match in matchCount)
+            {
+                Debug.Log($"{match.Key} matches: {match.Value}");
             }
         }
+        
 
-        if (CheckMatches())
-            Invoke(nameof(RefillGrid), 0.2f);
+        private void ClearMatches(List<Vector2Int> matchedTiles)
+        {
+            Dictionary<string, int> matchCounter = new Dictionary<string, int>();
+
+            foreach (var pos in matchedTiles)
+            {
+                if (_grid[pos.x, pos.y] != null)
+                {
+                    string color = _grid[pos.x, pos.y].tag; // Get color from the tile's tag
+            
+                    // Count how many of each color matched
+                    if (matchCounter.ContainsKey(color))
+                    {
+                        matchCounter[color]++;
+                    }
+                    else
+                    {
+                        matchCounter[color] = 1;
+                    }
+
+                    Destroy(_grid[pos.x, pos.y]);
+                    _grid[pos.x, pos.y] = null;
+                }
+            }
+
+            // Track the counted matches
+            foreach (var match in matchCounter)
+            {
+                TrackMatch(match.Key, match.Value);
+            }
+
+            StartCoroutine(ApplyGravity()); // Make tiles fall before refilling
+        }
+
+        private IEnumerator ApplyGravity()
+        {
+            bool tilesMoved = false;
+
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 1; y < height; y++) // Start from 1 to check tiles above
+                {
+                    if (_grid[x, y] != null && _grid[x, y - 1] == null)
+                    {
+                        int fallY = y;
+                        while (fallY > 0 && _grid[x, fallY - 1] == null)
+                        {
+                            fallY--; // Keep falling down
+                        }
+
+                        // Move tile down
+                        GameObject tileToMove = _grid[x, y];
+                        _grid[x, fallY] = tileToMove;
+                        _grid[x, y] = null;
+
+                        if (tileToMove != null)
+                        {
+                            Tile tileComponent = tileToMove.GetComponent<Tile>();
+                            if (tileComponent != null)
+                            {
+                                tileComponent.SetGridPosition(new Vector2Int(x, fallY));
+                                StartCoroutine(MoveTile(tileComponent, new Vector2(x * tileSize, fallY * tileSize)));
+                                tilesMoved = true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Wait for the falling animation before refilling the grid
+            if (tilesMoved) yield return new WaitForSeconds(0.3f);
+
+            RefillGrid();
+        }
+
+
+
+
+        private void RefillGrid()
+        {
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    if (_grid[x, y] == null)
+                    {
+                        SpawnTile(x, y);
+                    }
+                }
+            }
+
+            if (CheckMatches()) Invoke("RefillGrid", 0.2f);
+        }
+
     }
-
-    #endregion
-
-    #region Match Tracking (Debug)
-
-    public void TrackMatch(string color, int count)
-    {
-        if (!matchCount.ContainsKey(color)) matchCount[color] = 0;
-        matchCount[color] += count;
-
-        Debug.Log($"Updated match count: {color} = {matchCount[color]}");
-    }
-
-    public void PrintMatchCounts()
-    {
-        foreach (var match in matchCount)
-            Debug.Log($"{match.Key} matches: {match.Value}");
-    }
-
-    #endregion
 }
