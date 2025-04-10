@@ -103,10 +103,10 @@ TextureImporter:
       name: GreenCandy_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 63
-        width: 2000
-        height: 1874
+        x: 131
+        y: 168
+        width: 1761
+        height: 1666
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

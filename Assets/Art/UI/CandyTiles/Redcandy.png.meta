@@ -103,10 +103,10 @@ TextureImporter:
       name: Redcandy_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 341
-        width: 2000
-        height: 1318
+        x: 58
+        y: 339
+        width: 1900
+        height: 1263
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

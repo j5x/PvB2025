@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d3d7dc6d57b2749cc97eec6335d1c87e
+guid: 8fdc3e52618f34f449fb9cc4430d1c72
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2386200406635244379
-    second: gummybear_0
+      213: -3358787491115307882
+    second: Bearcandy_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: gummybear_0
+      name: Bearcandy_0
       rect:
         serializedVersion: 2
-        x: 270
-        y: 0
-        width: 1462
-        height: 2000
+        x: 377
+        y: 81
+        width: 1351
+        height: 1844
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5a41d9f6f5382eed0800000000000000
-      internalID: -2386200406635244379
+      spriteID: 69ceb0c82903361d0800000000000000
+      internalID: -3358787491115307882
       vertices: []
       indices: 
       edges: []
