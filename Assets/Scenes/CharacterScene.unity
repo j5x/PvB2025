@@ -196,6 +196,7 @@ GameObject:
   m_Component:
   - component: {fileID: 659338858}
   - component: {fileID: 659338859}
+  - component: {fileID: 659338860}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -237,6 +238,20 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   timerText: {fileID: 1164361796}
+--- !u!114 &659338860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659338857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a4ff2b25561703439c65af5b352ed82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundMusic: {fileID: 0}
+  loopMusic: 1
 --- !u!1 &735790161 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6839973432132327380, guid: 45096812e298449418bfbfab4055922d, type: 3}
@@ -1346,8 +1361,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf72adaff79c4d49aae1f7c5cbe196d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitColor: {r: 1, g: 0, b: 0, a: 1}
-  flashDuration: 0.1
 --- !u!212 &1793997981
 SpriteRenderer:
   m_ObjectHideFlags: 0
