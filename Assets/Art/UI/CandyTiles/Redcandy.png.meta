@@ -3,8 +3,8 @@ guid: 6d8893a4e55f445f28110344dc95c649
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6853017894943760595
-    second: Redcandy_0
+      213: -3234365988513393270
+    second: RedCandy_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Redcandy_0
+      name: RedCandy_0
       rect:
         serializedVersion: 2
-        x: 58
-        y: 339
-        width: 1900
-        height: 1263
+        x: 0
+        y: 342
+        width: 2048
+        height: 1364
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d2f5b7c888035e0a0800000000000000
-      internalID: -6853017894943760595
+      spriteID: a85dd0515493d13d0800000000000000
+      internalID: -3234365988513393270
       vertices: []
       indices: 
       edges: []
