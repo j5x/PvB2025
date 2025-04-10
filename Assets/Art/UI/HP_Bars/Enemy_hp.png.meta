@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 91f6bc800217b44b9af3f257da65dfc8
+guid: 1fbb5cd047b6fca46a424bf85fb47b20
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 894666405526023985
-    second: RockCandy_0
+      213: -2979494108818135935
+    second: Enemy_hp 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RockCandy_0
+      name: Enemy_hp 1_0
       rect:
         serializedVersion: 2
-        x: 297
-        y: 0
-        width: 1406
-        height: 2000
+        x: 162
+        y: 777
+        width: 1716
+        height: 641
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 13faadd0b5e7a6c00800000000000000
-      internalID: 894666405526023985
+      spriteID: 184a681e4e5b6a6d0800000000000000
+      internalID: -2979494108818135935
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      RockCandy_0: 894666405526023985
+      Enemy_hp 1_0: -2979494108818135935
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
