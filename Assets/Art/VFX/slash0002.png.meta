@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6d8893a4e55f445f28110344dc95c649
+guid: 7022c07ee3d5a4659ac175d7a6f86eb6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3234365988513393270
-    second: RedCandy_0
+      213: 6767583458643959799
+    second: slash0002_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,43 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RedCandy_0
+      name: slash0002_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 342
-        width: 2048
-        height: 1364
+        x: 842
+        y: 562
+        width: 206
+        height: 342
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a85dd0515493d13d0800000000000000
-      internalID: -3234365988513393270
+      spriteID: 7ff5848ac494bed50800000000000000
+      internalID: 6767583458643959799
       vertices: []
       indices: 
       edges: []
@@ -160,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Redcandy_0: -6853017894943760595
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

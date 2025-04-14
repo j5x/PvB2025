@@ -163,19 +163,27 @@ namespace Gameplay.Match3
         /// </summary>
         private IEnumerator MoveTile(Tile tile, Vector3 targetPos)
         {
-            float duration = 0.2f; // Swap animation duration
+            if (tile == null || tile.gameObject == null) yield break;
+
+            float duration = 0.2f;
             float elapsedTime = 0f;
             Vector3 startPos = tile.transform.position;
 
             while (elapsedTime < duration)
             {
+                if (tile == null || tile.gameObject == null) yield break;
+
                 tile.transform.position = Vector3.Lerp(startPos, targetPos, elapsedTime / duration);
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
 
-            tile.transform.position = targetPos; // Ensure exact position at the end
+            if (tile != null && tile.gameObject != null)
+            {
+                tile.transform.position = targetPos;
+            }
         }
+
 
 
         private bool CheckMatches()
@@ -291,14 +299,20 @@ namespace Gameplay.Match3
                         }
 
                         // Move tile down
-                        _grid[x, fallY] = _grid[x, y];
+                        GameObject tileToMove = _grid[x, y];
+                        _grid[x, fallY] = tileToMove;
                         _grid[x, y] = null;
 
-                        Tile tileComponent = _grid[x, fallY].GetComponent<Tile>();
-                        tileComponent.SetGridPosition(new Vector2Int(x, fallY));
-                        StartCoroutine(MoveTile(tileComponent, new Vector2(x * tileSize, fallY * tileSize)));
-
-                        tilesMoved = true;
+                        if (tileToMove != null)
+                        {
+                            Tile tileComponent = tileToMove.GetComponent<Tile>();
+                            if (tileComponent != null)
+                            {
+                                tileComponent.SetGridPosition(new Vector2Int(x, fallY));
+                                StartCoroutine(MoveTile(tileComponent, new Vector2(x * tileSize, fallY * tileSize)));
+                                tilesMoved = true;
+                            }
+                        }
                     }
                 }
             }
@@ -308,6 +322,7 @@ namespace Gameplay.Match3
 
             RefillGrid();
         }
+
 
 
 

@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 6d8893a4e55f445f28110344dc95c649
+guid: 74a766447622d4c36b1ec12923a097e3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3234365988513393270
-    second: RedCandy_0
+      213: 6242932944746003509
+    second: Buttonslevel_0
+  - first:
+      213: -2885674359609001351
+    second: Buttonslevel_1
+  - first:
+      213: -5179741736326745432
+    second: Buttonslevel_2
+  - first:
+      213: 6768694508371474882
+    second: Buttonslevel_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,43 +105,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RedCandy_0
+      name: Buttonslevel_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 342
-        width: 2048
-        height: 1364
+        x: 645
+        y: 1300
+        width: 316
+        height: 173
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a85dd0515493d13d0800000000000000
-      internalID: -3234365988513393270
+      spriteID: 53c3b20df6a53a650800000000000000
+      internalID: 6242932944746003509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buttonslevel_1
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 1017
+        width: 316
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97a7d0a757604f7d0800000000000000
+      internalID: -2885674359609001351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buttonslevel_2
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 748
+        width: 316
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a2baf1955cdd18b0800000000000000
+      internalID: -5179741736326745432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buttonslevel_3
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 495
+        width: 316
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c97e941bcb3fed50800000000000000
+      internalID: 6768694508371474882
       vertices: []
       indices: 
       edges: []
@@ -160,8 +209,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Redcandy_0: -6853017894943760595
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

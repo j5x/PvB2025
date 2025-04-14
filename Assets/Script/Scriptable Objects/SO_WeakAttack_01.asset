@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SO_WeakAttack_01
   m_EditorClassIdentifier: 
   attackName: Default Attack
-  attackDamage: 100
-  attackDelay: 0
+  attackDamage: 3
+  attackDelay: 2
   animatorParameter: E_Attack
