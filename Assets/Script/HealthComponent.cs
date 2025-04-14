@@ -11,7 +11,9 @@ public class HealthComponent : MonoBehaviour
     private int currentHealth;
     private float regenMultiplier = 1f;
     private float damageMultiplier = 1f;
-    
+
+    public int BaseMaxHealth => baseMaxHealth; //property of baseMaxHealth
+    public int CurrentHealth => currentHealth; //property of currentHealth
     public bool IsDead => currentHealth <= 0;
     public event Action<int> OnHealthChanged;
     public event Action OnDeath;
