@@ -7,7 +7,7 @@ public class MainMenuUI : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("MainLvl");
+        SceneManager.LoadScene("LevelSelect");
     }
 
     public void ShowCredits()
