@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 1003cccf3b0275641adf9d3a4648fcd3
+guid: 2fbbbcfefd43d41b2ac52d9d9986d4a4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7111277253701337369
-    second: better_lollipop_board_0
-  - first:
-      213: 3634508104686214167
-    second: better_lollipop_board_1
+      213: -8048513154784661654
+    second: Defeat_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -99,43 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: better_lollipop_board_0
+      name: Defeat_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 286
-        width: 1035
-        height: 1424
+        x: 22
+        y: 657
+        width: 1036
+        height: 1117
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,30 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7eef0d1d30baf4d90800000000000000
-      internalID: -7111277253701337369
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: better_lollipop_board_1
-      rect:
-        serializedVersion: 2
-        x: 1052
-        y: 1395
-        width: 28
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 71c99116ddd507230800000000000000
-      internalID: 3634508104686214167
+      spriteID: a6f6007bdefed4090800000000000000
+      internalID: -8048513154784661654
       vertices: []
       indices: 
       edges: []
@@ -176,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -186,8 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      better_lollipop_board_0: -7111277253701337369
-      better_lollipop_board_1: 3634508104686214167
+      Defeat_0: -8048513154784661654
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
