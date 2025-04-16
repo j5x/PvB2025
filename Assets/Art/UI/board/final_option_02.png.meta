@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 1003cccf3b0275641adf9d3a4648fcd3
+guid: eafb27ca4e0493b4da79787c5ca6bff8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7111277253701337369
-    second: better_lollipop_board_0
+      213: 1890788383846205415
+    second: candycane_board_nontrans_0
   - first:
-      213: 3634508104686214167
-    second: better_lollipop_board_1
+      213: -3442755078125636268
+    second: candycane_board_nontrans_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: better_lollipop_board_0
+      name: candycane_board_nontrans_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 286
+        y: 350
         width: 1035
-        height: 1424
+        height: 1360
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,14 +118,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7eef0d1d30baf4d90800000000000000
-      internalID: -7111277253701337369
+      spriteID: 7e7869c640e6d3a10800000000000000
+      internalID: 1890788383846205415
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: better_lollipop_board_1
+      name: candycane_board_nontrans_1
       rect:
         serializedVersion: 2
         x: 1052
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 71c99116ddd507230800000000000000
-      internalID: 3634508104686214167
+      spriteID: 45536a73f70e830d0800000000000000
+      internalID: -3442755078125636268
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      better_lollipop_board_0: -7111277253701337369
-      better_lollipop_board_1: 3634508104686214167
+      candycane_board_nontrans_0: 1890788383846205415
+      candycane_board_nontrans_1: -3442755078125636268
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
