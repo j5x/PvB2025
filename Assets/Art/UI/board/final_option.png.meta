@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 4e846fc0cb3da6043937de7f13d0ee67
+guid: cbd3ce5d5ef5a624b98fabaf5cc8aa07
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8583832139203250117
-    second: final_option_0
+      213: -7111277253701337369
+    second: better_lollipop_board_0
   - first:
-      213: -5063004078427481152
-    second: final_option_1
+      213: 3634508104686214167
+    second: better_lollipop_board_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: final_option_0
+      name: better_lollipop_board_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1043
-        width: 5
-        height: 23
+        y: 286
+        width: 1035
+        height: 1424
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,20 +118,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5c78accf9d5ef1770800000000000000
-      internalID: 8583832139203250117
+      spriteID: 7eef0d1d30baf4d90800000000000000
+      internalID: -7111277253701337369
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: final_option_1
+      name: better_lollipop_board_1
       rect:
         serializedVersion: 2
-        x: 17
-        y: 97
-        width: 865
-        height: 1205
+        x: 1052
+        y: 1395
+        width: 28
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0cbd9f89d989cb9b0800000000000000
-      internalID: -5063004078427481152
+      spriteID: 71c99116ddd507230800000000000000
+      internalID: 3634508104686214167
       vertices: []
       indices: 
       edges: []
@@ -159,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      better_lollipop_board_0: -7111277253701337369
+      better_lollipop_board_1: 3634508104686214167
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
