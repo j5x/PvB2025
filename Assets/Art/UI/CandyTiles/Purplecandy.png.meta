@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 62d2eaf3649b54c2c97b126e8317e16a
+guid: 110de43e89a6f452da037c19116215d8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3382211814794846352
-    second: CrystalCandy_0
+      213: -7684232531668702541
+    second: Purplecandy_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CrystalCandy_0
+      name: Purplecandy_0
       rect:
         serializedVersion: 2
-        x: 297
-        y: 0
-        width: 1454
-        height: 2048
+        x: 375
+        y: 56
+        width: 1320
+        height: 1861
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 090e9ffc9b700fe20800000000000000
-      internalID: 3382211814794846352
+      spriteID: 3bae26aa93f1c5590800000000000000
+      internalID: -7684232531668702541
       vertices: []
       indices: 
       edges: []
