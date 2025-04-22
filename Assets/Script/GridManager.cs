@@ -21,18 +21,27 @@ namespace Gameplay.Match3
 
         // Event to notify when a match is made
         public event System.Action OnMatchMade;
+        [SerializeField] private Vector3 gridOffset;
+
 
         private void Start()
         {
             _grid = new GameObject[width, height];
-            GenerateGrid();
+    
+            // Calculate grid offset so it’s centered
+            float gridWidth = width * tileSize;
+            float gridHeight = height * tileSize;
             
+
+            GenerateGrid();
+
             // Initialize the match counter for each tile color
             matchCount["Red"] = 0;
             matchCount["Blue"] = 0;
             matchCount["Green"] = 0;
-            matchCount["Yellow"] = 0; // Add more colors if needed
+            matchCount["Yellow"] = 0;
         }
+
 
 
         private void GenerateGrid()
@@ -54,14 +63,17 @@ namespace Gameplay.Match3
                 tilePrefab = GetRandomTilePrefab();
             } while (WouldCreateMatch(x, y, tilePrefab));
 
-            Vector3 spawnPosition = new Vector3(x * tileSize, y * tileSize, 0);
-            GameObject tile = Instantiate(tilePrefab, spawnPosition, Quaternion.identity, transform); // 👈 Parent to GridManager
+            Vector3 spawnPosition = new Vector3(x * tileSize, y * tileSize, 0) + gridOffset;
+
+            GameObject tile = Instantiate(tilePrefab, spawnPosition, Quaternion.identity, transform);
 
             Tile tileComponent = tile.GetComponent<Tile>();
             tileComponent.SetGridPosition(new Vector2Int(x, y));
 
             _grid[x, y] = tile;
         }
+
+
 
 
 
@@ -161,12 +173,16 @@ namespace Gameplay.Match3
         /// <summary>
         /// Moves a tile smoothly to a target position.
         /// </summary>
-        private IEnumerator MoveTile(Tile tile, Vector3 targetPos)
+        private IEnumerator MoveTile(Tile tile, Vector3 unusedTargetPos)
         {
             if (tile == null || tile.gameObject == null) yield break;
 
             float duration = 0.2f;
             float elapsedTime = 0f;
+
+            Vector2Int gridPos = tile.GetGridPosition();
+            Vector3 targetPos = new Vector3(gridPos.x * tileSize, gridPos.y * tileSize, 0) + gridOffset;
+
             Vector3 startPos = tile.transform.position;
 
             while (elapsedTime < duration)
@@ -183,6 +199,8 @@ namespace Gameplay.Match3
                 tile.transform.position = targetPos;
             }
         }
+
+
 
 
 
@@ -309,7 +327,8 @@ namespace Gameplay.Match3
                             if (tileComponent != null)
                             {
                                 tileComponent.SetGridPosition(new Vector2Int(x, fallY));
-                                StartCoroutine(MoveTile(tileComponent, new Vector2(x * tileSize, fallY * tileSize)));
+                                StartCoroutine(MoveTile(tileComponent, new Vector3(x * tileSize, fallY * tileSize, 0) + gridOffset));
+
                                 tilesMoved = true;
                             }
                         }
