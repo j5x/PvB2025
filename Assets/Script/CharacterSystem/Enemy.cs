@@ -3,10 +3,17 @@ using UnityEngine;
 public class Enemy : Character
 {
     [SerializeField] private float attackInterval = 5f;
+    internal EnemySpawner spawner;
 
     protected override void Awake()
     {
         base.Awake();
+
+        // Attach death listener to HealthComponent
+        if (healthComponent != null)
+        {
+            healthComponent.OnDeath += HandleDeath;
+        }
 
         if (attackComponent == null)
         {
@@ -16,13 +23,24 @@ public class Enemy : Character
 
         if (attackComponent.attackConfigs.Count > 0)
         {
-            attackComponent.InitializeAttack(attackComponent.attackConfigs[0]); // Default attack
-            attackComponent.AIControlledAttackLoop(attackInterval);             // Begin AI loop
+            attackComponent.InitializeAttack(attackComponent.attackConfigs[0]);
+            attackComponent.AIControlledAttackLoop(attackInterval);
         }
         else
         {
             Debug.LogError($"{gameObject.name}: No AttackConfig assigned!");
         }
+    }
+
+    private void HandleDeath()
+    {
+        // Notify the spawner when this enemy dies
+        if (spawner != null)
+        {
+            spawner.SpawnEnemy();
+        }
+
+        Destroy(gameObject); // Destroy this enemy after spawning the new one
     }
 
     protected override void Attack()
