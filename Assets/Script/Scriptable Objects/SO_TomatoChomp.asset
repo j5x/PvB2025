@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SO_TomatoChomp
   m_EditorClassIdentifier: 
   attackName: Default Attack
-  attackDamage: 10
+  attackDamage: 500
   attackDelay: 0.5
   animatorParameter: E_Attack
