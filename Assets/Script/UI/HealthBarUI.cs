@@ -4,30 +4,49 @@ using UnityEngine.UI;
 public class HealthBarUI : MonoBehaviour
 {
     [SerializeField] private HealthComponent healthComponent;
-    [SerializeField] private Image fillImage;
+    [SerializeField] private Slider slider;
+    [SerializeField] private float smoothSpeed = 5f;
+
+    private float targetHealth;
 
     private void Awake()
     {
         if (healthComponent == null)
             healthComponent = GetComponentInParent<HealthComponent>();
 
-        healthComponent.OnHealthChanged += UpdateHealthBar;
+        if (slider == null)
+            slider = GetComponentInChildren<Slider>();
+
+        if (healthComponent != null)
+            healthComponent.OnHealthChanged += OnHealthChanged;
     }
 
     private void Start()
     {
-        // Initialize bar on start
-        UpdateHealthBar(healthComponent.CurrentHealth);
+        if (healthComponent != null)
+        {
+            slider.maxValue = healthComponent.MaxHealth;
+            slider.value = healthComponent.CurrentHealth;
+            targetHealth = slider.value;
+        }
+    }
+
+    private void Update()
+    {
+        if (Mathf.Abs(slider.value - targetHealth) > 0.01f)
+        {
+            slider.value = Mathf.Lerp(slider.value, targetHealth, Time.deltaTime * smoothSpeed);
+        }
     }
 
     private void OnDestroy()
     {
-        healthComponent.OnHealthChanged -= UpdateHealthBar;
+        if (healthComponent != null)
+            healthComponent.OnHealthChanged -= OnHealthChanged;
     }
 
-    private void UpdateHealthBar(int currentHealth)
+    private void OnHealthChanged(int currentHealth)
     {
-        float max = healthComponent.MaxHealth;
-        fillImage.fillAmount = (float)currentHealth / max;
+        targetHealth = currentHealth;
     }
 }
