@@ -8,6 +8,7 @@ TagManager:
   - Green
   - Blue
   - Enemy
+  - Music
   layers:
   - Default
   - TransparentFX

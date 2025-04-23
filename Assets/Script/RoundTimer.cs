@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class RoundTimer : MonoBehaviour
 {
@@ -10,7 +11,8 @@ public class RoundTimer : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI timerText;
-    [SerializeField] private GameObject winScreen; // ✅ Win screen reference
+    [SerializeField] private GameObject winScreen;
+    [SerializeField] private GameObject defeatScreen;
 
     [Header("Round Settings")]
     [SerializeField] private float[] roundDurations = { 45f, 45f, 60f };
@@ -27,6 +29,7 @@ public class RoundTimer : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1f; // Make sure game is unpaused at start
         StartRound(0);
     }
 
@@ -36,14 +39,13 @@ public class RoundTimer : MonoBehaviour
         {
             Debug.Log("All rounds completed!");
 
+            StopMusic();
+            Time.timeScale = 0f;
+
             if (winScreen != null)
-            {
-                winScreen.SetActive(true); // ✅ Show win screen
-            }
+                winScreen.SetActive(true);
             else
-            {
                 Debug.LogWarning("Win screen not assigned!");
-            }
 
             return;
         }
@@ -95,6 +97,15 @@ public class RoundTimer : MonoBehaviour
         if (timeRemaining <= 0)
         {
             Debug.Log("Game Over! Time ran out.");
+
+            StopMusic();
+            Time.timeScale = 0f;
+
+            if (defeatScreen != null)
+                defeatScreen.SetActive(true);
+            else
+                Debug.LogWarning("Defeat screen not assigned!");
+
             OnGameOver.Invoke();
         }
     }
@@ -120,5 +131,30 @@ public class RoundTimer : MonoBehaviour
             Destroy(currentEnemy);
             currentEnemy = null;
         }
+    }
+
+    public void NotifyPlayerDied()
+    {
+        Debug.Log("Player died!");
+
+        StopMusic();
+        Time.timeScale = 0f;
+
+        if (defeatScreen != null)
+            defeatScreen.SetActive(true);
+        else
+            Debug.LogWarning("Defeat screen not assigned!");
+
+        isTimerRunning = false;
+
+        if (timerCoroutine != null)
+            StopCoroutine(timerCoroutine);
+    }
+
+    private void StopMusic()
+    {
+        AudioSource music = GameObject.FindWithTag("Music")?.GetComponent<AudioSource>();
+        if (music != null)
+            music.Stop();
     }
 }
