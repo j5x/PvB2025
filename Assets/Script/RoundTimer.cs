@@ -15,6 +15,8 @@ using UnityEngine.Events;
         private int currentRound = 0;
         private float timeRemaining;
         private bool isTimerRunning = false;
+        
+        private Coroutine timerCoroutine;
 
         private bool isEnemyDead = false; // Placeholder, later link to enemy script
 
@@ -23,12 +25,17 @@ using UnityEngine.Events;
             StartRound(0);
         }
 
-        private void StartRound(int roundIndex)
+        public void StartRound(int roundIndex)
         {
             if (roundIndex >= roundDurations.Length)
             {
                 Debug.Log("All rounds completed!");
                 return;
+            }
+            
+            if (timerCoroutine != null)
+            {
+                StopCoroutine(timerCoroutine); // 🛑 Stop vorige timer
             }
 
             currentRound = roundIndex;
@@ -38,7 +45,7 @@ using UnityEngine.Events;
 
             OnRoundStart.Invoke(currentRound + 1);
             UpdateTimerUI();
-            StartCoroutine(TimerCoroutine());
+            timerCoroutine = StartCoroutine(TimerCoroutine());
         }
 
         private IEnumerator TimerCoroutine()

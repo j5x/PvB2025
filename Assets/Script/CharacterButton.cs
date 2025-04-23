@@ -8,7 +8,7 @@ public class CharacterButton : MonoBehaviour
     {
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.SelectCharacter(characterPrefab);
+            //GameManager.Instance.SelectCharacter(characterPrefab);
         }
     }
 }

@@ -37,7 +37,9 @@ public class Enemy : Character
         // Notify the spawner when this enemy dies
         if (spawner != null)
         {
-            spawner.SpawnEnemy();
+            // Pass the correct enemy prefab (assuming spawner has a way to get it)
+            //GameObject enemyPrefab = spawner.GetEnemyPrefab(); // You might need to implement this in EnemySpawner
+            //spawner.SpawnEnemy(enemyPrefab);  // Pass the prefab to spawn the next enemy
         }
 
         Destroy(gameObject); // Destroy this enemy after spawning the new one

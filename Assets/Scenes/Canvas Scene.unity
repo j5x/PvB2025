@@ -163,10 +163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4b67e9ee8b69542b44cc5b003b3c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 6839973432132327380, guid: 45096812e298449418bfbfab4055922d, type: 3}
-  spawnPoint: {fileID: 32566912}
-  respawnDelay: 2
-  maxSpawns: 3
+  enemyParent: {fileID: 0}
+  enemyPrefabs: []
 --- !u!1 &289808854
 GameObject:
   m_ObjectHideFlags: 0
@@ -837,6 +835,8 @@ GameObject:
   m_Component:
   - component: {fileID: 781306118}
   - component: {fileID: 781306117}
+  - component: {fileID: 781306120}
+  - component: {fileID: 781306121}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -873,6 +873,45 @@ Transform:
   m_Children: []
   m_Father: {fileID: 499690561}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &781306120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781306116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3edda77bd123f594196fb054761825a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSpawnPoint: {fileID: 0}
+--- !u!114 &781306121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781306116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b44d198fab34fc46bbf50d22ecc9894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedCharacterPrefab: {fileID: 0}
+  roundTimer: {fileID: 1332188456}
+  levelManager: {fileID: 781306120}
+  enemySpawner: {fileID: 32566913}
+  enemyPrefabs:
+  - {fileID: 1030006415}
+  - {fileID: 1030006415}
+  - {fileID: 1030006415}
+  OnGameWon:
+    m_PersistentCalls:
+      m_Calls: []
+  OnGameLost:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &803035680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1364,6 +1403,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character_Tomato
       objectReference: {fileID: 0}
+    - target: {fileID: 4850082150414317841, guid: 934d3a2234050604394f17f2c2a2150b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1372,6 +1415,11 @@ PrefabInstance:
 --- !u!4 &1030006414 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 661052399765487443, guid: 934d3a2234050604394f17f2c2a2150b, type: 3}
+  m_PrefabInstance: {fileID: 1030006413}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1030006415 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4850082150414317841, guid: 934d3a2234050604394f17f2c2a2150b, type: 3}
   m_PrefabInstance: {fileID: 1030006413}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1108130866
@@ -1688,7 +1736,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1332188452}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a4f52a3571e38d44d84b2f475e89b648, type: 3}
   m_Name: 

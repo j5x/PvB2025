@@ -2,18 +2,17 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private Transform spawnPoint;
+    [SerializeField] private Transform playerSpawnPoint;
 
-    void Start()
+    public GameObject SpawnPlayer(GameObject playerPrefab)
     {
-        if (GameManager.Instance != null && GameManager.Instance.selectedCharacterPrefab != null)
+        if (playerPrefab == null)
         {
-            Instantiate(GameManager.Instance.selectedCharacterPrefab, spawnPoint.position, Quaternion.identity);
+            Debug.LogWarning("Player prefab is null.");
+            return null;
         }
-        else
-        {
-            Debug.LogWarning("No character prefab was selected!");
-        }
-    }
 
+        GameObject player = Instantiate(playerPrefab, playerSpawnPoint.position, Quaternion.identity, playerSpawnPoint);
+        return player;
+    }
 }
