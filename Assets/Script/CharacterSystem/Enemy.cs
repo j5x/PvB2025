@@ -34,16 +34,16 @@ public class Enemy : Character
 
     private void HandleDeath()
     {
-        // Notify the spawner when this enemy dies
-        if (spawner != null)
+        // Notify the RoundTimer directly (no need to involve EnemySpawner here)
+        RoundTimer roundTimer = FindObjectOfType<RoundTimer>();
+        if (roundTimer != null)
         {
-            // Pass the correct enemy prefab (assuming spawner has a way to get it)
-            //GameObject enemyPrefab = spawner.GetEnemyPrefab(); // You might need to implement this in EnemySpawner
-            //spawner.SpawnEnemy(enemyPrefab);  // Pass the prefab to spawn the next enemy
+            roundTimer.NotifyEnemyDefeated();
         }
 
-        Destroy(gameObject); // Destroy this enemy after spawning the new one
+        Destroy(gameObject); // Remove enemy from scene
     }
+
 
     protected override void Attack()
     {

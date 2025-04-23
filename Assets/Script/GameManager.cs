@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
 
     private void HandleEnemyDeath()
     {
-        roundTimer.EnemyDefeated();
+        roundTimer.NotifyEnemyDefeated();
 
         currentRound++;
         if (currentRound >= enemyPrefabs.Length)
