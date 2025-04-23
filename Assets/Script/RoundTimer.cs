@@ -81,7 +81,7 @@ using UnityEngine.Events;
         {
             if (timerText != null)
             {
-                timerText.text = $"Time: {timeRemaining}s";
+                timerText.text = $"00:{timeRemaining}";
             }
         }
 
