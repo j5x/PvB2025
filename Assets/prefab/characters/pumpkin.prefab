@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterName: Pumpkin
-  healthConfig: {fileID: 11400000, guid: b5fa22ad2408cc142ad6f341d2d2edc4, type: 2}
+  healthConfig: {fileID: 11400000, guid: 8642a6888ca63a942b167917e94ce90e, type: 2}
   attackComponent: {fileID: 5312631637321406663}
   healthComponent: {fileID: 3958041235653259864}
   attackInterval: 5
