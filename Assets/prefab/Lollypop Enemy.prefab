@@ -1270,8 +1270,8 @@ Transform:
   m_GameObject: {fileID: 6839973432132327380}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 4.014151, y: 5.0262504, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 20, y: 20, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6279863625381131970}
@@ -1433,7 +1433,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Enemy lolly
   healthConfig: {fileID: 11400000, guid: b5fa22ad2408cc142ad6f341d2d2edc4, type: 2}
-  weaponCollider: {fileID: 3954686043156160971}
   attackComponent: {fileID: 8740086899380662861}
   healthComponent: {fileID: 733907467716424843}
   attackInterval: 5
@@ -1449,7 +1448,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13766a50b196d1e4b88a39ee595eca71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackConfig: {fileID: 11400000, guid: 8aa16abd71bc35149a9c95647ccdd5b9, type: 2}
   attackConfigs:
   - {fileID: 11400000, guid: 8aa16abd71bc35149a9c95647ccdd5b9, type: 2}
   - {fileID: 11400000, guid: f6c65b43636155c41bc981510fa74958, type: 2}

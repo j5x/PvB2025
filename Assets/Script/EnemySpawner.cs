@@ -3,49 +3,32 @@ using System.Collections;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private Transform spawnPoint;
-    [SerializeField] private float respawnDelay = 2f;
-    [SerializeField] private int maxSpawns = 5;
+    [SerializeField] private Transform enemyParent;
 
-    private int spawnCount = 0;
-    private GameObject currentEnemy;
+    // Declare an array to hold the enemy prefabs
+    [SerializeField] private GameObject[] enemyPrefabs;
 
-    private void Start()
+    public GameObject SpawnEnemy(GameObject enemyPrefab)
     {
-        SpawnEnemy();
+        if (enemyPrefab == null || enemyParent == null)
+        {
+            Debug.LogWarning("Missing enemy prefab or spawn parent.");
+            return null;
+        }
+
+        GameObject enemy = Instantiate(enemyPrefab, enemyParent.position, Quaternion.identity, enemyParent);
+        return enemy;
     }
 
-    public void SpawnEnemy()
+    // Method to get the next enemy prefab
+    public GameObject GetEnemyPrefab(int index)
     {
-        if (spawnCount >= maxSpawns)
+        if (index < 0 || index >= enemyPrefabs.Length)
         {
-            Debug.Log("Max enemy spawn limit reached.");
-            return;
+            Debug.LogWarning("Index out of bounds, returning null prefab.");
+            return null;
         }
 
-        StartCoroutine(SpawnEnemyWithDelay(respawnDelay));
-    }
-
-    private IEnumerator SpawnEnemyWithDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-
-        if (enemyPrefab != null && spawnPoint != null)
-        {
-            currentEnemy = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
-            Enemy enemyScript = currentEnemy.GetComponent<Enemy>();
-
-            if (enemyScript != null)
-            {
-                enemyScript.spawner = this;
-            }
-
-            spawnCount++;
-        }
-        else
-        {
-            Debug.LogWarning("Missing enemy prefab or spawn point.");
-        }
+        return enemyPrefabs[index];  // Return the prefab at the given index
     }
 }

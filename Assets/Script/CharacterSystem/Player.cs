@@ -64,6 +64,7 @@ public class Player : Character
 
     private void HandleDeath()
     {
+        FindObjectOfType<RoundTimer>().NotifyPlayerDied();
         Debug.Log($"{gameObject.name} has died.");
         Destroy(gameObject);
     }
