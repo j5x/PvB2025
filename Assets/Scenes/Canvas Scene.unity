@@ -1234,7 +1234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a4ff2b25561703439c65af5b352ed82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundMusic: {fileID: 8300000, guid: cfdda7a40025781408493f167a81aefe, type: 3}
+  backgroundMusic: {fileID: 8300000, guid: 74d1a6d722095e849836bccde5fb9e8b, type: 3}
   loopMusic: 1
 --- !u!4 &781306118
 Transform:
