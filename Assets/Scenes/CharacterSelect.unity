@@ -1355,6 +1355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedCharacterPrefab: {fileID: 0}
+  selectedCharacterTag: 
 --- !u!4 &1370982829
 Transform:
   m_ObjectHideFlags: 0
@@ -1786,7 +1787,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598640a2fb9de7d41aecc00f9f54efad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: LevelSelect
+  targetSceneName: LevelSelect
+  useLoadingScreen: 1
 --- !u!114 &2057099724
 MonoBehaviour:
   m_ObjectHideFlags: 0

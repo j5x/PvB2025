@@ -7,7 +7,8 @@ public class MainMenuUI : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("CharacterSelect");
+        GameLoader.NextSceneName = "CharacterSelect";
+        SceneManager.LoadScene("LoadingScene");
     }
 
     public void ShowCredits()

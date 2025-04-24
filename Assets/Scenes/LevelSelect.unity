@@ -305,7 +305,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598640a2fb9de7d41aecc00f9f54efad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Canvas Scene
+  targetSceneName: Canvas Scene
+  useLoadingScreen: 1
 --- !u!114 &653732965
 MonoBehaviour:
   m_ObjectHideFlags: 0
