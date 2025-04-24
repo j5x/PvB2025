@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SO_LollyAttack1
   m_EditorClassIdentifier: 
   attackName: Lolly Smashu
-  attackDamage: 10
+  attackDamage: 15
   attackDelay: 1
   animatorParameter: Attack1
