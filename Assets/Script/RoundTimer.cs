@@ -23,6 +23,7 @@ public class RoundTimer : MonoBehaviour
     private int currentRound = 0;
     private float timeRemaining;
     private bool isTimerRunning = false;
+    private bool enemySpawned = false;
 
     private Coroutine timerCoroutine;
     private GameObject currentEnemy;
@@ -55,22 +56,36 @@ public class RoundTimer : MonoBehaviour
 
         currentRound = roundIndex;
         timeRemaining = roundDurations[currentRound];
-        isTimerRunning = true;
+        isTimerRunning = false;
+        enemySpawned = false;
+        timerCoroutine = null;
 
         OnRoundStart.Invoke(currentRound + 1);
         UpdateTimerUI();
 
-        SpawnEnemy(currentRound);
-        timerCoroutine = StartCoroutine(TimerCoroutine());
+        SpawnEnemy(currentRound); // Timer will start after delay
     }
+
 
     private void SpawnEnemy(int index)
     {
         GameObject enemyPrefab = enemySpawner.GetEnemyPrefab(index);
         if (enemyPrefab != null)
         {
-            currentEnemy = enemySpawner.SpawnEnemy(enemyPrefab);
-            Debug.Log("Spawned enemy: " + currentEnemy.name);
+            enemySpawner.SpawnEnemyWithDelay(enemyPrefab, (spawnedEnemy) =>
+            {
+                if (spawnedEnemy == null)
+                {
+                    Debug.LogWarning("Failed to spawn enemy.");
+                    return;
+                }
+
+                currentEnemy = spawnedEnemy;
+                enemySpawned = true;
+                Debug.Log("Spawned enemy: " + currentEnemy.name);
+
+                StartTimerAfterEnemySpawn(); // ✅ Start the timer now
+            });
         }
         else
         {
@@ -86,7 +101,7 @@ public class RoundTimer : MonoBehaviour
             timeRemaining--;
             UpdateTimerUI();
 
-            if (currentEnemy == null)
+            if (enemySpawned && currentEnemy == null)
             {
                 Debug.Log("Enemy defeated! Starting next round...");
                 StartNextRound();
@@ -122,6 +137,12 @@ public class RoundTimer : MonoBehaviour
         {
             timerText.text = $"Time: {timeRemaining}s";
         }
+    }
+    
+    private void StartTimerAfterEnemySpawn()
+    {
+        isTimerRunning = true;
+        timerCoroutine = StartCoroutine(TimerCoroutine());
     }
 
     public void NotifyEnemyDefeated()
