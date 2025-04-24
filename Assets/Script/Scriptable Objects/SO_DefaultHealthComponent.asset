@@ -15,4 +15,4 @@ MonoBehaviour:
   maxHealth: 200
   canRegenerate: 1
   regenRate: 1.5
-  regenAmount: 4
+  regenAmount: 2
