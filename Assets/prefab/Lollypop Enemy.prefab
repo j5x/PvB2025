@@ -1432,7 +1432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterName: Enemy lolly
-  healthConfig: {fileID: 11400000, guid: 8642a6888ca63a942b167917e94ce90e, type: 2}
+  healthConfig: {fileID: 11400000, guid: b5fa22ad2408cc142ad6f341d2d2edc4, type: 2}
   attackComponent: {fileID: 8740086899380662861}
   healthComponent: {fileID: 733907467716424843}
   attackInterval: 5
@@ -1451,6 +1451,7 @@ MonoBehaviour:
   attackConfigs:
   - {fileID: 11400000, guid: 8aa16abd71bc35149a9c95647ccdd5b9, type: 2}
   - {fileID: 11400000, guid: f6c65b43636155c41bc981510fa74958, type: 2}
+  - {fileID: 11400000, guid: 930f0fe8e105d714f875f47bc127f72d, type: 2}
   isAIControlled: 1
 --- !u!114 &733907467716424843
 MonoBehaviour:
