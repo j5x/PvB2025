@@ -8,6 +8,20 @@ public class PlayerHealthBarUI : MonoBehaviour
 
     private HealthComponent playerHealthComponent;
     private float targetHealth;
+    
+    public void Initialize(HealthComponent health)
+    {
+        playerHealthComponent = health;
+
+        if (playerHealthComponent != null)
+        {
+            slider.maxValue = playerHealthComponent.MaxHealth;
+            slider.value = playerHealthComponent.CurrentHealth;
+            targetHealth = slider.value;
+
+            playerHealthComponent.OnHealthChanged += OnHealthChanged;
+        }
+    }
 
     private void Start()
     {

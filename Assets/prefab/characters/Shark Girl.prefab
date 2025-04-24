@@ -10,7 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8653719598885068355, guid: e6292a9c8edd77d46a6841727e97db7f, type: 3}
       propertyPath: m_Name
-      value: Shark girl idle pose (2) 1
+      value: Shark Girl
+      objectReference: {fileID: 0}
+    - target: {fileID: -8653719598885068355, guid: e6292a9c8edd77d46a6841727e97db7f, type: 3}
+      propertyPath: m_TagString
+      value: shark girl
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: e6292a9c8edd77d46a6841727e97db7f, type: 3}
       propertyPath: m_LocalScale.x
