@@ -29,15 +29,12 @@ Dit project is gemaakt als onderdeel van ons examen voor de opleiding Software/G
 ## Overview
 This Match-3 system is built using Unity and written in C#. It allows tiles to be swapped, matched, cleared, and refilled dynamically. The system ensures that tiles fall into empty spaces rather than respawning in the same spot. 
 
-A special **white tile** is included, which can match with any color. When matched, it clears all tiles of that color from the grid.
-
 ## Features
 ✅ No pre-existing matches at the start.  
 ✅ Swappable tiles with valid match detection.  
 ✅ Tile gravity ensures tiles fall into empty spaces.  
 ✅ Grid automatically refills after matches.  
-✅ Special **white tile** that clears all of one color when matched.  
-
+`
 ---
 
 ## 🔹 Scripts Included
@@ -60,7 +57,7 @@ width and height: Define the grid size.
 
 tileSize: Controls the spacing between tiles.
 
-### 2. Tile.cs
+### 2. `Tile.cs`
 **Responsibilities:**
 
 - Represents individual tiles in the game.
