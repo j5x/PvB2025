@@ -3,18 +3,16 @@ using UnityEngine;
 public class Enemy : Character
 {
     [SerializeField] private float attackInterval = 5f;
-    internal EnemySpawner spawner;
 
     protected override void Awake()
     {
         base.Awake();
 
-        // Attach death listener to HealthComponent
+        // When this enemy dies, call HandleDeath()
         if (healthComponent != null)
-        {
             healthComponent.OnDeath += HandleDeath;
-        }
 
+        // Ensure AttackComponent is present & configured
         if (attackComponent == null)
         {
             Debug.LogWarning($"{gameObject.name}: AttackComponent is missing!");
@@ -34,16 +32,16 @@ public class Enemy : Character
 
     private void HandleDeath()
     {
-        // Notify the RoundTimer directly (no need to involve EnemySpawner here)
-        RoundTimer roundTimer = FindObjectOfType<RoundTimer>();
-        if (roundTimer != null)
-        {
-            roundTimer.NotifyEnemyDefeated();
-        }
+        // Notify the RoundManager that the enemy has been defeated
+        var rm = FindObjectOfType<RoundManager>();
+        if (rm != null)
+            rm.EnemyDefeated();
+        else
+            Debug.LogWarning("RoundManager not found in scene!");
 
-        Destroy(gameObject); // Remove enemy from scene
+        // Destroy this enemy
+        Destroy(gameObject);
     }
-
 
     protected override void Attack()
     {

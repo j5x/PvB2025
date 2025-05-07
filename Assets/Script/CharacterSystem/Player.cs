@@ -5,32 +5,27 @@ using System.Collections;
 public class Player : Character
 {
     private GridManager gridManager;
-    private bool isAttacking = false;
-    private float attackCooldown = 1f;
+    private bool        isAttacking     = false;
+    private float       attackCooldown  = 1f;
 
     protected override void Awake()
     {
         base.Awake();
 
+        // Hook up match-made → attack
         gridManager = FindObjectOfType<GridManager>();
         if (gridManager != null)
-        {
             gridManager.OnMatchMade += OnMatchMade;
-        }
         else
-        {
             Debug.LogError("GridManager not found in the scene!");
-        }
 
+        // Ensure we have attacks configured
         if (attackComponent == null || attackComponent.attackConfigs.Count == 0)
-        {
             Debug.LogError($"{gameObject.name}: No AttackConfig assigned in AttackComponent!");
-        }
 
+        // When the player dies, call HandleDeath()
         if (healthComponent != null)
-        {
             healthComponent.OnDeath += HandleDeath;
-        }
     }
 
     private void OnDestroy()
@@ -64,7 +59,13 @@ public class Player : Character
 
     private void HandleDeath()
     {
-        FindObjectOfType<RoundTimer>().NotifyPlayerDied();
+        // Notify the RoundManager that the player has died
+        var rm = FindObjectOfType<RoundManager>();
+        if (rm != null)
+            rm.PlayerDefeated();  // <-- implement this in RoundManager
+        else
+            Debug.LogWarning("RoundManager not found in scene!");
+
         Debug.Log($"{gameObject.name} has died.");
         Destroy(gameObject);
     }
