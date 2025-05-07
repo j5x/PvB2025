@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      5  lolly strike_0: 7403304156007165499
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

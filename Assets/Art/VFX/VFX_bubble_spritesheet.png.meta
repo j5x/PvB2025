@@ -784,7 +784,34 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      VFX_bubble_spritesheet_0: -6966291387004479177
+      VFX_bubble_spritesheet_1: -1911037362710408455
+      VFX_bubble_spritesheet_10: 1011847227325445128
+      VFX_bubble_spritesheet_11: -1769189956503028493
+      VFX_bubble_spritesheet_12: 8991461421552328105
+      VFX_bubble_spritesheet_13: -5554682371184166363
+      VFX_bubble_spritesheet_14: 2286440474893424131
+      VFX_bubble_spritesheet_15: 5489992029770827105
+      VFX_bubble_spritesheet_16: 4897228957158234858
+      VFX_bubble_spritesheet_17: 7746972659550066799
+      VFX_bubble_spritesheet_18: 3178409190979450836
+      VFX_bubble_spritesheet_19: -4054424408383100023
+      VFX_bubble_spritesheet_2: -5208594293123350020
+      VFX_bubble_spritesheet_20: -7330794159005334273
+      VFX_bubble_spritesheet_21: -6911063566272281679
+      VFX_bubble_spritesheet_22: 1463346428924634987
+      VFX_bubble_spritesheet_23: 7267361181703982641
+      VFX_bubble_spritesheet_24: -3223764276428959233
+      VFX_bubble_spritesheet_25: -2446800913161373531
+      VFX_bubble_spritesheet_26: -5953627284734310847
+      VFX_bubble_spritesheet_3: 7432843628428049549
+      VFX_bubble_spritesheet_4: 8111158644220470301
+      VFX_bubble_spritesheet_5: 807228769130883386
+      VFX_bubble_spritesheet_6: -4756742133120862517
+      VFX_bubble_spritesheet_7: 3897242130460881536
+      VFX_bubble_spritesheet_8: -960277338256185023
+      VFX_bubble_spritesheet_9: 8923505240012067430
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
