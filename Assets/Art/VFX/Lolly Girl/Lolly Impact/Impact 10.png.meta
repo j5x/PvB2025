@@ -1,22 +1,31 @@
 fileFormatVersion: 2
-guid: 97719201921cc44648d1e329cc670382
+guid: 6f91ce1c95bad4d3091b750c8ef7a649
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4883937439369022439
-    second: VFX thumbnails_Lollystrike_spritesheet_0
+      213: 3102290240630784339
+    second: Impact 10_0
   - first:
-      213: -2485193776834842913
-    second: VFX thumbnails_Lollystrike_spritesheet_1
+      213: 7334607278163784330
+    second: Impact 10_1
   - first:
-      213: 8386785128651850322
-    second: VFX thumbnails_Lollystrike_spritesheet_2
+      213: -574187627836449298
+    second: Impact 10_2
   - first:
-      213: -5332653558181781854
-    second: VFX thumbnails_Lollystrike_spritesheet_3
+      213: 2356240565893112305
+    second: Impact 10_3
   - first:
-      213: 23569164477046568
-    second: VFX thumbnails_Lollystrike_spritesheet_4
+      213: -4879631829730278808
+    second: Impact 10_4
+  - first:
+      213: 6262029809929245715
+    second: Impact 10_5
+  - first:
+      213: -6953837063432828705
+    second: Impact 10_6
+  - first:
+      213: 3191628244997388224
+    second: Impact 10_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -58,9 +67,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -108,17 +117,43 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: VFX thumbnails_Lollystrike_spritesheet_0
+      name: Impact 10_0
       rect:
         serializedVersion: 2
-        x: 196
-        y: 823
-        width: 87
-        height: 338
+        x: 30
+        y: 308
+        width: 48
+        height: 51
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,20 +162,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7eb42d2993b37c340800000000000000
-      internalID: 4883937439369022439
+      spriteID: 35185f6898c8d0b20800000000000000
+      internalID: 3102290240630784339
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VFX thumbnails_Lollystrike_spritesheet_1
+      name: Impact 10_1
       rect:
         serializedVersion: 2
-        x: 487
-        y: 541
-        width: 297
-        height: 973
+        x: 160
+        y: 334
+        width: 59
+        height: 54
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -149,20 +184,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fde6fb55d61d28dd0800000000000000
-      internalID: -2485193776834842913
+      spriteID: a8272f58572c9c560800000000000000
+      internalID: 7334607278163784330
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VFX thumbnails_Lollystrike_spritesheet_2
+      name: Impact 10_2
       rect:
         serializedVersion: 2
-        x: 823
-        y: 389
-        width: 441
-        height: 1283
+        x: 294
+        y: 308
+        width: 49
+        height: 53
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +206,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 25282d0b3a8d36470800000000000000
-      internalID: 8386785128651850322
+      spriteID: eed526805631808f0800000000000000
+      internalID: -574187627836449298
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VFX thumbnails_Lollystrike_spritesheet_3
+      name: Impact 10_3
       rect:
         serializedVersion: 2
-        x: 1262
-        y: 593
-        width: 308
-        height: 861
+        x: 0
+        y: 168
+        width: 54
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,20 +228,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2ae1a5aa7db9ef5b0800000000000000
-      internalID: -5332653558181781854
+      spriteID: 1f1ac6f8f4c03b020800000000000000
+      internalID: 2356240565893112305
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VFX thumbnails_Lollystrike_spritesheet_4
+      name: Impact 10_4
       rect:
         serializedVersion: 2
-        x: 1616
-        y: 829
-        width: 101
-        height: 302
+        x: 326
+        y: 172
+        width: 55
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,8 +250,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 82f9e4cb70cb35000800000000000000
-      internalID: 23569164477046568
+      spriteID: 862cc3a44b0184cb0800000000000000
+      internalID: -4879631829730278808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Impact 10_5
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 33
+        width: 47
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3145db93fe237e650800000000000000
+      internalID: 6262029809929245715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Impact 10_6
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 0
+        width: 58
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd80428a8020f7f90800000000000000
+      internalID: -6953837063432828705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Impact 10_7
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 32
+        width: 49
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c73c269af0fa4c20800000000000000
+      internalID: 3191628244997388224
       vertices: []
       indices: 
       edges: []
@@ -225,7 +326,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -234,7 +335,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Impact 10_0: 3102290240630784339
+      Impact 10_1: 7334607278163784330
+      Impact 10_2: -574187627836449298
+      Impact 10_3: 2356240565893112305
+      Impact 10_4: -4879631829730278808
+      Impact 10_5: 6262029809929245715
+      Impact 10_6: -6953837063432828705
+      Impact 10_7: 3191628244997388224
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

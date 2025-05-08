@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: b5131f5b6a6bc4f76be9a7ac015af664
+guid: 9334d5a1781e1462d838ef540b9db3d8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8480474959361546336
-    second: 1 lolly strike_0
+      213: 4319717970251651535
+    second: Impact 6_0
+  - first:
+      213: 8601230391939864306
+    second: Impact 6_1
+  - first:
+      213: 7838751003956733322
+    second: Impact 6_2
+  - first:
+      213: 7530896139943542654
+    second: Impact 6_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,9 +55,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -96,17 +105,43 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 1 lolly strike_0
+      name: Impact 6_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 136
-        height: 44
+        y: 21
+        width: 146
+        height: 131
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +150,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 06817574b03b0b570800000000000000
-      internalID: 8480474959361546336
+      spriteID: fc998ba6b98b2fb30800000000000000
+      internalID: 4319717970251651535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Impact 6_1
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 103
+        width: 47
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f69ede5875bd5770800000000000000
+      internalID: 8601230391939864306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Impact 6_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 47
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a85e391b186d8cc60800000000000000
+      internalID: 7838751003956733322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Impact 6_3
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 0
+        width: 47
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7ff1bd832e138860800000000000000
+      internalID: 7530896139943542654
       vertices: []
       indices: 
       edges: []
@@ -125,7 +226,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +236,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      1 lolly strike_0: 8480474959361546336
+      Impact 6_0: 4319717970251651535
+      Impact 6_1: 8601230391939864306
+      Impact 6_2: 7838751003956733322
+      Impact 6_3: 7530896139943542654
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -111,7 +111,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -148,6 +148,32 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -659,7 +685,29 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      VFX_bubble2_0: -666699223076198671
+      VFX_bubble2_1: 866111160581197336
+      VFX_bubble2_10: 7126048650777390150
+      VFX_bubble2_11: -6622508384814403169
+      VFX_bubble2_12: -3530414250601759210
+      VFX_bubble2_13: 3634583541103681942
+      VFX_bubble2_14: 6464288021645002178
+      VFX_bubble2_15: 2340190425337052622
+      VFX_bubble2_16: -332423962148575876
+      VFX_bubble2_17: 4169143296277336310
+      VFX_bubble2_18: -258729717472390156
+      VFX_bubble2_19: 524998427018922309
+      VFX_bubble2_2: 846001726861361909
+      VFX_bubble2_20: -4757075428491441594
+      VFX_bubble2_21: 9148800095008056634
+      VFX_bubble2_3: 4200787262324688531
+      VFX_bubble2_4: 8498235213219317798
+      VFX_bubble2_5: -4881273208880053289
+      VFX_bubble2_6: 1767438601012090756
+      VFX_bubble2_7: -8157285830377074392
+      VFX_bubble2_8: -4634143696525014643
+      VFX_bubble2_9: 1566178301704845538
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,19 +1,22 @@
 fileFormatVersion: 2
-guid: 9334d5a1781e1462d838ef540b9db3d8
+guid: 97719201921cc44648d1e329cc670382
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4319717970251651535
-    second: Impact 6_0
+      213: 4883937439369022439
+    second: VFX thumbnails_Lollystrike_spritesheet_0
   - first:
-      213: 8601230391939864306
-    second: Impact 6_1
+      213: -2485193776834842913
+    second: VFX thumbnails_Lollystrike_spritesheet_1
   - first:
-      213: 7838751003956733322
-    second: Impact 6_2
+      213: 8386785128651850322
+    second: VFX thumbnails_Lollystrike_spritesheet_2
   - first:
-      213: 7530896139943542654
-    second: Impact 6_3
+      213: -5332653558181781854
+    second: VFX thumbnails_Lollystrike_spritesheet_3
+  - first:
+      213: 23569164477046568
+    second: VFX thumbnails_Lollystrike_spritesheet_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -105,17 +108,43 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Impact 6_0
+      name: VFX thumbnails_Lollystrike_spritesheet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 21
-        width: 146
-        height: 131
+        x: 196
+        y: 823
+        width: 87
+        height: 338
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fc998ba6b98b2fb30800000000000000
-      internalID: 4319717970251651535
+      spriteID: 7eb42d2993b37c340800000000000000
+      internalID: 4883937439369022439
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Impact 6_1
+      name: VFX thumbnails_Lollystrike_spritesheet_1
       rect:
         serializedVersion: 2
-        x: 107
-        y: 103
-        width: 47
-        height: 49
+        x: 487
+        y: 541
+        width: 297
+        height: 973
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,20 +175,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2f69ede5875bd5770800000000000000
-      internalID: 8601230391939864306
+      spriteID: fde6fb55d61d28dd0800000000000000
+      internalID: -2485193776834842913
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Impact 6_2
+      name: VFX thumbnails_Lollystrike_spritesheet_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 47
-        height: 50
+        x: 823
+        y: 389
+        width: 441
+        height: 1283
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,20 +197,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a85e391b186d8cc60800000000000000
-      internalID: 7838751003956733322
+      spriteID: 25282d0b3a8d36470800000000000000
+      internalID: 8386785128651850322
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Impact 6_3
+      name: VFX thumbnails_Lollystrike_spritesheet_3
       rect:
         serializedVersion: 2
-        x: 107
-        y: 0
-        width: 47
-        height: 50
+        x: 1262
+        y: 593
+        width: 308
+        height: 861
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -190,8 +219,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e7ff1bd832e138860800000000000000
-      internalID: 7530896139943542654
+      spriteID: 2ae1a5aa7db9ef5b0800000000000000
+      internalID: -5332653558181781854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX thumbnails_Lollystrike_spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 1616
+        y: 829
+        width: 101
+        height: 302
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82f9e4cb70cb35000800000000000000
+      internalID: 23569164477046568
       vertices: []
       indices: 
       edges: []
@@ -209,7 +260,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      VFX thumbnails_Lollystrike_spritesheet_0: 4883937439369022439
+      VFX thumbnails_Lollystrike_spritesheet_1: -2485193776834842913
+      VFX thumbnails_Lollystrike_spritesheet_2: 8386785128651850322
+      VFX thumbnails_Lollystrike_spritesheet_3: -5332653558181781854
+      VFX thumbnails_Lollystrike_spritesheet_4: 23569164477046568
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

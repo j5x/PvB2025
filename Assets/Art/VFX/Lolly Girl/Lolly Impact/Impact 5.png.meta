@@ -1,31 +1,31 @@
 fileFormatVersion: 2
-guid: 23d1a1e78656d44668008673b7823537
+guid: eeec7654f42534e6b988ecd05af6e69e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8330627862291278440
-    second: Impact 7_0
+      213: 4130640169021434097
+    second: 5_0
   - first:
-      213: -6290626507014060288
-    second: Impact 7_1
+      213: -7200132072931614835
+    second: 5_1
   - first:
-      213: 5284139506799351523
-    second: Impact 7_2
+      213: -3609754129978504188
+    second: 5_2
   - first:
-      213: -2558923725673003262
-    second: Impact 7_3
+      213: -4309224192539515645
+    second: 5_3
   - first:
-      213: -8546730463371312455
-    second: Impact 7_4
+      213: 2426446623490865320
+    second: 5_4
   - first:
-      213: 5990640149489400119
-    second: Impact 7_5
+      213: -3463070028636962532
+    second: 5_5
   - first:
-      213: -4532899890214889704
-    second: Impact 7_6
+      213: -376566289980712212
+    second: 5_6
   - first:
-      213: 3983499024814704419
-    second: Impact 7_7
+      213: 4225473709266103954
+    second: 5_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -67,9 +67,9 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -117,105 +117,43 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Impact 7_0
+      name: 5_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 151
-        width: 48
-        height: 49
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 86ae7d737e55c9370800000000000000
-      internalID: 8330627862291278440
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Impact 7_1
-      rect:
-        serializedVersion: 2
-        x: 73
-        y: 130
-        width: 59
-        height: 57
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 00745c2658433b8a0800000000000000
-      internalID: -6290626507014060288
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Impact 7_2
-      rect:
-        serializedVersion: 2
-        x: 156
-        y: 151
-        width: 48
-        height: 49
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3e6126682e8055940800000000000000
-      internalID: 5284139506799351523
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Impact 7_3
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 74
-        width: 56
-        height: 59
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 20701f3ed60ec7cd0800000000000000
-      internalID: -2558923725673003262
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Impact 7_4
-      rect:
-        serializedVersion: 2
-        x: 74
-        y: 21
+        x: 38
+        y: 381
         width: 58
-        height: 56
+        height: 63
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -224,20 +162,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9b24eb31de9e36980800000000000000
-      internalID: -8546730463371312455
+      spriteID: 1f86b71495bf25930800000000000000
+      internalID: 4130640169021434097
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Impact 7_5
+      name: 5_1
       rect:
         serializedVersion: 2
-        x: 133
-        y: 74
-        width: 56
-        height: 59
+        x: 199
+        y: 413
+        width: 72
+        height: 67
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -246,20 +184,42 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7393287e977032350800000000000000
-      internalID: 5990640149489400119
+      spriteID: d8f9301170ef31c90800000000000000
+      internalID: -7200132072931614835
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Impact 7_6
+      name: 5_2
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 382
+        width: 59
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40cc12c7eb397edc0800000000000000
+      internalID: -3609754129978504188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5_3
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 46
-        height: 53
+        y: 209
+        width: 67
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -268,20 +228,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8179551f097e711c0800000000000000
-      internalID: -4532899890214889704
+      spriteID: 305a92a9d6f8234c0800000000000000
+      internalID: -4309224192539515645
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Impact 7_7
+      name: 5_4
       rect:
         serializedVersion: 2
-        x: 144
-        y: 2
-        width: 49
-        height: 53
+        x: 406
+        y: 214
+        width: 67
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -290,8 +250,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3270231f14b384730800000000000000
-      internalID: 3983499024814704419
+      spriteID: 8a87e9329587ca120800000000000000
+      internalID: 2426446623490865320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5_5
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 41
+        width: 58
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c11cac63824b0ffc0800000000000000
+      internalID: -3463070028636962532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5_6
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 0
+        width: 71
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cea105354fa26caf0800000000000000
+      internalID: -376566289980712212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5_7
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 40
+        width: 60
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29eee8873f5e3aa30800000000000000
+      internalID: 4225473709266103954
       vertices: []
       indices: 
       edges: []
@@ -300,7 +326,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -309,7 +335,15 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      5_0: 4130640169021434097
+      5_1: -7200132072931614835
+      5_2: -3609754129978504188
+      5_3: -4309224192539515645
+      5_4: 2426446623490865320
+      5_5: -3463070028636962532
+      5_6: -376566289980712212
+      5_7: 4225473709266103954
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
