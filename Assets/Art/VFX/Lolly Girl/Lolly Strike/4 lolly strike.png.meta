@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7022c07ee3d5a4659ac175d7a6f86eb6
+guid: 0289fe392269b4126863c84f55ebad0c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6767583458643959799
-    second: slash0002_0
+      213: 6061836769279693897
+    second: 4 lolly strike_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slash0002_0
+      name: 4 lolly strike_0
       rect:
         serializedVersion: 2
-        x: 842
-        y: 562
-        width: 206
-        height: 342
+        x: 0
+        y: 0
+        width: 158
+        height: 364
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7ff5848ac494bed50800000000000000
-      internalID: 6767583458643959799
+      spriteID: 9445157bc68ff1450800000000000000
+      internalID: 6061836769279693897
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      slash0002_0: 6767583458643959799
+      4 lolly strike_0: 6061836769279693897
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
