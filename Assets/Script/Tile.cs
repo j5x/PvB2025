@@ -5,53 +5,39 @@ namespace Gameplay.Match3
     public class Tile : MonoBehaviour
     {
         private Vector2Int gridPosition;
-        private GridManager gridManager;
-        private Vector3 originalScale;
-        private bool isSelected = false;
+        private Vector2 touchStart;
 
-        private void Start()
+        private float swipeThreshold = 50f; // Adjust as needed
+        private GridManager gridManager;
+
+        private void Awake()
         {
             gridManager = FindObjectOfType<GridManager>();
-            originalScale = transform.localScale;
         }
+
+        public void SetGridPosition(Vector2Int pos) => gridPosition = pos;
+        public Vector2Int GetGridPosition() => gridPosition;
 
         private void OnMouseDown()
         {
-            isSelected = gridManager.SelectTile(this);
-            UpdateScale();
+            touchStart = Input.mousePosition;
         }
 
-        private void OnMouseEnter()
+        private void OnMouseUp()
         {
-            if (!isSelected)
-                transform.localScale = originalScale * 1.1f; // Slightly bigger when hovering
-        }
+            Vector2 touchEnd = Input.mousePosition;
+            Vector2 delta = touchEnd - touchStart;
 
-        private void OnMouseExit()
-        {
-            if (!isSelected)
-                transform.localScale = originalScale; // Reset when not hovering
-        }
+            if (delta.magnitude < swipeThreshold) return;
 
-        public void SetGridPosition(Vector2Int newPosition)
-        {
-            gridPosition = newPosition;
-        }
+            Vector2Int direction = Vector2Int.zero;
 
-        public Vector2Int GetGridPosition()
-        {
-            return gridPosition;
-        }
+            if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
+                direction = delta.x > 0 ? Vector2Int.right : Vector2Int.left;
+            else
+                direction = delta.y > 0 ? Vector2Int.up : Vector2Int.down;
 
-        public void Deselect()
-        {
-            isSelected = false;
-            UpdateScale();
-        }
-
-        private void UpdateScale()
-        {
-            transform.localScale = isSelected ? originalScale * 1.2f : originalScale; // Bigger when selected
+            gridManager.TrySwapWithNeighbor(this, direction);
         }
     }
 }

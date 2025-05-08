@@ -360,6 +360,23 @@ namespace Gameplay.Match3
 
             if (CheckMatches()) Invoke("RefillGrid", 0.2f);
         }
+        public void TrySwapWithNeighbor(Tile tile, Vector2Int direction)
+        {
+            Vector2Int pos = tile.GetGridPosition();
+            Vector2Int neighborPos = pos + direction;
+
+            if (neighborPos.x < 0 || neighborPos.x >= width || neighborPos.y < 0 || neighborPos.y >= height)
+                return;
+
+            GameObject neighborObj = _grid[neighborPos.x, neighborPos.y];
+            if (neighborObj == null) return;
+
+            Tile neighborTile = neighborObj.GetComponent<Tile>();
+            if (neighborTile == null) return;
+
+            StartCoroutine(SwapAndCheckMatches(tile, neighborTile));
+        }
+
 
     }
 }
