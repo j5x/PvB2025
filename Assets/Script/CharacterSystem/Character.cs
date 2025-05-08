@@ -10,6 +10,10 @@ public abstract class Character : MonoBehaviour
     [SerializeField] protected AttackComponent attackComponent;
     [SerializeField] protected HealthComponent healthComponent;
     
+    [Header("Visual Effects")]
+    public Transform vfxSpawnPoint; // For projectile origin point
+    public Transform uiVFXAnchor;   // Assign Player Anchor or Enemy Anchor for impact VFX
+    
     protected Animator animator;
     
     public string Name => characterName;

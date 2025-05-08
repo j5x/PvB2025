@@ -54,34 +54,42 @@ public class AttackComponent : MonoBehaviour
     public void ExecuteAttackLogic()
     {
         if (character == null || currentAttackConfig == null)
-        {
-            Debug.LogWarning($"{gameObject.name}: Missing character or attackConfig during ExecuteAttackLogic.");
             return;
+
+        Character target = (character is Player) ? FindObjectOfType<Enemy>() : FindObjectOfType<Player>();
+        if (target == null) return;
+
+        // Handle impact
+        if (currentAttackConfig.impactVFXPrefab != null && target.uiVFXAnchor != null)
+        {
+            Instantiate(
+                currentAttackConfig.impactVFXPrefab,
+                target.uiVFXAnchor.position + currentAttackConfig.vfxOffset,
+                Quaternion.identity,
+                target.uiVFXAnchor
+            );
         }
 
-        Debug.Log($"{gameObject.name} executes {currentAttackConfig.attackName} for {currentAttackConfig.attackDamage} damage!");
+        // Handle projectile
+        if (currentAttackConfig.projectileVFXPrefab != null && character.vfxSpawnPoint != null)
+        {
+            GameObject proj = Instantiate(
+                currentAttackConfig.projectileVFXPrefab,
+                character.vfxSpawnPoint.position + currentAttackConfig.vfxOffset,
+                Quaternion.identity
+            );
 
-        if (character is Player)
-        {
-            // TEMP: Find the enemy and apply damage
-            Enemy enemy = FindObjectOfType<Enemy>();
-            if (enemy != null)
-            {
-                enemy.TakeDamage(currentAttackConfig.attackDamage);
-            }
+            // Move it toward target (see note below for movement script)
+            proj.transform.LookAt(target.transform);
+            Rigidbody2D rb = proj.GetComponent<Rigidbody2D>();
+            if (rb != null)
+                rb.AddForce(proj.transform.forward * 100f);
         }
-        else if (character is Enemy)
-        {
-            // TEMP: Find the player and apply damage
-            Player player = FindObjectOfType<Player>();
-            if (player != null)
-            {
-                player.TakeDamage(currentAttackConfig.attackDamage);
-            }
-        }
+
+        // Then apply damage
+        target.TakeDamage(currentAttackConfig.attackDamage);
     }
-
-
+        
     public void AIControlledAttackLoop(float interval)
     {
         if (!isAIControlled) return;

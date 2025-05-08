@@ -1,12 +1,16 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-[CreateAssetMenu(fileName = "AttackConfig", menuName = "Enemies/AttackConfig")]
+[CreateAssetMenu(menuName = "Combat/Attack Config")]
 public class AttackConfig : ScriptableObject
 {
-    [HideInInspector] public string attackName = "Default Attack";
-    public int attackDamage = 10;
-    [HideInInspector] int attackInterval = 5; // Time between attacks -> Currently controlled by enemy.cs
-    public float attackDelay = 0.5f; // Delay after animation starts
-    public string animatorParameter = "AttackTrigger";
+    public string attackName;
+    public int attackDamage;
+    public float attackDelay;
+    public string animatorParameter;
+
+    [Header("VFX (optional)")]
+    public GameObject impactVFXPrefab;     // Spawned on the target’s UI anchor
+    public GameObject projectileVFXPrefab; // Thrown from attacker to target
+    public Vector3 vfxOffset;              // Optional offset for either
 }
