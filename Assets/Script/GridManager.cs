@@ -13,6 +13,9 @@ namespace Gameplay.Match3
         [SerializeField] private GameObject redTilePrefab;
         [SerializeField] private GameObject blueTilePrefab;
         [SerializeField] private GameObject greenTilePrefab;
+        
+        [SerializeField] private GameObject matchVFXPrefab;
+
 
         private GameObject[,] _grid;
         private Tile _selectedTile;
@@ -285,7 +288,9 @@ namespace Gameplay.Match3
                     {
                         matchCounter[color] = 1;
                     }
-
+                    Vector3 vfxPosition = _grid[pos.x, pos.y].transform.position;
+                    Instantiate(matchVFXPrefab, vfxPosition, Quaternion.identity);
+                    
                     Destroy(_grid[pos.x, pos.y]);
                     _grid[pos.x, pos.y] = null;
                 }
@@ -360,6 +365,23 @@ namespace Gameplay.Match3
 
             if (CheckMatches()) Invoke("RefillGrid", 0.2f);
         }
+        public void TrySwapWithNeighbor(Tile tile, Vector2Int direction)
+        {
+            Vector2Int pos = tile.GetGridPosition();
+            Vector2Int neighborPos = pos + direction;
+
+            if (neighborPos.x < 0 || neighborPos.x >= width || neighborPos.y < 0 || neighborPos.y >= height)
+                return;
+
+            GameObject neighborObj = _grid[neighborPos.x, neighborPos.y];
+            if (neighborObj == null) return;
+
+            Tile neighborTile = neighborObj.GetComponent<Tile>();
+            if (neighborTile == null) return;
+
+            StartCoroutine(SwapAndCheckMatches(tile, neighborTile));
+        }
+
 
     }
 }

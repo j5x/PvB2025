@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9323f434171e2df4489668db18fef0d8, type: 3}
   m_Name: SO_DefaultHealthComponent
   m_EditorClassIdentifier: 
-  maxHealth: 2000
-  canRegenerate: 0
-  regenRate: 1
-  regenAmount: 1
+  maxHealth: 200
+  canRegenerate: 1
+  regenRate: 1.5
+  regenAmount: 2

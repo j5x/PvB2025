@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [HideInInspector] public GameObject selectedCharacterPrefab;
+    [HideInInspector] public string selectedCharacterTag;
 
     private void Awake()
     {
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
     public void SelectCharacter(GameObject characterPrefab)
     {
         selectedCharacterPrefab = characterPrefab;
-        Debug.Log("Selected character: " + characterPrefab.name);
+        selectedCharacterTag = characterPrefab.tag;
+        Debug.Log("Selected character: " + characterPrefab.name + ", Tag: " + selectedCharacterTag);
     }
 }

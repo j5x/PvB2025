@@ -645,7 +645,7 @@ GameObject:
   - component: {fileID: 7379075029446658098}
   m_Layer: 0
   m_Name: Character_Tomato
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -660,7 +660,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 20, y: 20, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3685116486036973989}
@@ -816,10 +816,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterName: Tomato
-  healthConfig: {fileID: 11400000, guid: b5fa22ad2408cc142ad6f341d2d2edc4, type: 2}
+  healthConfig: {fileID: 11400000, guid: 8642a6888ca63a942b167917e94ce90e, type: 2}
   attackComponent: {fileID: 0}
   healthComponent: {fileID: 0}
-  attackInterval: 5
+  attackInterval: 3
 --- !u!114 &3350883629829405672
 MonoBehaviour:
   m_ObjectHideFlags: 0
