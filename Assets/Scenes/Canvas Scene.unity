@@ -4497,6 +4497,7 @@ MonoBehaviour:
   redTilePrefab: {fileID: 4673744199498221708, guid: 547281ccd9d1a2b4ab5b9a77a4059d55, type: 3}
   blueTilePrefab: {fileID: 1934769908865708105, guid: e3e9816b4c3d0214e930a8254669506e, type: 3}
   greenTilePrefab: {fileID: 2801963895294904144, guid: 67b7197f5cd8a994fb582db5f2315b65, type: 3}
+  matchVFXPrefab: {fileID: 3248482246137700917, guid: 986555a453049be47891f68fac1353df, type: 3}
   gridOffset: {x: 0, y: 0, z: 0}
 --- !u!224 &5522084551260258998
 RectTransform:

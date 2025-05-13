@@ -13,6 +13,9 @@ namespace Gameplay.Match3
         [SerializeField] private GameObject redTilePrefab;
         [SerializeField] private GameObject blueTilePrefab;
         [SerializeField] private GameObject greenTilePrefab;
+        
+        [SerializeField] private GameObject matchVFXPrefab;
+
 
         private GameObject[,] _grid;
         private Tile _selectedTile;
@@ -285,7 +288,9 @@ namespace Gameplay.Match3
                     {
                         matchCounter[color] = 1;
                     }
-
+                    Vector3 vfxPosition = _grid[pos.x, pos.y].transform.position;
+                    Instantiate(matchVFXPrefab, vfxPosition, Quaternion.identity);
+                    
                     Destroy(_grid[pos.x, pos.y]);
                     _grid[pos.x, pos.y] = null;
                 }
