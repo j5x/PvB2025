@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: a3652a9585c444441b0f22a1a8462f71
+guid: 9034287414222b6448b52a97aad5435b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6012889417927190482
-    second: Selection_icyka_0
-  - first:
-      213: 5278398710368760185
-    second: Selection_icyka_1
-  - first:
-      213: 2728404880312444589
-    second: Selection_icyka_2
+      213: -3675668482509986833
+    second: IcykaKid_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -106,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Selection_icyka_0
+      name: IcykaKid_0
       rect:
         serializedVersion: 2
-        x: 119
-        y: 950
-        width: 10
-        height: 10
+        x: 249
+        y: 79
+        width: 1551
+        height: 1863
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,52 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2d761456113127350800000000000000
-      internalID: 6012889417927190482
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Selection_icyka_1
-      rect:
-        serializedVersion: 2
-        x: 230
-        y: 38
-        width: 1607
-        height: 1924
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 971f86239a3a04940800000000000000
-      internalID: 5278398710368760185
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Selection_icyka_2
-      rect:
-        serializedVersion: 2
-        x: 22
-        y: 920
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: da6277e68cd3dd520800000000000000
-      internalID: 2728404880312444589
+      spriteID: fe3a4eb5df66dfcc0800000000000000
+      internalID: -3675668482509986833
       vertices: []
       indices: 
       edges: []
@@ -184,10 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Selection_icyka_0: 6012889417927190482
-      Selection_icyka_1: 5278398710368760185
-      Selection_icyka_2: 2728404880312444589
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
