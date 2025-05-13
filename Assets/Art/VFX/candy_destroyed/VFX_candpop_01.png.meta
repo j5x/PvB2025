@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3580f01e4e50942a2aa343d1f1150b2d
+guid: 3ea95b2c3d7baaf42be82fd8ad7bbd5c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5433343994664418220
-    second: slash0005_0
+      213: -6400625073682954896
+    second: VFX_candpop_01_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slash0005_0
+      name: VFX_candpop_01_0
       rect:
         serializedVersion: 2
-        x: 922
-        y: 222
-        width: 111
-        height: 133
+        x: 210
+        y: 125
+        width: 107
+        height: 67
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cab7978739d176b40800000000000000
-      internalID: 5433343994664418220
+      spriteID: 0754bae48696c27a0800000000000000
+      internalID: -6400625073682954896
       vertices: []
       indices: 
       edges: []
@@ -134,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      slash0005_0: 5433343994664418220
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

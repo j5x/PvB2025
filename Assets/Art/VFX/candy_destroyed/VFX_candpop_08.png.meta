@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: 3580f01e4e50942a2aa343d1f1150b2d
+guid: 927d4dcd18ae0b74ca542d623739d891
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5433343994664418220
-    second: slash0005_0
+      213: -340519311381549792
+    second: VFX_candpop_08_0
+  - first:
+      213: -4362604650071088459
+    second: VFX_candpop_08_1
+  - first:
+      213: -7834413364836355205
+    second: VFX_candpop_08_2
+  - first:
+      213: 8236708985656408357
+    second: VFX_candpop_08_3
+  - first:
+      213: -8719788104180749117
+    second: VFX_candpop_08_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +112,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slash0005_0
+      name: VFX_candpop_08_0
       rect:
         serializedVersion: 2
-        x: 922
-        y: 222
-        width: 111
-        height: 133
+        x: 123
+        y: 341
+        width: 208
+        height: 14
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +127,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cab7978739d176b40800000000000000
-      internalID: 5433343994664418220
+      spriteID: 02d21fd8d7b364bf0800000000000000
+      internalID: -340519311381549792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_candpop_08_1
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 354
+        width: 22
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b2ab015f2ae473c0800000000000000
+      internalID: -4362604650071088459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_candpop_08_2
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 354
+        width: 22
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b733b5d9d82964390800000000000000
+      internalID: -7834413364836355205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_candpop_08_3
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 308
+        width: 19
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5297158be2bae4270800000000000000
+      internalID: 8236708985656408357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_candpop_08_4
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 308
+        width: 19
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cc21ad2be61df680800000000000000
+      internalID: -8719788104180749117
       vertices: []
       indices: 
       edges: []
@@ -134,8 +234,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      slash0005_0: 5433343994664418220
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
