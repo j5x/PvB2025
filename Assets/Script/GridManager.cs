@@ -13,28 +13,31 @@ namespace Gameplay.Match3
         [SerializeField] private GameObject redTilePrefab;
         [SerializeField] private GameObject blueTilePrefab;
         [SerializeField] private GameObject greenTilePrefab;
-        
-        [SerializeField] private GameObject matchVFXPrefab;
 
+        [SerializeField] private GameObject matchVFXPrefab;
 
         private GameObject[,] _grid;
         private Tile _selectedTile;
 
         private Dictionary<string, int> matchCount = new Dictionary<string, int>();
 
-        // Event to notify when a match is made
+        // Event to notify when any match is made
         public event System.Action OnMatchMade;
-        [SerializeField] private Vector3 gridOffset;
+        // Event to notify when a match of a specific color is made (color, count)
+        public event System.Action<string, int> OnColorMatched;
 
+        // NEW: Event to notify *only* green matches (count)
+        public event System.Action<int> OnGreenMatched;
+
+        [SerializeField] private Vector3 gridOffset;
 
         private void Start()
         {
             _grid = new GameObject[width, height];
-    
+
             // Calculate grid offset so it’s centered
             float gridWidth = width * tileSize;
             float gridHeight = height * tileSize;
-            
 
             GenerateGrid();
 
@@ -44,8 +47,6 @@ namespace Gameplay.Match3
             matchCount["Green"] = 0;
             matchCount["Yellow"] = 0;
         }
-
-
 
         private void GenerateGrid()
         {
@@ -75,10 +76,6 @@ namespace Gameplay.Match3
 
             _grid[x, y] = tile;
         }
-
-
-
-
 
         private GameObject GetRandomTilePrefab()
         {
@@ -136,22 +133,21 @@ namespace Gameplay.Match3
 
             if (!CheckMatches())
             {
-                // No match → Swap them back
+                // No match → swap back
                 SwapTiles(tile1, tile2);
             }
             else
             {
-                Invoke("RefillGrid", 0.2f);
+                Invoke(nameof(RefillGrid), 0.2f);
             }
         }
-
 
         private bool AreTilesAdjacent(Tile tile1, Tile tile2)
         {
             Vector2Int pos1 = tile1.GetGridPosition();
             Vector2Int pos2 = tile2.GetGridPosition();
 
-            return (Mathf.Abs(pos1.x - pos2.x) == 1 && pos1.y == pos2.y) || 
+            return (Mathf.Abs(pos1.x - pos2.x) == 1 && pos1.y == pos2.y) ||
                    (Mathf.Abs(pos1.y - pos2.y) == 1 && pos1.x == pos2.x);
         }
 
@@ -173,9 +169,6 @@ namespace Gameplay.Match3
             StartCoroutine(MoveTile(tile2, tile1.transform.position));
         }
 
-        /// <summary>
-        /// Moves a tile smoothly to a target position.
-        /// </summary>
         private IEnumerator MoveTile(Tile tile, Vector3 unusedTargetPos)
         {
             if (tile == null || tile.gameObject == null) yield break;
@@ -185,7 +178,6 @@ namespace Gameplay.Match3
 
             Vector2Int gridPos = tile.GetGridPosition();
             Vector3 targetPos = new Vector3(gridPos.x * tileSize, gridPos.y * tileSize, 0) + gridOffset;
-
             Vector3 startPos = tile.transform.position;
 
             while (elapsedTime < duration)
@@ -198,14 +190,8 @@ namespace Gameplay.Match3
             }
 
             if (tile != null && tile.gameObject != null)
-            {
                 tile.transform.position = targetPos;
-            }
         }
-
-
-
-
 
         private bool CheckMatches()
         {
@@ -217,6 +203,7 @@ namespace Gameplay.Match3
                 {
                     if (_grid[x, y] == null) continue;
 
+                    // Horizontal
                     if (x < width - 2 &&
                         _grid[x, y].tag == _grid[x + 1, y].tag &&
                         _grid[x, y].tag == _grid[x + 2, y].tag)
@@ -226,6 +213,7 @@ namespace Gameplay.Match3
                         matchedTiles.Add(new Vector2Int(x + 2, y));
                     }
 
+                    // Vertical
                     if (y < height - 2 &&
                         _grid[x, y].tag == _grid[x, y + 1].tag &&
                         _grid[x, y].tag == _grid[x, y + 2].tag)
@@ -240,7 +228,7 @@ namespace Gameplay.Match3
             if (matchedTiles.Count > 0)
             {
                 ClearMatches(matchedTiles);
-                OnMatchMade?.Invoke(); // Notify the player when a match is made
+                OnMatchMade?.Invoke();
                 return true;
             }
             return false;
@@ -249,13 +237,9 @@ namespace Gameplay.Match3
         public void TrackMatch(string color, int count)
         {
             if (matchCount.ContainsKey(color))
-            {
                 matchCount[color] += count;
-            }
             else
-            {
                 matchCount[color] = count;
-            }
 
             Debug.Log($"Updated match count: {color} = {matchCount[color]}");
         }
@@ -263,46 +247,52 @@ namespace Gameplay.Match3
         public void PrintMatchCounts()
         {
             foreach (var match in matchCount)
-            {
                 Debug.Log($"{match.Key} matches: {match.Value}");
-            }
         }
-        
 
         private void ClearMatches(List<Vector2Int> matchedTiles)
         {
-            Dictionary<string, int> matchCounter = new Dictionary<string, int>();
+            var matchCounter = new Dictionary<string, int>();
 
             foreach (var pos in matchedTiles)
             {
                 if (_grid[pos.x, pos.y] != null)
                 {
-                    string color = _grid[pos.x, pos.y].tag; // Get color from the tile's tag
-            
-                    // Count how many of each color matched
+                    string color = _grid[pos.x, pos.y].tag;
+
                     if (matchCounter.ContainsKey(color))
-                    {
                         matchCounter[color]++;
-                    }
                     else
-                    {
                         matchCounter[color] = 1;
-                    }
+
                     Vector3 vfxPosition = _grid[pos.x, pos.y].transform.position;
                     Instantiate(matchVFXPrefab, vfxPosition, Quaternion.identity);
-                    
+
                     Destroy(_grid[pos.x, pos.y]);
                     _grid[pos.x, pos.y] = null;
                 }
             }
 
-            // Track the counted matches
-            foreach (var match in matchCounter)
+            // Track + broadcast each color match
+            foreach (var kv in matchCounter)
             {
-                TrackMatch(match.Key, match.Value);
+                string color = kv.Key;
+                int count = kv.Value;
+
+                TrackMatch(color, count);
+                Debug.Log($"[GridManager] OnColorMatched on {name} (ID {GetInstanceID()})");
+                OnColorMatched?.Invoke(color, count);
+
+                // NEW: only for green, fire this simpler event:
+                if (color == "Green")
+                {
+                    Debug.Log($"[GridManager] 🔔 OnGreenMatched({count}) about to fire");
+                    OnGreenMatched?.Invoke(count);
+                }
             }
 
-            StartCoroutine(ApplyGravity()); // Make tiles fall before refilling
+
+            StartCoroutine(ApplyGravity());
         }
 
         private IEnumerator ApplyGravity()
@@ -311,17 +301,14 @@ namespace Gameplay.Match3
 
             for (int x = 0; x < width; x++)
             {
-                for (int y = 1; y < height; y++) // Start from 1 to check tiles above
+                for (int y = 1; y < height; y++)
                 {
                     if (_grid[x, y] != null && _grid[x, y - 1] == null)
                     {
                         int fallY = y;
                         while (fallY > 0 && _grid[x, fallY - 1] == null)
-                        {
-                            fallY--; // Keep falling down
-                        }
+                            fallY--;
 
-                        // Move tile down
                         GameObject tileToMove = _grid[x, y];
                         _grid[x, fallY] = tileToMove;
                         _grid[x, y] = null;
@@ -329,42 +316,31 @@ namespace Gameplay.Match3
                         if (tileToMove != null)
                         {
                             Tile tileComponent = tileToMove.GetComponent<Tile>();
-                            if (tileComponent != null)
-                            {
-                                tileComponent.SetGridPosition(new Vector2Int(x, fallY));
-                                StartCoroutine(MoveTile(tileComponent, new Vector3(x * tileSize, fallY * tileSize, 0) + gridOffset));
-
-                                tilesMoved = true;
-                            }
+                            tileComponent.SetGridPosition(new Vector2Int(x, fallY));
+                            StartCoroutine(MoveTile(tileComponent, new Vector3(x * tileSize, fallY * tileSize, 0) + gridOffset));
+                            tilesMoved = true;
                         }
                     }
                 }
             }
 
-            // Wait for the falling animation before refilling the grid
-            if (tilesMoved) yield return new WaitForSeconds(0.3f);
+            if (tilesMoved)
+                yield return new WaitForSeconds(0.3f);
 
             RefillGrid();
         }
 
-
-
-
         private void RefillGrid()
         {
             for (int x = 0; x < width; x++)
-            {
                 for (int y = 0; y < height; y++)
-                {
                     if (_grid[x, y] == null)
-                    {
                         SpawnTile(x, y);
-                    }
-                }
-            }
 
-            if (CheckMatches()) Invoke("RefillGrid", 0.2f);
+            if (CheckMatches())
+                Invoke(nameof(RefillGrid), 0.2f);
         }
+
         public void TrySwapWithNeighbor(Tile tile, Vector2Int direction)
         {
             Vector2Int pos = tile.GetGridPosition();
@@ -381,7 +357,5 @@ namespace Gameplay.Match3
 
             StartCoroutine(SwapAndCheckMatches(tile, neighborTile));
         }
-
-
     }
 }

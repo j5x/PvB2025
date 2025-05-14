@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1013407789129854323}
   - component: {fileID: -1315499337613008605}
   - component: {fileID: -8244008772129553439}
+  - component: {fileID: -5184264756423939618}
   m_Layer: 0
   m_Name: CharacterObject
   m_TagString: Untagged
@@ -196,3 +197,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackConfigs: []
   isAIControlled: 0
+--- !u!114 &-5184264756423939618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4172347638242074619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f8c2f0221177b442bf9a37aba2d828d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridManager: {fileID: 8396962593329534311, guid: a820c5ac3a1a6d34086bb6be46f4a3f6, type: 3}
+  candyPerTile: 1
+  specialBar: {fileID: 3881462351285681327, guid: 7cad7890578436c47bb5fdf516a27ab7, type: 3}
+  attackComponent: {fileID: 0}
+  specialIndex: 1
