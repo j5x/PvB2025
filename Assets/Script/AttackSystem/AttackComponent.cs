@@ -10,17 +10,18 @@ public class AttackComponent : MonoBehaviour
     private Animator animator;
     private Character character;
     private AttackConfig currentAttackConfig;
+    private VfxComponent vfx;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         character = GetComponent<Character>();
-
+        vfx = GetComponent<VfxComponent>();
+    
         if (character == null)
             Debug.LogError($"{gameObject.name}: Missing Character reference!");
-
-        if (attackConfigs == null || attackConfigs.Count == 0)
-            Debug.LogError($"{gameObject.name}: No attack configs assigned!");
+        if (vfx == null)
+            Debug.LogError($"{gameObject.name}: Missing VFX Component reference!");
     }
 
     public void InitializeAttack(AttackConfig config)
@@ -47,10 +48,7 @@ public class AttackComponent : MonoBehaviour
         // Optional: Use this only if you're not handling via Animation Event
         Invoke(nameof(ExecuteAttackLogic), currentAttackConfig.attackDelay);
     }
-
-    /// <summary>
-    /// Call this from an Animation Event at the moment of impact.
-    /// </summary>
+    
     public void ExecuteAttackLogic()
     {
         if (character == null || currentAttackConfig == null)
@@ -59,34 +57,21 @@ public class AttackComponent : MonoBehaviour
         Character target = (character is Player) ? FindObjectOfType<Enemy>() : FindObjectOfType<Player>();
         if (target == null) return;
 
-        // Handle impact
-        if (currentAttackConfig.impactVFXPrefab != null && target.uiVFXAnchor != null)
+        VfxComponent targetVfx = target.GetComponent<VfxComponent>();
+
+        // Handle Impact VFX on Target
+        if (currentAttackConfig.impactVFXPrefab != null && targetVfx != null)
         {
-            Instantiate(
-                currentAttackConfig.impactVFXPrefab,
-                target.uiVFXAnchor.position + currentAttackConfig.vfxOffset,
-                Quaternion.identity,
-                target.uiVFXAnchor
-            );
+            targetVfx.PlayImpactVFX(currentAttackConfig.impactVFXPrefab, currentAttackConfig.vfxOffset);
         }
 
-        // Handle projectile
-        if (currentAttackConfig.projectileVFXPrefab != null && character.vfxSpawnPoint != null)
+        // Handle Projectile VFX from Self to Target
+        if (currentAttackConfig.projectileVFXPrefab != null && vfx != null)
         {
-            GameObject proj = Instantiate(
-                currentAttackConfig.projectileVFXPrefab,
-                character.vfxSpawnPoint.position + currentAttackConfig.vfxOffset,
-                Quaternion.identity
-            );
-
-            // Move it toward target (see note below for movement script)
-            proj.transform.LookAt(target.transform);
-            Rigidbody2D rb = proj.GetComponent<Rigidbody2D>();
-            if (rb != null)
-                rb.AddForce(proj.transform.forward * 100f);
+            vfx.PlayProjectileVFX(currentAttackConfig.projectileVFXPrefab, currentAttackConfig.vfxOffset, target.transform);
         }
 
-        // Then apply damage
+        // Deal damage
         target.TakeDamage(currentAttackConfig.attackDamage);
     }
         
