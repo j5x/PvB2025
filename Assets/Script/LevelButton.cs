@@ -15,6 +15,14 @@ public class LevelButton : MonoBehaviour
 
     public void LoadLevel()
     {
+        //  Check if character was selected
+        if (GameManager.Instance == null || GameManager.Instance.SelectedCharacterPrefab == null)
+        {
+            Debug.LogWarning("You must select a character before starting the level!");
+            // Optional: Display a UI warning here
+            return;
+        }
+
         if (string.IsNullOrEmpty(targetSceneName))
         {
             Debug.LogWarning($"LevelButton on {gameObject.name} has no targetSceneName set.");
@@ -23,14 +31,11 @@ public class LevelButton : MonoBehaviour
 
         if (useLoadingScreen)
         {
-            // Tell the loader which scene to load next
             GameLoader.NextSceneName = targetSceneName;
-            // Now go to your loading‐screen scene
             SceneManager.LoadScene(kLoadingSceneName);
         }
         else
         {
-            // Direct load, as before
             SceneManager.LoadScene(targetSceneName);
         }
     }

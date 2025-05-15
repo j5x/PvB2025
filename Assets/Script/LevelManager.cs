@@ -13,11 +13,11 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        if (GameManager.Instance != null && GameManager.Instance.selectedCharacterPrefab != null)
+        if (GameManager.Instance != null && GameManager.Instance.SelectedCharacterPrefab != null)
         {
-            GameObject player = Instantiate(GameManager.Instance.selectedCharacterPrefab, spawnPoint.position,
+            GameObject player = Instantiate(GameManager.Instance.SelectedCharacterPrefab, spawnPoint.position,
                 Quaternion.identity, playerParent);
-            string tag = GameManager.Instance.selectedCharacterTag;
+            string tag = GameManager.Instance.SelectedCharacterTag;
 
             ActivateHpBarBasedOnTag(tag, player.GetComponent<HealthComponent>());
         }

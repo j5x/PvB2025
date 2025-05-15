@@ -4,8 +4,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [HideInInspector] public GameObject selectedCharacterPrefab;
-    [HideInInspector] public string selectedCharacterTag;
+    public GameObject SelectedCharacterPrefab { get; private set; }
+
+    public string SelectedCharacterTag => SelectedCharacterPrefab != null ? SelectedCharacterPrefab.tag : null;
+
+    public event System.Action OnCharacterSelected;
 
     private void Awake()
     {
@@ -20,10 +23,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SelectCharacter(GameObject characterPrefab)
+    public void SelectCharacter(GameObject prefab)
     {
-        selectedCharacterPrefab = characterPrefab;
-        selectedCharacterTag = characterPrefab.tag;
-        Debug.Log("Selected character: " + characterPrefab.name + ", Tag: " + selectedCharacterTag);
+        SelectedCharacterPrefab = prefab;
+        OnCharacterSelected?.Invoke();
     }
 }
