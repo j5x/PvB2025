@@ -154,8 +154,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Shark
   healthConfig: {fileID: 11400000, guid: b5fa22ad2408cc142ad6f341d2d2edc4, type: 2}
+  characterType: 0
   attackComponent: {fileID: 6547605302564233721}
   healthComponent: {fileID: 5240902797016163886}
+  vfxSpawnPoint: {fileID: 0}
+  uiVFXAnchor: {fileID: 0}
 --- !u!114 &6547605302564233721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackConfigs:
-  - {fileID: 11400000, guid: c1db74f4667d8f749860c958256eaa64, type: 2}
+  - {fileID: 11400000, guid: d3c24d108479d9841abd3fa29b526542, type: 2}
   isAIControlled: 0
 --- !u!114 &5240902797016163886
 MonoBehaviour:

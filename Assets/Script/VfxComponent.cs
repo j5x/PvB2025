@@ -4,25 +4,16 @@ public class VfxComponent : MonoBehaviour
 {
     [SerializeField] private Transform vfxSpawnPoint;
     
-    public void PlayImpactVFX(GameObject vfxPrefab, Vector3 offset)
+    public void PlayAttackVFX(GameObject prefab)
     {
-        if (vfxPrefab == null || vfxSpawnPoint == null) return;
+        if (prefab != null && vfxSpawnPoint != null)
+            Instantiate(prefab, vfxSpawnPoint.position, Quaternion.identity);
+    }
 
-        GameObject vfxInstance = Instantiate(vfxPrefab);
-        vfxInstance.transform.SetParent(vfxSpawnPoint, false);
-
-        if (vfxInstance.TryGetComponent<RectTransform>(out RectTransform rect))
-        {
-            // Canvas-based
-            rect.anchoredPosition = Vector2.zero + (Vector2)offset;
-            rect.localRotation = Quaternion.identity;
-        }
-        else
-        {
-            // World-space
-            vfxInstance.transform.localPosition = offset;
-            vfxInstance.transform.localRotation = Quaternion.identity;
-        }
+    public void PlayImpactVFX(GameObject prefab)
+    {
+        if (prefab != null)
+            Instantiate(prefab, transform.position, Quaternion.identity);
     }
 
     public void PlayProjectileVFX(GameObject projectilePrefab, Vector3 offset, Transform target)

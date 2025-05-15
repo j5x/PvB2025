@@ -48,8 +48,15 @@ public class Enemy : Character
         if (attackComponent == null || attackComponent.attackConfigs.Count == 0)
             return;
 
+        Character target = FindObjectOfType<Player>();
+        if (target == null)
+        {
+            Debug.LogWarning("Enemy tried to attack but no Player found!");
+            return;
+        }
+
         int attackIndex = Random.Range(0, attackComponent.attackConfigs.Count);
-        attackComponent.PerformAttack(attackIndex);
+        attackComponent.PerformAttack(attackIndex, target);
     }
 
     protected override void Defend()

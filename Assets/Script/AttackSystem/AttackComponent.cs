@@ -1,27 +1,23 @@
 using UnityEngine;
+using System;
 using System.Collections.Generic;
+using Random = UnityEngine.Random;
 
 public class AttackComponent : MonoBehaviour
 {
-    [Header("Attack Setup")]
-    [SerializeField] public List<AttackConfig> attackConfigs;
-    [SerializeField] private bool isAIControlled;
-
-    private Animator animator;
-    private Character character;
+    public List<AttackConfig> attackConfigs = new();
     private AttackConfig currentAttackConfig;
+    private Animator animator;
     private VfxComponent vfx;
+
+    private Character character;
+    private Character targetOverride;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        character = GetComponent<Character>();
         vfx = GetComponent<VfxComponent>();
-    
-        if (character == null)
-            Debug.LogError($"{gameObject.name}: Missing Character reference!");
-        if (vfx == null)
-            Debug.LogError($"{gameObject.name}: Missing VFX Component reference!");
+        character = GetComponent<Character>();
     }
 
     public void InitializeAttack(AttackConfig config)
@@ -29,64 +25,49 @@ public class AttackComponent : MonoBehaviour
         currentAttackConfig = config;
     }
 
-    public void PerformAttack(int? attackIndex = null)
+    public void PerformAttack(int? attackIndex = null, Character explicitTarget = null)
     {
-        if (attackConfigs == null || attackConfigs.Count == 0)
-        {
-            Debug.LogError($"{gameObject.name}: No attackConfigs available!");
+        if (attackConfigs.Count == 0)
             return;
-        }
 
-        int selectedIndex = attackIndex ?? Random.Range(0, attackConfigs.Count);
-        currentAttackConfig = attackConfigs[selectedIndex];
+        int index = attackIndex ?? Random.Range(0, attackConfigs.Count);
+        currentAttackConfig = attackConfigs[index];
 
-        animator.SetTrigger(currentAttackConfig.animatorParameter);
+        animator?.SetTrigger(currentAttackConfig.animatorParameter);
 
-        Debug.Log($"{gameObject.name} performs {currentAttackConfig.attackName}, " +
-                  $"inflicting {currentAttackConfig.attackDamage} damage after {currentAttackConfig.attackDelay} sec");
-
-        // Optional: Use this only if you're not handling via Animation Event
+        targetOverride = explicitTarget; // Assign the explicit target
         Invoke(nameof(ExecuteAttackLogic), currentAttackConfig.attackDelay);
     }
-    
+
     public void ExecuteAttackLogic()
     {
-        if (character == null || currentAttackConfig == null)
+        Character target = targetOverride;
+        if (target == null)
+        {
+            Debug.LogWarning($"{gameObject.name}: No attack target assigned!");
             return;
+        }
 
-        Character target = (character is Player) ? FindObjectOfType<Enemy>() : FindObjectOfType<Player>();
-        if (target == null) return;
+        HealthComponent targetHealth = target.GetComponent<HealthComponent>();
+        if (targetHealth != null)
+            targetHealth.TakeDamage(currentAttackConfig.attackDamage);
 
         VfxComponent targetVfx = target.GetComponent<VfxComponent>();
+        if (targetVfx != null && currentAttackConfig.impactVFX != null)
+            targetVfx.PlayImpactVFX(currentAttackConfig.impactVFX);
 
-        // Handle Impact VFX on Target
-        if (currentAttackConfig.impactVFXPrefab != null && targetVfx != null)
-        {
-            targetVfx.PlayImpactVFX(currentAttackConfig.impactVFXPrefab, currentAttackConfig.vfxOffset);
-        }
-
-        // Handle Projectile VFX from Self to Target
-        if (currentAttackConfig.projectileVFXPrefab != null && vfx != null)
-        {
-            vfx.PlayProjectileVFX(currentAttackConfig.projectileVFXPrefab, currentAttackConfig.vfxOffset, target.transform);
-        }
-
-        // Deal damage
-        target.TakeDamage(currentAttackConfig.attackDamage);
+        if (vfx != null && currentAttackConfig.attackVFX != null)
+            vfx.PlayAttackVFX(currentAttackConfig.attackVFX);
     }
-        
+
     public void AIControlledAttackLoop(float interval)
     {
-        if (!isAIControlled) return;
-
-        InvokeRepeating(nameof(PerformRandomAttack), 0f, interval);
+        InvokeRepeating(nameof(LoopAttack), interval, interval);
     }
 
-    private void PerformRandomAttack()
+    private void LoopAttack()
     {
-        PerformAttack();
+        Character target = FindObjectOfType<Player>();
+        PerformAttack(null, target);
     }
-
-    public AttackConfig GetCurrentAttack() => currentAttackConfig;
-    public int GetCurrentDamage() => currentAttackConfig != null ? currentAttackConfig.attackDamage : 0;
 }

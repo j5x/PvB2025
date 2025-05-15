@@ -156,8 +156,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Pumpkin
   healthConfig: {fileID: 11400000, guid: 8642a6888ca63a942b167917e94ce90e, type: 2}
+  characterType: 1
   attackComponent: {fileID: 5312631637321406663}
   healthComponent: {fileID: 3958041235653259864}
+  vfxSpawnPoint: {fileID: 0}
+  uiVFXAnchor: {fileID: 0}
   attackInterval: 5
 --- !u!114 &5312631637321406663
 MonoBehaviour:

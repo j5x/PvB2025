@@ -9,8 +9,7 @@ public class AttackConfig : ScriptableObject
     public float attackDelay;
     public string animatorParameter;
 
-    [Header("VFX (optional)")]
-    public GameObject impactVFXPrefab;     // Spawned on the target’s UI anchor
-    public GameObject projectileVFXPrefab; // Thrown from attacker to target
-    public Vector3 vfxOffset;              // Optional offset for either
+    [Header("Visual Effects")]
+    public GameObject attackVFX;
+    public GameObject impactVFX;
 }

@@ -47,8 +47,15 @@ public class Player : Character
         if (isAttacking || attackComponent == null || attackComponent.attackConfigs.Count == 0)
             return;
 
+        Character target = FindObjectOfType<Enemy>();
+        if (target == null)
+        {
+            Debug.LogWarning("Player tried to attack but no Enemy found!");
+            return;
+        }
+
         isAttacking = true;
-        attackComponent.PerformAttack(0);
+        attackComponent.PerformAttack(0, target);
         StartCoroutine(ResetAttackCooldown());
     }
 
