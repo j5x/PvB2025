@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SO_SuperAttack
   m_EditorClassIdentifier: 
   attackName: Default Attack
-  attackDamage: 10
+  attackDamage: 35
   attackDelay: 0.5
   animatorParameter: AttackTrigger
