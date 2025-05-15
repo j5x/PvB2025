@@ -3,6 +3,7 @@ using UnityEngine;
 public class Enemy : Character
 {
     [SerializeField] private float attackInterval = 5f;
+    private VfxComponent vfxComponent;
 
     protected override void Awake()
     {
@@ -28,6 +29,8 @@ public class Enemy : Character
         {
             Debug.LogError($"{gameObject.name}: No AttackConfig assigned!");
         }
+        
+        AssignVfxSpawnPointByTag("EnemyImpactPoint");
     }
 
     private void HandleDeath()
@@ -63,4 +66,27 @@ public class Enemy : Character
     {
         Debug.Log($"{gameObject.name} is defending!");
     }
+    
+    private void AssignVfxSpawnPointByTag(string tag)
+    {
+        if (vfxComponent == null)
+            vfxComponent = GetComponent<VfxComponent>();
+
+        if (vfxComponent == null)
+        {
+            Debug.LogWarning($"{gameObject.name} has no VfxComponent assigned!");
+            return;
+        }
+
+        GameObject target = GameObject.FindGameObjectWithTag(tag);
+        if (target != null)
+        {
+            vfxComponent.SetVfxSpawnPoint(target.transform);
+        }
+        else
+        {
+            Debug.LogWarning($"No GameObject with tag '{tag}' found in the scene!");
+        }
+    }
+
 }

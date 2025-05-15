@@ -4,6 +4,11 @@ public class VfxComponent : MonoBehaviour
 {
     [SerializeField] private Transform vfxSpawnPoint;
     
+    public void SetVfxSpawnPoint(Transform point)
+    {
+        vfxSpawnPoint = point;
+    }
+    
     public void PlayAttackVFX(GameObject prefab)
     {
         if (prefab != null && vfxSpawnPoint != null)

@@ -109,6 +109,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: e6292a9c8edd77d46a6841727e97db7f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5498351317222885137}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: e6292a9c8edd77d46a6841727e97db7f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2426716158165084295}
     - targetCorrespondingSourceObject: {fileID: 3442670579426582475, guid: e6292a9c8edd77d46a6841727e97db7f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1561093661375359178}
@@ -157,8 +160,6 @@ MonoBehaviour:
   characterType: 0
   attackComponent: {fileID: 6547605302564233721}
   healthComponent: {fileID: 5240902797016163886}
-  vfxSpawnPoint: {fileID: 0}
-  uiVFXAnchor: {fileID: 0}
 --- !u!114 &6547605302564233721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,7 +174,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackConfigs:
   - {fileID: 11400000, guid: d3c24d108479d9841abd3fa29b526542, type: 2}
-  isAIControlled: 0
 --- !u!114 &5240902797016163886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,6 +297,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2426716158165084295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186148459758453317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a834887bda64b674f80e9b2727699e84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vfxSpawnPoint: {fileID: 0}
 --- !u!1 &3077164093901503539 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3442670579426582475, guid: e6292a9c8edd77d46a6841727e97db7f, type: 3}
