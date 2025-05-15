@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3484094001268708497}
   - component: {fileID: 1464677133614915532}
   - component: {fileID: 4327689869728961613}
+  - component: {fileID: -7440164444722842215}
   m_Layer: 0
   m_Name: EnemyImpactt_0
   m_TagString: Untagged
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 5454277618196961553, guid: 9ff7cce1c9a9f4126adffc21a265512c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -110,3 +111,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-7440164444722842215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7954757451287704589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17451099031d5f54b8cd076253149383, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
