@@ -16,6 +16,5 @@ MonoBehaviour:
   attackDamage: 10
   attackDelay: 0.5
   animatorParameter: Attack1
-  impactVFXPrefab: {fileID: 6772536836613183798, guid: 2f15d90bc3ea9d64eb1c3bda344f4c35, type: 3}
-  projectileVFXPrefab: {fileID: 6772536836613183798, guid: 2f15d90bc3ea9d64eb1c3bda344f4c35, type: 3}
-  vfxOffset: {x: 0, y: 0, z: 0}
+  attackVFX: {fileID: 6391476692491432735, guid: fdb042b30f80b0a4892b9c38a4e7d023, type: 3}
+  impactVFX: {fileID: 0}
