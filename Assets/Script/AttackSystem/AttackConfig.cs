@@ -9,4 +9,8 @@ public class AttackConfig : ScriptableObject
     [HideInInspector] int attackInterval = 5; // Time between attacks -> Currently controlled by enemy.cs
     public float attackDelay = 0.5f; // Delay after animation starts
     public string animatorParameter = "AttackTrigger";
+    
+    [Header("Visual Effects")]
+    public GameObject attackVFX;
+    public GameObject impactVFX;
 }
