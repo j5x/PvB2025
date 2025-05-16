@@ -4784,10 +4784,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GridManager
       objectReference: {fileID: 0}
-    - target: {fileID: 8258075540393602766, guid: a820c5ac3a1a6d34086bb6be46f4a3f6, type: 3}
-      propertyPath: matchVFXPrefab
-      value: 
-      objectReference: {fileID: 6486378418854865734, guid: f0e6c46cc7ba88342afea7ef3c1b0c55, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
