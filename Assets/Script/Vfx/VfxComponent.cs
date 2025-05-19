@@ -9,6 +9,11 @@ public class VfxComponent : MonoBehaviour
         vfxSpawnPoint = point;
     }
     
+    public Transform GetVfxSpawnPoint()
+    {
+        return vfxSpawnPoint != null ? vfxSpawnPoint : transform;
+    }
+    
     public void PlayAttackVFX(GameObject prefab)
     {
         if (prefab != null && vfxSpawnPoint != null)
@@ -17,8 +22,8 @@ public class VfxComponent : MonoBehaviour
 
     public void PlayImpactVFX(GameObject prefab)
     {
-        if (prefab != null)
-            Instantiate(prefab, transform.position, Quaternion.identity);
+        if (prefab != null && vfxSpawnPoint != null)
+            Instantiate(prefab, vfxSpawnPoint.position, Quaternion.identity);
     }
 
     public void PlayProjectileVFX(GameObject projectilePrefab, Vector3 offset, Transform target)

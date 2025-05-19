@@ -40,6 +40,12 @@ public abstract class Character : MonoBehaviour
     
     protected abstract void Attack();
     protected abstract void Defend();
+    
+    public virtual Transform GetVfxSpawnPoint()
+    {
+        VfxComponent vfx = GetComponent<VfxComponent>();
+        return vfx != null ? vfx.GetVfxSpawnPoint() : transform;
+    }
 
     public virtual void TakeDamage(float damage)
     {

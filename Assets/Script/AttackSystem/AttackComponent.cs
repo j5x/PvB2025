@@ -48,14 +48,17 @@ public class AttackComponent : MonoBehaviour
             return;
         }
 
+        // Damage application
         HealthComponent targetHealth = target.GetComponent<HealthComponent>();
         if (targetHealth != null)
             targetHealth.TakeDamage(currentAttackConfig.attackDamage);
 
+        // Always play Impact VFX on the target
         VfxComponent targetVfx = target.GetComponent<VfxComponent>();
         if (targetVfx != null && currentAttackConfig.impactVFX != null)
             targetVfx.PlayImpactVFX(currentAttackConfig.impactVFX);
 
+        // Conditionally play Attack VFX (Slash/Projectile) from the attacker
         if (vfx != null && currentAttackConfig.attackVFX != null)
             vfx.PlayAttackVFX(currentAttackConfig.attackVFX);
     }
