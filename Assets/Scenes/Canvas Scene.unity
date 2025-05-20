@@ -1414,7 +1414,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 781306118}
-  - component: {fileID: 781306117}
   - component: {fileID: 781306121}
   m_Layer: 0
   m_Name: GameManager
@@ -1423,20 +1422,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &781306117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 781306116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a4ff2b25561703439c65af5b352ed82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  backgroundMusic: {fileID: 8300000, guid: 74d1a6d722095e849836bccde5fb9e8b, type: 3}
-  loopMusic: 1
 --- !u!4 &781306118
 Transform:
   m_ObjectHideFlags: 0

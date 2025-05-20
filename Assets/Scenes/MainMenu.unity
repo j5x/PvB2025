@@ -345,6 +345,7 @@ GameObject:
   m_Component:
   - component: {fileID: 431120776}
   - component: {fileID: 431120775}
+  - component: {fileID: 431120777}
   m_Layer: 0
   m_Name: MainMenuManager
   m_TagString: Untagged
@@ -380,6 +381,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &431120777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 431120774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a4ff2b25561703439c65af5b352ed82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundMusic: {fileID: 8300000, guid: 5c92610d75e9a56499dfd082bf0f73ad, type: 3}
+  loopMusic: 1
+  mainLevelSceneName: Canvas Scene
+  mainLevelMusic: {fileID: 8300000, guid: b786939430ec8a949b07b0b87ffcecaa, type: 3}
+  loopMainLevel: 1
+  stopOnSceneName: LoadingScene
 --- !u!1 &814445243
 GameObject:
   m_ObjectHideFlags: 0
@@ -1483,6 +1502,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8300000, guid: fba3a5e7926aa9f43b2a97447e4cbbe8, type: 3}
+        m_TargetAssemblyTypeName: MainMenuUI, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
