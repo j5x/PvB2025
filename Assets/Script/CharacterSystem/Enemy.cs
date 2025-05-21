@@ -35,12 +35,12 @@ public class Enemy : Character
 
     private void HandleDeath()
     {
-        // Notify the RoundManager that the enemy has been defeated
-        var rm = FindObjectOfType<RoundManager>();
-        if (rm != null)
-            rm.EnemyDefeated();
-        else
-            Debug.LogWarning("RoundManager not found in scene!");
+        // **NO MORE** rm.EnemyDefeated() call here!
+        // RoundManager is already subscribed via OnEnemySpawned.
+
+        // Clean up this subscription so it won't leak
+        if (healthComponent != null)
+            healthComponent.OnDeath -= HandleDeath;
 
         // Destroy this enemy
         Destroy(gameObject);
@@ -51,15 +51,8 @@ public class Enemy : Character
         if (attackComponent == null || attackComponent.attackConfigs.Count == 0)
             return;
 
-        Character target = FindObjectOfType<Player>();
-        if (target == null)
-        {
-            Debug.LogWarning("Enemy tried to attack but no Player found!");
-            return;
-        }
-
         int attackIndex = Random.Range(0, attackComponent.attackConfigs.Count);
-        attackComponent.PerformAttack(attackIndex, target);
+        attackComponent.PerformAttack(attackIndex);
     }
 
     protected override void Defend()
@@ -80,13 +73,8 @@ public class Enemy : Character
 
         GameObject target = GameObject.FindGameObjectWithTag(tag);
         if (target != null)
-        {
             vfxComponent.SetVfxSpawnPoint(target.transform);
-        }
         else
-        {
             Debug.LogWarning($"No GameObject with tag '{tag}' found in the scene!");
-        }
     }
-
 }
