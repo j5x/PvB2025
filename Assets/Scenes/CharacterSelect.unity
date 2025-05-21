@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 912b3b9b77eee9a49b5b724a142c8705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterPrefab: {fileID: 186148459758453317, guid: 0b8c783a816132a468a1b9baf99f932e, type: 3}
+  characterPrefab: {fileID: 4449844030910278745, guid: d3518f7e8198e3041b55ff309d18f297, type: 3}
   characterPanel: {fileID: 1911959830}
 --- !u!114 &209665708
 MonoBehaviour:
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 912b3b9b77eee9a49b5b724a142c8705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterPrefab: {fileID: 6903513100997537361, guid: 3721bc89cfa0d0d4a8f820a56b1da6bd, type: 3}
+  characterPrefab: {fileID: 5149359317818692379, guid: 26488fc78889a4b47a35bd3b537dddaa, type: 3}
   characterPanel: {fileID: 911783106}
 --- !u!114 &573112892
 MonoBehaviour:
@@ -422,6 +422,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 665582958}
+  - component: {fileID: 665582959}
   m_Layer: 5
   m_Name: CharacterInfo
   m_TagString: Untagged
@@ -451,6 +452,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &665582959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665582957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85c2a9abaed6a7d46af2ed732c5729cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startButtonObject: {fileID: 2057099721}
+  characterPanels:
+  - {fileID: 1220214051}
+  - {fileID: 911783106}
+  - {fileID: 1911959830}
 --- !u!1 &809974712
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,7 +623,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &911783107
 RectTransform:
   m_ObjectHideFlags: 0
@@ -834,7 +852,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1220214052
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1109,7 +1127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 912b3b9b77eee9a49b5b724a142c8705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterPrefab: {fileID: 3418149732969637306, guid: 30fb68929d28591438b7d6d1621e8f2d, type: 3}
+  characterPrefab: {fileID: 4936975163870082946, guid: 88d25601b7697ca42b79728bb4eaef4f, type: 3}
   characterPanel: {fileID: 1220214051}
 --- !u!114 &1389645869
 MonoBehaviour:
@@ -1389,7 +1407,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1911959831
 RectTransform:
   m_ObjectHideFlags: 0
