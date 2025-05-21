@@ -48,15 +48,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4580b3d019794454195cec9e91da253d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  specialBar: {fileID: 3881462351285681327, guid: 7cad7890578436c47bb5fdf516a27ab7, type: 3}
-  attackComponent: {fileID: 8022375522689193435, guid: 30fb68929d28591438b7d6d1621e8f2d, type: 3}
-  specialIndex: 1
-  candyPerTile: 1
   width: 5
   height: 7
   tileSize: 1
   redTilePrefab: {fileID: 4673744199498221708, guid: 547281ccd9d1a2b4ab5b9a77a4059d55, type: 3}
   blueTilePrefab: {fileID: 1934769908865708105, guid: e3e9816b4c3d0214e930a8254669506e, type: 3}
   greenTilePrefab: {fileID: 2801963895294904144, guid: 67b7197f5cd8a994fb582db5f2315b65, type: 3}
-  matchVFXPrefab: {fileID: 2314194874802564461, guid: ce1085a4d27cbf44c8f687968fb44014, type: 3}
-  gridOffset: {x: 0, y: 0, z: 0}
+  matchVFXPrefab: {fileID: 6486378418854865734, guid: f0e6c46cc7ba88342afea7ef3c1b0c55, type: 3}
+  gridOffset: {x: 0, y: -2.5, z: 0}
