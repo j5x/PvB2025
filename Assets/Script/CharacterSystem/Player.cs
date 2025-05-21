@@ -5,10 +5,8 @@ using System.Collections;
 public class Player : Character
 {
     private GridManager gridManager;
-    private bool isAttacking = false;
-    private float attackCooldown = 1f;
-
-    private VfxComponent vfxComponent;
+    private bool        isAttacking     = false;
+    private float       attackCooldown  = 1f;
 
     protected override void Awake()
     {
@@ -28,8 +26,6 @@ public class Player : Character
         // When the player dies, call HandleDeath()
         if (healthComponent != null)
             healthComponent.OnDeath += HandleDeath;
-
-        AssignVfxSpawnPointByTag("PlayerImpactPoint");
     }
 
     private void OnDestroy()
@@ -51,15 +47,8 @@ public class Player : Character
         if (isAttacking || attackComponent == null || attackComponent.attackConfigs.Count == 0)
             return;
 
-        Character target = FindObjectOfType<Enemy>();
-        if (target == null)
-        {
-            Debug.LogWarning("Player tried to attack but no Enemy found!");
-            return;
-        }
-
         isAttacking = true;
-        attackComponent.PerformAttack(0, target);
+        attackComponent.PerformAttack(0);
         StartCoroutine(ResetAttackCooldown());
     }
 
@@ -70,9 +59,10 @@ public class Player : Character
 
     private void HandleDeath()
     {
+        // Notify the RoundManager that the player has died
         var rm = FindObjectOfType<RoundManager>();
         if (rm != null)
-            rm.PlayerDefeated();
+            rm.PlayerDefeated();  // <-- implement this in RoundManager
         else
             Debug.LogWarning("RoundManager not found in scene!");
 
@@ -84,27 +74,5 @@ public class Player : Character
     {
         yield return new WaitForSeconds(attackCooldown);
         isAttacking = false;
-    }
-
-    private void AssignVfxSpawnPointByTag(string tag)
-    {
-        if (vfxComponent == null)
-            vfxComponent = GetComponent<VfxComponent>();
-
-        if (vfxComponent == null)
-        {
-            Debug.LogWarning($"{gameObject.name} has no VfxComponent assigned!");
-            return;
-        }
-
-        GameObject target = GameObject.FindGameObjectWithTag(tag);
-        if (target != null)
-        {
-            vfxComponent.SetVfxSpawnPoint(target.transform);
-        }
-        else
-        {
-            Debug.LogWarning($"No GameObject with tag '{tag}' found in the scene!");
-        }
     }
 }

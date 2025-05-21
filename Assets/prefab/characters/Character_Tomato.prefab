@@ -643,7 +643,6 @@ GameObject:
   - component: {fileID: 8060270451577920064}
   - component: {fileID: 3350883629829405672}
   - component: {fileID: 7379075029446658098}
-  - component: {fileID: 7444915880418657519}
   m_Layer: 0
   m_Name: Character_Tomato
   m_TagString: Enemy
@@ -818,7 +817,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Tomato
   healthConfig: {fileID: 11400000, guid: 8642a6888ca63a942b167917e94ce90e, type: 2}
-  characterType: 1
   attackComponent: {fileID: 0}
   healthComponent: {fileID: 0}
   attackInterval: 3
@@ -849,19 +847,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackConfigs:
   - {fileID: 11400000, guid: c0f067c00c7e328409e76bdeb0d20c80, type: 2}
---- !u!114 &7444915880418657519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4850082150414317841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a834887bda64b674f80e9b2727699e84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vfxSpawnPoint: {fileID: 0}
+  isAIControlled: 1
 --- !u!1 &6658460484862992130
 GameObject:
   m_ObjectHideFlags: 0

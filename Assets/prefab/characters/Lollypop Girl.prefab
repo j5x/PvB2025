@@ -565,7 +565,7 @@ GameObject:
   - component: {fileID: 281958334282606045}
   - component: {fileID: 8022375522689193435}
   - component: {fileID: 7187808787824538468}
-  - component: {fileID: -8523744197766973712}
+  - component: {fileID: 3490161716049892422}
   m_Layer: 0
   m_Name: Lollypop Girl
   m_TagString: loligirl
@@ -745,7 +745,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: LollyPopGirl
   healthConfig: {fileID: 11400000, guid: b5fa22ad2408cc142ad6f341d2d2edc4, type: 2}
-  characterType: 0
   attackComponent: {fileID: 8022375522689193435}
   healthComponent: {fileID: 7187808787824538468}
 --- !u!114 &8022375522689193435
@@ -762,6 +761,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackConfigs:
   - {fileID: 11400000, guid: 930f0fe8e105d714f875f47bc127f72d, type: 2}
+  - {fileID: 11400000, guid: d9ffcb8eb2c044344be21078f0c6c2c2, type: 2}
+  isAIControlled: 0
 --- !u!114 &7187808787824538468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -775,7 +776,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthConfig: {fileID: 11400000, guid: 316a0f387aa42114fb5a48e82fc8596c, type: 2}
---- !u!114 &-8523744197766973712
+--- !u!114 &3490161716049892422
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -784,10 +785,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3418149732969637306}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a834887bda64b674f80e9b2727699e84, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f8c2f0221177b442bf9a37aba2d828d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vfxSpawnPoint: {fileID: 0}
+  gridManager: {fileID: 0}
+  specialBar: {fileID: 3881462351285681327, guid: 7cad7890578436c47bb5fdf516a27ab7, type: 3}
+  attackComponent: {fileID: 8022375522689193435}
+  candyPerTile: 10
+  specialIndex: 1
 --- !u!1 &3955796726225090520
 GameObject:
   m_ObjectHideFlags: 0

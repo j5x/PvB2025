@@ -784,7 +784,6 @@ GameObject:
   - component: {fileID: -5222008926247217097}
   - component: {fileID: 559073092168851179}
   - component: {fileID: 2046184949520592290}
-  - component: {fileID: -8326405627770247906}
   m_Layer: 0
   m_Name: Character_Icyka
   m_TagString: icyka
@@ -960,7 +959,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Icyka
   healthConfig: {fileID: 11400000, guid: b5fa22ad2408cc142ad6f341d2d2edc4, type: 2}
-  characterType: 0
   attackComponent: {fileID: 559073092168851179}
   healthComponent: {fileID: 2046184949520592290}
 --- !u!114 &559073092168851179
@@ -977,6 +975,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackConfigs:
   - {fileID: 11400000, guid: ae0751deb331b464198725f1b03710fb, type: 2}
+  isAIControlled: 0
 --- !u!114 &2046184949520592290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -990,19 +989,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthConfig: {fileID: 0}
---- !u!114 &-8326405627770247906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6903513100997537361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a834887bda64b674f80e9b2727699e84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vfxSpawnPoint: {fileID: 0}
 --- !u!1 &6904805977857478271
 GameObject:
   m_ObjectHideFlags: 0

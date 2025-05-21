@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public abstract class Character : MonoBehaviour
@@ -7,22 +6,19 @@ public abstract class Character : MonoBehaviour
     [SerializeField] protected string characterName;
     [SerializeField] protected HealthConfig healthConfig;
 
-    [Header("Character Type")]
-    [SerializeField] private CharacterType characterType;
-    public CharacterType CharacterType => characterType;
-
     [Header("Components")]
     [SerializeField] protected AttackComponent attackComponent;
     [SerializeField] protected HealthComponent healthComponent;
-
+    
     protected Animator animator;
-
+    
     public string Name => characterName;
+    public CharacterType CharacterType { get; protected set; }
 
     protected virtual void Awake()
     {
         animator = GetComponent<Animator>();
-
+        
         if (attackComponent == null)
         {
             attackComponent = GetComponent<AttackComponent>();
@@ -35,9 +31,8 @@ public abstract class Character : MonoBehaviour
         healthComponent = GetComponent<HealthComponent>() ?? gameObject.AddComponent<HealthComponent>();
         healthComponent.InitializeHealth(healthConfig);
         healthComponent.OnDeath += Die;
-        
     }
-    
+
     protected abstract void Attack();
     protected abstract void Defend();
 
