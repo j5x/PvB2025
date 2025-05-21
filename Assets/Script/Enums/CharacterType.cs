@@ -1,1 +1,1 @@
-public enum CharacterType { Warrior, Mage, Archer }
+public enum CharacterType { Player, Enemy}
