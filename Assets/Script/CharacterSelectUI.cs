@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class CharacterSelectUI : MonoBehaviour
 {
-    [SerializeField] private GameObject startButtonObject; // Reference to the whole button GameObject
+    [SerializeField] private GameObject startButtonObject;
+    [SerializeField] private GameObject[] characterPanels; // ← Assign in Inspector
 
     private void Start()
     {
-        // Hide start button initially
         if (startButtonObject != null)
             startButtonObject.SetActive(false);
 
@@ -14,6 +14,18 @@ public class CharacterSelectUI : MonoBehaviour
         {
             GameManager.Instance.OnCharacterSelected += ShowStartButton;
         }
+    }
+
+    public void ShowCharacterPanel(GameObject selectedPanel)
+    {
+        foreach (GameObject panel in characterPanels)
+        {
+            if (panel != null)
+                panel.SetActive(false);
+        }
+
+        if (selectedPanel != null)
+            selectedPanel.SetActive(true);
     }
 
     private void ShowStartButton()
