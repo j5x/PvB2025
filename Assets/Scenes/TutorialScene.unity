@@ -1159,26 +1159,31 @@ MonoBehaviour:
   speechBubble: {fileID: 605618175}
   speechText: {fileID: 1403414750}
   tutorialLines:
-  - "\U0001F579\uFE0F Game-uitleg\r\nWelkom bij dit spannende match-3 battle spel!
-    Je doel is simpel: versla alle vijanden binnen de tijd, gebruik combo's om aan
-    te vallen, verzamel groene snoepjes voor een special attack, en blijf zelf in
-    leven!"
+  - Hey, ik ben Steve de Donut
+  - '
+
+    Welkom bij dit spannende match-3 battle spel! Je doel is simpel: '
+  - versla alle vijanden binnen de tijd, gebruik combo's om aan te vallen, verzamel
+    groene snoepjes voor een special attack, en blijf zelf in leven!
   - "\U0001F525 Zo werkt het match-systeem\r\nMaak combinaties om je vijand schade
-    toe te brengen.\r\n\r\n\U0001F36C Groene snoepjes = Special Attack\r\nVerzamel
-    groene snoepjes tijdens het spelen.\r\nHeb je er 30? Dan kun je een Special Attack
-    uitvoeren!\r\n"
-  - " Gezondheid (HP) en Game Over\r\nJij en de vijand hebben allebei HP.\r\nWordt
-    jouw HP tot nul gebracht? \u279C Game over\r\nJe kunt HP terugkrijgen via je
-    Special Attack.\r\nVersla de vijand binnen de tijd om door te gaan naar de volgende
-    ronde.\r\n\U0001F9DF\u200D\u2642\uFE0F Rondes en Vijanden"
-  - "\U0001F539 Ronde 1\r\nVijand: Zwak\r\nHoe minder tijd jij overhoudt, hoe sterker
-    de vijand wordt!\r\n"
-  - "\U0001F539 Ronde 2\r\nVijand: Sterker dan in ronde 1\r\nZelfde regels als ronde
-    1, maar meer schade en moeilijker te verslaan"
-  - "\r\n\U0001F539 Ronde 3\r\nVijand: De sterkste!"
-  - "\U0001F3C6 Hoe win je?\r\nVersla alle drie de vijanden binnen de gegeven tijd\r\nZorg
-    dat je HP niet opraakt\r\nGebruik je special attacks slim!\r\nHeb je alle rondes
-    gehaald? Dan ben je de winnaar van het level! \r\n"
+    toe te brengen.\r\n\r\n"
+  - "\U0001F36C Groene snoepjes = Special Attack\r\nVerzamel groene snoepjes tijdens
+    het spelen.\r\nHeb je er 30? Dan kun je een Special Attack uitvoeren!\r\n"
+  - "\r\nJij en de vijand hebben allebei HP.\r\nWordt jouw HP tot nul gebracht? \u279C
+    Game over\r\u2642"
+  - 'Je kunt HP terugkrijgen via je Special Attack.
+
+    Versla de vijand binnen
+    de tijd om door te gaan naar de volgende ronde.
+
+'
+  - "\U0001F3C6 Hoe win je?\r\n"
+  - "Versla alle drie de vijanden binnen de gegeven tijd\r\nZorg dat je HP niet opraakt\r\n
+    \r\n\n"
+  - 'Gebruik je special attacks slim!
+
+    Heb je alle rondes gehaald? Dan ben je
+    de winnaar van het level!'
   delayBetweenLines: 1.5
   textTypingSpeed: 0.03
 --- !u!1 &1403414748
@@ -1265,14 +1270,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 60
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMin: 24
+  m_fontSizeMax: 60
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1283,7 +1288,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_TextWrappingMode: 1
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
+  m_overflowMode: 3
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
@@ -1296,7 +1301,7 @@ MonoBehaviour:
   m_isOrthographic: 1
   m_isCullingEnabled: 0
   m_horizontalMapping: 0
-  m_verticalMapping: 0
+  m_verticalMapping: 1
   m_uvLineOffset: 0
   m_geometrySortingOrder: 0
   m_IsTextObjectScaleStatic: 0
