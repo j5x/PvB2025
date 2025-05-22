@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
+using UnityEngine.SceneManagement; // <--- ADDED
 
 public class DonutCopTutorial : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class DonutCopTutorial : MonoBehaviour
     [SerializeField] private string[] tutorialLines;
     [SerializeField] private float delayBetweenLines = 1.5f;
     [SerializeField] private float textTypingSpeed = 0.03f;
+
+    [Header("Scene Transition")]
+    [SerializeField] private string nextSceneName; // <-- ADDED
+    [SerializeField] private float sceneDelay = 1f; // optional wait before loading
 
     private int currentLineIndex = 0;
     private bool isTyping = false;
@@ -33,8 +38,18 @@ public class DonutCopTutorial : MonoBehaviour
             currentLineIndex++;
             yield return new WaitForSeconds(delayBetweenLines);
         }
-        // Optionally: Disable speech bubble or trigger next step in tutorial
+
         speechBubble.SetActive(false);
+
+        if (!string.IsNullOrEmpty(nextSceneName))
+        {
+            yield return new WaitForSeconds(sceneDelay);
+            SceneManager.LoadScene(nextSceneName);
+        }
+        else
+        {
+            Debug.LogWarning("Next scene name not set in DonutCopTutorial.");
+        }
     }
 
     private IEnumerator SpeakLine(string line)
@@ -53,7 +68,6 @@ public class DonutCopTutorial : MonoBehaviour
         isTyping = false;
     }
 
-    // Optional: Skip typing when tapped
     public void OnSpeechBubbleClicked()
     {
         if (isTyping)

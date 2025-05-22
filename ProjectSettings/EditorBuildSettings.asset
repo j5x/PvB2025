@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/CharacterSelect.unity
     guid: 4cc2e6317cbf8d84abacbfa739c4fec5
   - enabled: 1
+    path: Assets/Scenes/SteveCopScene.unity
+    guid: 302b866be77420141a298f842a313961
+  - enabled: 1
     path: Assets/Scenes/Canvas Scene.unity
     guid: cd20888fe012fdb48a08ef3a1efe3a39
   - enabled: 1
