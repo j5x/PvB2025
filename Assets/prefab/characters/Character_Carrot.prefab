@@ -724,6 +724,7 @@ MonoBehaviour:
   attackComponent: {fileID: 979788291689760705}
   healthComponent: {fileID: 6069752734965220919}
   attackInterval: 5
+  spawnVfxPrefab: {fileID: 4701349906304273601, guid: ebe5ad5527a8d5145bf47cb4a6bb4936, type: 3}
 --- !u!114 &6069752734965220919
 MonoBehaviour:
   m_ObjectHideFlags: 0

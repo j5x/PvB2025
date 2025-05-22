@@ -4,6 +4,7 @@ public class Enemy : Character
 {
     [SerializeField] private float attackInterval = 5f;
     private VfxComponent vfxComponent;
+    [SerializeField] private GameObject spawnVfxPrefab; // 👈 assign per prefab
 
     protected override void Awake()
     {
@@ -29,6 +30,7 @@ public class Enemy : Character
         }
         
         AssignVfxSpawnPointByTag("EnemyImpactPoint");
+        PlaySpawnVFX();
     }
 
     // ——— Removed HandleDeath entirely ———
@@ -63,5 +65,13 @@ public class Enemy : Character
             vfxComponent.SetVfxSpawnPoint(target.transform);
         else
             Debug.LogWarning($"No GameObject with tag '{tag}' found in the scene!");
+    }
+    
+    private void PlaySpawnVFX()
+    {
+        if (spawnVfxPrefab == null) return;
+
+        Vector3 spawnPosition = transform.position + Vector3.up * 1.5f; // lift above ground slightly
+        Instantiate(spawnVfxPrefab, spawnPosition, Quaternion.identity);
     }
 }

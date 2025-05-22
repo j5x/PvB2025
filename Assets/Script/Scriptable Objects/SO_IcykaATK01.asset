@@ -17,4 +17,4 @@ MonoBehaviour:
   attackDelay: 0.5
   animatorParameter: Attack1
   attackVFX: {fileID: 6391476692491432735, guid: fdb042b30f80b0a4892b9c38a4e7d023, type: 3}
-  impactVFX: {fileID: 0}
+  impactVFX: {fileID: 2699750666456696494, guid: 7d6713255ae063b4c8f09a4ce57770db, type: 3}
