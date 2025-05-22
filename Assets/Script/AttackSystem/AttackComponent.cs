@@ -57,16 +57,16 @@ public class AttackComponent : MonoBehaviour
             targetVfx.PlayImpactVFX(currentAttackConfig.impactVFX);
 
         if (vfx != null && currentAttackConfig.attackVFX != null)
-            if (currentAttackConfig.useSceneVFXSpawnPoint)
+            if (vfx != null && currentAttackConfig.attackVFX != null)
             {
-                Transform specialSpawn = GameObject.FindWithTag("SpecialVFXPoint")?.transform;
-                if (specialSpawn != null)
+                Transform attackSpawn = GameObject.FindWithTag("AttackVFXPoint")?.transform;
+                if (attackSpawn != null)
                 {
-                    Instantiate(currentAttackConfig.attackVFX, specialSpawn.position, Quaternion.identity);
+                    Instantiate(currentAttackConfig.attackVFX, attackSpawn.position, Quaternion.identity);
                 }
                 else
                 {
-                    Debug.LogWarning("Special VFX Spawn Point not found in scene!");
+                    Debug.LogWarning("Attack VFX Spawn Point not found in scene or prefab!");
                 }
             }
             else

@@ -15,6 +15,7 @@ TagManager:
   - EnemyImpactPoint
   - PlayerImpactPoint
   - SpecialVFXPoint
+  - AttackVFXPoint
   layers:
   - Default
   - TransparentFX
