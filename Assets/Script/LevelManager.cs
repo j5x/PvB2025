@@ -19,8 +19,9 @@ public class LevelManager : MonoBehaviour
                 Quaternion.identity, playerParent);
             string tag = GameManager.Instance.SelectedCharacterTag;
 
-            ActivateHpBarBasedOnTag(tag, player.GetComponent<HealthComponent>());
+            ActivateHpBarBasedOnTag(tag, player.GetComponentInChildren<HealthComponent>());
         }
+        
         else
         {
             Debug.LogWarning("No character prefab was selected!");

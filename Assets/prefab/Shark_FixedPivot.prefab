@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6911675313000838611}
   m_Layer: 0
   m_Name: Shark_FixedPivot
-  m_TagString: Player
+  m_TagString: shark girl
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,7 +102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8653719598885068355, guid: e6292a9c8edd77d46a6841727e97db7f, type: 3}
       propertyPath: m_TagString
-      value: shark girl
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: e6292a9c8edd77d46a6841727e97db7f, type: 3}
       propertyPath: m_LocalScale.x

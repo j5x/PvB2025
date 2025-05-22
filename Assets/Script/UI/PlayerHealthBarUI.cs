@@ -48,7 +48,7 @@ public class PlayerHealthBarUI : MonoBehaviour
         if (player != null)
         {
             playerHealthComponent = player.GetComponent<HealthComponent>();
-
+        
             if (playerHealthComponent != null)
             {
                 slider.maxValue = playerHealthComponent.MaxHealth;
@@ -56,6 +56,12 @@ public class PlayerHealthBarUI : MonoBehaviour
                 targetHealth = slider.value;
 
                 playerHealthComponent.OnHealthChanged += OnHealthChanged;
+            }
+            
+            var health = player.GetComponentInChildren<HealthComponent>();
+            if (health == null)
+            {
+                Debug.LogError("HealthComponent not found on spawned player prefab!");
             }
         }
     }
