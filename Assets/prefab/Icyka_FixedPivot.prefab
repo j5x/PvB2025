@@ -175,6 +175,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 57be6159bb6be4941aa67373c2ea96aa, type: 3}
       insertIndex: -1
       addedObject: {fileID: 756982665796939780}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 57be6159bb6be4941aa67373c2ea96aa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 326727874693738717}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: 57be6159bb6be4941aa67373c2ea96aa, type: 3}
 --- !u!4 &3436338462857003609 stripped
 Transform:
@@ -239,6 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackConfigs:
   - {fileID: 11400000, guid: ae0751deb331b464198725f1b03710fb, type: 2}
+  - {fileID: 11400000, guid: 7ecd30ec1b979cc4db333ca1afba7c96, type: 2}
 --- !u!114 &3547452790107062786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,3 +269,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vfxSpawnPoint: {fileID: 0}
+--- !u!114 &326727874693738717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4573487287061568058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f8c2f0221177b442bf9a37aba2d828d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridManager: {fileID: 0}
+  candyPerTile: 1
+  specialBar: {fileID: 0}
+  attackComponent: {fileID: 0}
+  specialIndex: 1

@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fe6ce564302d214aaa24a0dfd0a89f6, type: 3}
   m_Name: SO_SuperAttack
   m_EditorClassIdentifier: 
-  attackName: Default Attack
+  attackName: Super Lolly Attack
   attackDamage: 35
   attackDelay: 0.5
   animatorParameter: AttackTrigger
+  attackVFX: {fileID: 6192791463452573812, guid: b480d7e19c76d614c8195d90d23b8ea2, type: 3}
+  impactVFX: {fileID: 0}
+  useSceneVFXSpawnPoint: 1

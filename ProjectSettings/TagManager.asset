@@ -12,6 +12,9 @@ TagManager:
   - loligirl
   - icyka
   - shark girl
+  - EnemyImpactPoint
+  - PlayerImpactPoint
+  - SpecialVFXPoint
   layers:
   - Default
   - TransparentFX

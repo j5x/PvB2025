@@ -13,4 +13,5 @@ public class AttackConfig : ScriptableObject
     [Header("Visual Effects")]
     public GameObject attackVFX;
     public GameObject impactVFX;
+    public bool useSceneVFXSpawnPoint = false;
 }
