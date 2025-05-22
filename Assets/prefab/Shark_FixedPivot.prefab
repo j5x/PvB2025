@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6911675313000838611}
   m_Layer: 0
   m_Name: Shark_FixedPivot
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterName: Shark
-  healthConfig: {fileID: 0}
+  healthConfig: {fileID: 11400000, guid: b5fa22ad2408cc142ad6f341d2d2edc4, type: 2}
   characterType: 0
   attackComponent: {fileID: 7532127609403340268}
   healthComponent: {fileID: 1033287443041816339}
@@ -279,7 +279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackConfigs:
-  - {fileID: 11400000, guid: 930f0fe8e105d714f875f47bc127f72d, type: 2}
+  - {fileID: 11400000, guid: d3c24d108479d9841abd3fa29b526542, type: 2}
 --- !u!114 &1033287443041816339
 MonoBehaviour:
   m_ObjectHideFlags: 0
