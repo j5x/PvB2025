@@ -1,54 +1,62 @@
-﻿using UnityEngine;
-using Gameplay.Match3;  // make sure this matches your GridManager namespace
+﻿// GreenSpecialController.cs
+using UnityEngine;
+using Gameplay.Match3;  // your GridManager namespace
 
 [RequireComponent(typeof(AttackComponent))]
 public class GreenSpecialController : MonoBehaviour
 {
     [Header("Match3 → Candy")]
-    [SerializeField] private GridManager   gridManager;
-    [SerializeField] private int           candyPerTile  = 1;
+    [SerializeField] private GridManager gridManager;
+    [SerializeField] private int candyPerTile = 1;
 
     [Header("Candy → UI")]
-    [SerializeField] private SpecialBar    specialBar;
+    [SerializeField] private SpecialBar specialBar;
 
     [Header("Attack")]
     [SerializeField] private AttackComponent attackComponent;
-    [SerializeField] private int              specialIndex = 1;
+    [SerializeField] private int specialIndex = 1;
+
+    // Tracks if the bar just filled on the last OnColorMatched event
+    private bool justFilled;
 
     private void Awake()
     {
-        if (gridManager     == null) gridManager     = FindObjectOfType<GridManager>();
-        if (specialBar      == null) specialBar      = FindObjectOfType<SpecialBar>();
-        if (attackComponent == null) attackComponent = GetComponent<AttackComponent>();
+        gridManager = gridManager ?? FindObjectOfType<GridManager>();
+        specialBar = specialBar ?? FindObjectOfType<SpecialBar>();
+        attackComponent = attackComponent ?? GetComponent<AttackComponent>();
 
-        Debug.Assert(gridManager     != null, "Missing GridManager");
-        Debug.Assert(specialBar      != null, "Missing SpecialBar");
+        Debug.Assert(gridManager != null, "Missing GridManager");
+        Debug.Assert(specialBar != null, "Missing SpecialBar");
         Debug.Assert(attackComponent != null, "Missing AttackComponent");
     }
 
     private void OnEnable()
     {
         gridManager.OnColorMatched += HandleColorMatch;
-        gridManager.OnMatchMade    += HandleAnyMatch;
+        gridManager.OnMatchMade += HandleAnyMatch;
     }
 
     private void OnDisable()
     {
         gridManager.OnColorMatched -= HandleColorMatch;
-        gridManager.OnMatchMade    -= HandleAnyMatch;
+        gridManager.OnMatchMade -= HandleAnyMatch;
     }
 
-    // Only fills on green
+    // Only tracks green candy and flags when it first hits full
     private void HandleColorMatch(string color, int count)
     {
-        if (color == "Green")
-            specialBar.AddCandy(count * candyPerTile);
+        if (color != "Green") return;
+
+        bool wasFull = specialBar.CandyAmount >= specialBar.MaxCandy;
+        specialBar.AddCandy(count * candyPerTile);
+        bool isFull = specialBar.CandyAmount >= specialBar.MaxCandy;
+
+        justFilled = !wasFull && isFull;
     }
 
-    // Chooses special if bar is full *right now*, else normal
+    // On any match: either fire normal or special (but never both at once)
     private void HandleAnyMatch()
     {
-        // find the current enemy once
         var enemy = FindObjectOfType<Enemy>();
         if (enemy == null)
         {
@@ -56,19 +64,27 @@ public class GreenSpecialController : MonoBehaviour
             return;
         }
 
-        if (specialBar.IsFull)
+        // 1) If it JUST filled on this match, do normal only
+        if (justFilled)
+        {
+            Debug.Log("[GSC] Bar just filled → normal attack (special delayed)");
+            attackComponent.PerformAttack(null, enemy);
+            justFilled = false;
+            return;
+        }
+
+        // 2) If bar is full from before, consume & fire special
+        if (specialBar.CandyAmount >= specialBar.MaxCandy)
         {
             specialBar.ConsumeFullBar();
-            Debug.Log("[GSC] Bar full → special attack");
-            // pass both index *and* target
+            Debug.Log("[GSC] Bar full → SPECIAL attack");
             attackComponent.PerformAttack(specialIndex, enemy);
         }
         else
         {
+            // 3) Otherwise just do a normal attack
             Debug.Log("[GSC] Bar not full → normal attack");
-            // use null for index to pick random, but still pass target
             attackComponent.PerformAttack(null, enemy);
         }
     }
-
 }

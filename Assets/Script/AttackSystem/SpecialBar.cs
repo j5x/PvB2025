@@ -1,3 +1,4 @@
+// SpecialBar.cs
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,18 +8,17 @@ public class SpecialBar : MonoBehaviour
     [SerializeField] private int maxCandy = 10;
 
     private int currentCandy;
-
-    public int  CandyAmount => currentCandy;
-    public int  MaxCandy    => maxCandy;
-    public bool IsFull      => currentCandy >= maxCandy;  // ← new
+    public int CandyAmount => currentCandy;
+    public int MaxCandy => maxCandy;
+    public bool IsFull => currentCandy >= maxCandy;
 
     private void Awake()
     {
         if (barSlider == null) barSlider = GetComponent<Slider>();
         barSlider.minValue = 0;
         barSlider.maxValue = maxCandy;
-        barSlider.value    = 0;
-        currentCandy       = 0;
+        barSlider.value = 0;
+        currentCandy = 0;
     }
 
     public void AddCandy(int amount = 1)
@@ -33,7 +33,7 @@ public class SpecialBar : MonoBehaviour
     /// </summary>
     public bool ConsumeFullBar()
     {
-        if (currentCandy < maxCandy) return false;
+        if (!IsFull) return false;
         currentCandy = 0;
         barSlider.value = 0;
         return true;

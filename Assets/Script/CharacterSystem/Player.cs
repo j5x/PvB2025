@@ -1,10 +1,8 @@
-using Gameplay.Match3;
 using UnityEngine;
 using System.Collections;
 
 public class Player : Character
 {
-    private GridManager gridManager;
     private bool isAttacking = false;
     private float attackCooldown = 1f;
 
@@ -13,13 +11,6 @@ public class Player : Character
     protected override void Awake()
     {
         base.Awake();
-
-        // Hook up match-made → attack
-        gridManager = FindObjectOfType<GridManager>();
-        if (gridManager != null)
-            gridManager.OnMatchMade += OnMatchMade;
-        else
-            Debug.LogError("GridManager not found in the scene!");
 
         // Ensure we have attacks configured
         if (attackComponent == null || attackComponent.attackConfigs.Count == 0)
@@ -34,16 +25,9 @@ public class Player : Character
 
     private void OnDestroy()
     {
-        if (gridManager != null)
-            gridManager.OnMatchMade -= OnMatchMade;
-
+        // Clean up death subscription
         if (healthComponent != null)
             healthComponent.OnDeath -= HandleDeath;
-    }
-
-    private void OnMatchMade()
-    {
-        Attack();
     }
 
     protected override void Attack()
@@ -51,6 +35,7 @@ public class Player : Character
         if (isAttacking || attackComponent == null || attackComponent.attackConfigs.Count == 0)
             return;
 
+        // Find current enemy target
         Character target = FindObjectOfType<Enemy>();
         if (target == null)
         {
@@ -70,11 +55,10 @@ public class Player : Character
 
     private void HandleDeath()
     {
+        // Notify round manager
         var rm = FindObjectOfType<RoundManager>();
         if (rm != null)
             rm.PlayerDefeated();
-        else
-            Debug.LogWarning("RoundManager not found in scene!");
 
         Debug.Log($"{gameObject.name} has died.");
         Destroy(gameObject);
@@ -97,14 +81,10 @@ public class Player : Character
             return;
         }
 
-        GameObject target = GameObject.FindGameObjectWithTag(tag);
-        if (target != null)
-        {
-            vfxComponent.SetVfxSpawnPoint(target.transform);
-        }
+        GameObject point = GameObject.FindGameObjectWithTag(tag);
+        if (point != null)
+            vfxComponent.SetVfxSpawnPoint(point.transform);
         else
-        {
             Debug.LogWarning($"No GameObject with tag '{tag}' found in the scene!");
-        }
     }
 }
