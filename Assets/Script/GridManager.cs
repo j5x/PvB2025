@@ -15,37 +15,60 @@ namespace Gameplay.Match3
         [SerializeField] private GameObject greenTilePrefab;
 
         [SerializeField] private GameObject matchVFXPrefab;
+        [SerializeField] private GameObject swipeHintPrefab;
+        [SerializeField] private Vector3 swipeHintOffset = new Vector3(0, -1f, 0);
 
         private GameObject[,] _grid;
         private Tile _selectedTile;
 
         private Dictionary<string, int> matchCount = new Dictionary<string, int>();
 
-        // Event to notify when any match is made
         public event System.Action OnMatchMade;
-        // Event to notify when a match of a specific color is made (color, count)
         public event System.Action<string, int> OnColorMatched;
-
-        // NEW: Event to notify *only* green matches (count)
         public event System.Action<int> OnGreenMatched;
 
         [SerializeField] private Vector3 gridOffset;
+
+        private float idleTimer = 0f;
+        private bool hintShown = false;
 
         private void Start()
         {
             _grid = new GameObject[width, height];
 
-            // Calculate grid offset so it’s centered
             float gridWidth = width * tileSize;
             float gridHeight = height * tileSize;
 
             GenerateGrid();
 
-            // Initialize the match counter for each tile color
             matchCount["Red"] = 0;
             matchCount["Blue"] = 0;
             matchCount["Green"] = 0;
             matchCount["Yellow"] = 0;
+        }
+
+        private void Update()
+        {
+            idleTimer += Time.deltaTime;
+            if (!hintShown && idleTimer >= 3f)
+            {
+                ShowSwipeHint();
+            }
+        }
+
+        private void ResetIdleTimer()
+        {
+            idleTimer = 0f;
+            hintShown = false;
+        }
+
+        private void ShowSwipeHint()
+        {
+            if (swipeHintPrefab == null) return;
+            hintShown = true;
+            Vector3 center = new Vector3((width - 1) * tileSize / 2f, (height - 1) * tileSize / 2f, 0) + gridOffset + swipeHintOffset;
+            GameObject hint = Instantiate(swipeHintPrefab, center, Quaternion.identity, transform);
+            Destroy(hint, 2f);
         }
 
         private void GenerateGrid()
@@ -127,13 +150,13 @@ namespace Gameplay.Match3
 
         private IEnumerator SwapAndCheckMatches(Tile tile1, Tile tile2)
         {
+            ResetIdleTimer();
             SwapTiles(tile1, tile2);
 
-            yield return new WaitForSeconds(0.25f); // Wait for swap animation
+            yield return new WaitForSeconds(0.25f);
 
             if (!CheckMatches())
             {
-                // No match → swap back
                 SwapTiles(tile1, tile2);
             }
             else
@@ -156,15 +179,12 @@ namespace Gameplay.Match3
             Vector2Int pos1 = tile1.GetGridPosition();
             Vector2Int pos2 = tile2.GetGridPosition();
 
-            // Swap references in the grid
             _grid[pos1.x, pos1.y] = tile2.gameObject;
             _grid[pos2.x, pos2.y] = tile1.gameObject;
 
-            // Swap their logical positions
             tile1.SetGridPosition(pos2);
             tile2.SetGridPosition(pos1);
 
-            // Animate the movement
             StartCoroutine(MoveTile(tile1, tile2.transform.position));
             StartCoroutine(MoveTile(tile2, tile1.transform.position));
         }
@@ -195,6 +215,7 @@ namespace Gameplay.Match3
 
         private bool CheckMatches()
         {
+            ResetIdleTimer();
             List<Vector2Int> matchedTiles = new List<Vector2Int>();
 
             for (int x = 0; x < width; x++)
@@ -203,7 +224,6 @@ namespace Gameplay.Match3
                 {
                     if (_grid[x, y] == null) continue;
 
-                    // Horizontal
                     if (x < width - 2 &&
                         _grid[x, y].tag == _grid[x + 1, y].tag &&
                         _grid[x, y].tag == _grid[x + 2, y].tag)
@@ -213,7 +233,6 @@ namespace Gameplay.Match3
                         matchedTiles.Add(new Vector2Int(x + 2, y));
                     }
 
-                    // Vertical
                     if (y < height - 2 &&
                         _grid[x, y].tag == _grid[x, y + 1].tag &&
                         _grid[x, y].tag == _grid[x, y + 2].tag)
@@ -273,7 +292,6 @@ namespace Gameplay.Match3
                 }
             }
 
-            // Track + broadcast each color match
             foreach (var kv in matchCounter)
             {
                 string color = kv.Key;
@@ -283,14 +301,12 @@ namespace Gameplay.Match3
                 Debug.Log($"[GridManager] OnColorMatched on {name} (ID {GetInstanceID()})");
                 OnColorMatched?.Invoke(color, count);
 
-                // NEW: only for green, fire this simpler event:
                 if (color == "Green")
                 {
                     Debug.Log($"[GridManager] 🔔 OnGreenMatched({count}) about to fire");
                     OnGreenMatched?.Invoke(count);
                 }
             }
-
 
             StartCoroutine(ApplyGravity());
         }
