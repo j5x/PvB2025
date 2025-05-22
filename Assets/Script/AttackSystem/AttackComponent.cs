@@ -1,5 +1,4 @@
 using UnityEngine;
-using System;
 using System.Collections.Generic;
 using Random = UnityEngine.Random;
 
@@ -25,21 +24,44 @@ public class AttackComponent : MonoBehaviour
         currentAttackConfig = config;
     }
 
-    public void PerformAttack(int? attackIndex = null, Character explicitTarget = null)
+    /// Performs an attack using an index (or random if null)
+    public void PerformAttackByIndex(int? attackIndex = null, Character explicitTarget = null)
     {
         if (attackConfigs.Count == 0)
             return;
 
         int index = attackIndex ?? Random.Range(0, attackConfigs.Count);
+        if (index < 0 || index >= attackConfigs.Count)
+        {
+            Debug.LogWarning($"Invalid attack index {index} for {gameObject.name}!");
+            return;
+        }
+
         currentAttackConfig = attackConfigs[index];
-
-        animator?.SetTrigger(currentAttackConfig.animatorParameter);
-
-        targetOverride = explicitTarget; // Assign the explicit target
-        Invoke(nameof(ExecuteAttackLogic), currentAttackConfig.attackDelay);
+        PlayAttack(currentAttackConfig, explicitTarget);
     }
 
-    public void ExecuteAttackLogic()
+    /// Performs an attack using a specific AttackConfig
+    public void PerformAttackByConfig(AttackConfig config, Character explicitTarget = null)
+    {
+        if (config == null)
+        {
+            Debug.LogWarning("AttackConfig is null!");
+            return;
+        }
+
+        currentAttackConfig = config;
+        PlayAttack(currentAttackConfig, explicitTarget);
+    }
+
+    private void PlayAttack(AttackConfig config, Character explicitTarget)
+    {
+        animator?.SetTrigger(config.animatorParameter);
+        targetOverride = explicitTarget;
+        Invoke(nameof(ExecuteAttackLogic), config.attackDelay);
+    }
+
+    private void ExecuteAttackLogic()
     {
         Character target = targetOverride;
         if (target == null)
@@ -57,22 +79,13 @@ public class AttackComponent : MonoBehaviour
             targetVfx.PlayImpactVFX(currentAttackConfig.impactVFX);
 
         if (vfx != null && currentAttackConfig.attackVFX != null)
-            if (vfx != null && currentAttackConfig.attackVFX != null)
-            {
-                Transform attackSpawn = GameObject.FindWithTag("AttackVFXPoint")?.transform;
-                if (attackSpawn != null)
-                {
-                    Instantiate(currentAttackConfig.attackVFX, attackSpawn.position, Quaternion.identity);
-                }
-                else
-                {
-                    Debug.LogWarning("Attack VFX Spawn Point not found in scene or prefab!");
-                }
-            }
+        {
+            Transform attackSpawn = GameObject.FindWithTag("AttackVFXPoint")?.transform;
+            if (attackSpawn != null)
+                Instantiate(currentAttackConfig.attackVFX, attackSpawn.position, Quaternion.identity);
             else
-            {
-                vfx.PlayAttackVFX(currentAttackConfig.attackVFX);
-            }
+                Debug.LogWarning("Attack VFX Spawn Point not found in scene or prefab!");
+        }
     }
 
     public void AIControlledAttackLoop(float interval)
@@ -83,6 +96,6 @@ public class AttackComponent : MonoBehaviour
     private void LoopAttack()
     {
         Character target = FindObjectOfType<Player>();
-        PerformAttack(null, target);
+        PerformAttackByIndex(null, target); // Now unambiguous
     }
 }

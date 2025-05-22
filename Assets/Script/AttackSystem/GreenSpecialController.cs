@@ -64,27 +64,25 @@ public class GreenSpecialController : MonoBehaviour
             return;
         }
 
-        // 1) If it JUST filled on this match, do normal only
         if (justFilled)
         {
             Debug.Log("[GSC] Bar just filled → normal attack (special delayed)");
-            attackComponent.PerformAttack(null, enemy);
+            attackComponent.PerformAttackByIndex(null, enemy);
             justFilled = false;
             return;
         }
 
-        // 2) If bar is full from before, consume & fire special
         if (specialBar.CandyAmount >= specialBar.MaxCandy)
         {
             specialBar.ConsumeFullBar();
             Debug.Log("[GSC] Bar full → SPECIAL attack");
-            attackComponent.PerformAttack(specialIndex, enemy);
+            attackComponent.PerformAttackByIndex(specialIndex, enemy);
         }
         else
         {
-            // 3) Otherwise just do a normal attack
             Debug.Log("[GSC] Bar not full → normal attack");
-            attackComponent.PerformAttack(null, enemy);
+            attackComponent.PerformAttackByIndex(null, enemy);
         }
     }
+
 }

@@ -41,9 +41,9 @@ public class Enemy : Character
             return;
 
         int attackIndex = Random.Range(0, attackComponent.attackConfigs.Count);
-        attackComponent.PerformAttack(attackIndex);
+        attackComponent.PerformAttackByIndex(attackIndex);
     }
-
+    
     protected override void Defend()
     {
         Debug.Log($"{gameObject.name} is defending!");

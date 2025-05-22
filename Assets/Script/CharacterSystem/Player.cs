@@ -35,7 +35,6 @@ public class Player : Character
         if (isAttacking || attackComponent == null || attackComponent.attackConfigs.Count == 0)
             return;
 
-        // Find current enemy target
         Character target = FindObjectOfType<Enemy>();
         if (target == null)
         {
@@ -44,7 +43,9 @@ public class Player : Character
         }
 
         isAttacking = true;
-        attackComponent.PerformAttack(0, target);
+        var attackConfig = attackComponent.attackConfigs[0];
+        attackComponent.PerformAttackByConfig(attackConfig, target);
+
         StartCoroutine(ResetAttackCooldown());
     }
 
