@@ -9,9 +9,7 @@ public class Enemy : Character
     {
         base.Awake();
 
-        // When this enemy dies, call HandleDeath()
-        if (healthComponent != null)
-            healthComponent.OnDeath += HandleDeath;
+        // ——— Removed healthComponent.OnDeath subscription ———
 
         // Ensure AttackComponent is present & configured
         if (attackComponent == null)
@@ -33,18 +31,7 @@ public class Enemy : Character
         AssignVfxSpawnPointByTag("EnemyImpactPoint");
     }
 
-    private void HandleDeath()
-    {
-        // **NO MORE** rm.EnemyDefeated() call here!
-        // RoundManager is already subscribed via OnEnemySpawned.
-
-        // Clean up this subscription so it won't leak
-        if (healthComponent != null)
-            healthComponent.OnDeath -= HandleDeath;
-
-        // Destroy this enemy
-        Destroy(gameObject);
-    }
+    // ——— Removed HandleDeath entirely ———
 
     protected override void Attack()
     {

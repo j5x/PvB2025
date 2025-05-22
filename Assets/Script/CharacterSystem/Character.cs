@@ -3,15 +3,15 @@ using UnityEngine;
 
 public abstract class Character : MonoBehaviour
 {
-    [Header("Configuration")]
+    [Header("Configuration")] 
     [SerializeField] protected string characterName;
     [SerializeField] protected HealthConfig healthConfig;
 
-    [Header("Character Type")]
+    [Header("Character Type")]  
     [SerializeField] private CharacterType characterType;
     public CharacterType CharacterType => characterType;
 
-    [Header("Components")]
+    [Header("Components")]  
     [SerializeField] protected AttackComponent attackComponent;
     [SerializeField] protected HealthComponent healthComponent;
 
@@ -27,15 +27,13 @@ public abstract class Character : MonoBehaviour
         {
             attackComponent = GetComponent<AttackComponent>();
             if (attackComponent == null)
-            {
                 Debug.LogError($"{gameObject.name}: Missing AttackComponent! Assign it in Inspector.");
-            }
         }
 
-        healthComponent = GetComponent<HealthComponent>() ?? gameObject.AddComponent<HealthComponent>();
+        healthComponent = GetComponent<HealthComponent>() 
+                          ?? gameObject.AddComponent<HealthComponent>();
         healthComponent.InitializeHealth(healthConfig);
-        healthComponent.OnDeath += Die;
-        
+        // Character no longer auto-subscribes to its own death event
     }
     
     protected abstract void Attack();
@@ -54,7 +52,7 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void Die()
     {
-        Debug.Log($"{gameObject.name} has died.");
+        // Only destruction here; death logic handled by subscribers elsewhere
         Destroy(gameObject);
     }
 }

@@ -8,13 +8,17 @@ public class SpecialBar : MonoBehaviour
 
     private int currentCandy;
 
+    public int  CandyAmount => currentCandy;
+    public int  MaxCandy    => maxCandy;
+    public bool IsFull      => currentCandy >= maxCandy;  // ← new
+
     private void Awake()
     {
         if (barSlider == null) barSlider = GetComponent<Slider>();
         barSlider.minValue = 0;
         barSlider.maxValue = maxCandy;
-        barSlider.value = 0;
-        currentCandy = 0;
+        barSlider.value    = 0;
+        currentCandy       = 0;
     }
 
     public void AddCandy(int amount = 1)
