@@ -1,5 +1,4 @@
-﻿// GreenSpecialController.cs
-using UnityEngine;
+﻿using UnityEngine;
 using Gameplay.Match3;  // your GridManager namespace
 
 [RequireComponent(typeof(AttackComponent))]
@@ -14,16 +13,18 @@ public class GreenSpecialController : MonoBehaviour
 
     [Header("Attack")]
     [SerializeField] private AttackComponent attackComponent;
+    [Tooltip("Which slot in attackConfigs is your green special?")]
     [SerializeField] private int specialIndex = 1;
 
-    // Tracks if the bar just filled on the last OnColorMatched event
-    private bool justFilled;
+    // — internal state to block cascades —
+    private bool _hasProcessedThisSwap = false;
+    private int _pendingCandy = 0;
 
     private void Awake()
     {
-        gridManager = gridManager ?? FindObjectOfType<GridManager>();
-        specialBar = specialBar ?? FindObjectOfType<SpecialBar>();
-        attackComponent = attackComponent ?? GetComponent<AttackComponent>();
+        gridManager = gridManager ? gridManager : FindObjectOfType<GridManager>();
+        specialBar = specialBar ? specialBar : FindObjectOfType<SpecialBar>();
+        attackComponent = attackComponent ? attackComponent : GetComponent<AttackComponent>();
 
         Debug.Assert(gridManager != null, "Missing GridManager");
         Debug.Assert(specialBar != null, "Missing SpecialBar");
@@ -32,57 +33,65 @@ public class GreenSpecialController : MonoBehaviour
 
     private void OnEnable()
     {
-        gridManager.OnColorMatched += HandleColorMatch;
-        gridManager.OnMatchMade += HandleAnyMatch;
+        gridManager.OnColorMatched += HandleColorMatched;
+        gridManager.OnMatchMade += HandleMatchMade;
     }
 
     private void OnDisable()
     {
-        gridManager.OnColorMatched -= HandleColorMatch;
-        gridManager.OnMatchMade -= HandleAnyMatch;
+        gridManager.OnColorMatched -= HandleColorMatched;
+        gridManager.OnMatchMade -= HandleMatchMade;
     }
 
-    // Only tracks green candy and flags when it first hits full
-    private void HandleColorMatch(string color, int count)
+    private void HandleColorMatched(string color, int count)
     {
-        if (color != "Green") return;
+        if (color != "Green")
+            return;
 
-        bool wasFull = specialBar.CandyAmount >= specialBar.MaxCandy;
-        specialBar.AddCandy(count * candyPerTile);
-        bool isFull = specialBar.CandyAmount >= specialBar.MaxCandy;
-
-        justFilled = !wasFull && isFull;
+        // first green of a new swap? reset the block flag & tally:
+        if (_hasProcessedThisSwap && _pendingCandy == 0)
+        {
+            _hasProcessedThisSwap = false;
+            _pendingCandy = count * candyPerTile;
+        }
+        else if (!_hasProcessedThisSwap)
+        {
+            // still first-match in this swap → accumulate
+            _pendingCandy += count * candyPerTile;
+        }
+        // else: we’ve already fired for this swap, ignore cascades
     }
 
-    // On any match: either fire normal or special (but never both at once)
-    private void HandleAnyMatch()
+    private void HandleMatchMade()
     {
+        if (_hasProcessedThisSwap) return;  // one attack per swap only
+
+        // 1) apply all green candy accrued
+        specialBar.AddCandy(_pendingCandy);
+
+        // 2) pick target
         var enemy = FindObjectOfType<Enemy>();
         if (enemy == null)
         {
-            Debug.LogWarning("[GSC] No Enemy found for attack!");
-            return;
-        }
-
-        if (justFilled)
-        {
-            Debug.Log("[GSC] Bar just filled → normal attack (special delayed)");
-            attackComponent.PerformAttackByIndex(null, enemy);
-            justFilled = false;
-            return;
-        }
-
-        if (specialBar.CandyAmount >= specialBar.MaxCandy)
-        {
-            specialBar.ConsumeFullBar();
-            Debug.Log("[GSC] Bar full → SPECIAL attack");
-            attackComponent.PerformAttackByIndex(specialIndex, enemy);
+            Debug.LogWarning("[GSC] No Enemy found — skipping attack");
         }
         else
         {
-            Debug.Log("[GSC] Bar not full → normal attack");
-            attackComponent.PerformAttackByIndex(null, enemy);
+            // 3) fire special or normal
+            if (specialBar.ConsumeFullBar())
+            {
+                Debug.Log("[GSC] Bar full → SPECIAL attack");
+                attackComponent.PerformAttackByIndex(specialIndex, enemy);
+            }
+            else
+            {
+                Debug.Log("[GSC] Bar not full → normal attack");
+                attackComponent.PerformAttackByIndex(null, enemy);
+            }
         }
-    }
 
+        // 4) block further cascades until next swap
+        _hasProcessedThisSwap = true;
+        _pendingCandy = 0;
+    }
 }
