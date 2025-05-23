@@ -1045,17 +1045,17 @@ MonoBehaviour:
   speechBubble: {fileID: 684538950652139990}
   speechText: {fileID: 5939492279809854939}
   tutorialLines:
-  - Hey, ik ben Steve de Donut
+  - Hallo, ik ben Steve de candy police.
   - 'Welkom bij dit spannende match-3 battle spel! Je doel is simpel: '
-  - versla alle vijanden binnen de tijd, gebruik combo's om aan te vallen, verzamel
+  - Versla alle vijanden binnen de tijd, gebruik combo's om aan te vallen, verzamel
     groene snoepjes voor een special attack, en blijf zelf in leven!
   - "Zo werkt het match-systeem\r\nMaak combinaties om je vijand schade toe te brengen.\r"
-  - " Groene snoepjes = Special Attack\r\nVerzamel groene snoepjes tijdens het spelen.\r\nHeb
-    je er 30? Dan kun je een Special Attack uitvoeren!\r"
-  - "\r\rJij en de vijand hebben allebei HP.Wordt jouw HP tot nul gebracht? Dan is
-    het Game over."
+  - "De groene snoepjes maken een special Attack\r\nVerzamel groene snoepjes tijdens
+    het spelen.\r\nHeb je er 30? Dan kun je een Special Attack uitvoeren!\r"
+  - "\r\rJij en de vijand hebben allebei HP. Wordt jouw HP tot nul gebracht? Dan
+    is het game over."
   - Versla de vijand binnen de tijd om door te gaan naar de volgende ronde.
-  - " Hoe win je?\r"
+  - "Hoe win je?\r"
   - "Versla alle drie de vijanden binnen de gegeven tijd\r\nZorg dat je HP niet opraakt\r"
   - 'Gebruik je special attacks slim!
 
