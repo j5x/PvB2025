@@ -242,7 +242,7 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 4850082150414317841, guid: 934d3a2234050604394f17f2c2a2150b, type: 3}
   - {fileID: 8518877810491051793, guid: 35cc5e7daf75c7841b1cc226fab86fdd, type: 3}
-  - {fileID: 1559756139352903122, guid: 0bc1456c7cf0f0f46becf376ff9642ea, type: 3}
+  - {fileID: 5159956401323359322, guid: ba4ac59b12815094a836b71973c83a53, type: 3}
   spawnDelay: 3
 --- !u!4 &79792853 stripped
 Transform:
@@ -546,7 +546,7 @@ GameObject:
   - component: {fileID: 207514538}
   m_Layer: 5
   m_Name: VFX target (for enemy)
-  m_TagString: EnemyImpactPoint
+  m_TagString: PlayerImpactPoint
   m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -671,7 +671,7 @@ GameObject:
   - component: {fileID: 288255873}
   m_Layer: 5
   m_Name: VFX target (for player)
-  m_TagString: PlayerImpactPoint
+  m_TagString: EnemyImpactPoint
   m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -688,11 +688,11 @@ RectTransform:
   m_LocalScale: {x: 1.00032, y: 1.00032, z: 1.00032}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 949622366}
+  m_Father: {fileID: 1108130867}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 254.00002, y: -248}
+  m_AnchoredPosition: {x: 60, y: 80}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &314381579
@@ -2126,7 +2126,6 @@ RectTransform:
   - {fileID: 1294973107}
   - {fileID: 1450123267}
   - {fileID: 1997052996}
-  - {fileID: 288255873}
   m_Father: {fileID: 1198739547}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.6}
@@ -2426,6 +2425,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 803035681}
+  - {fileID: 288255873}
   m_Father: {fileID: 949622366}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
@@ -5585,7 +5585,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7084794048618911152, guid: 7cad7890578436c47bb5fdf516a27ab7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -938.9892
+      value: -938.98926
       objectReference: {fileID: 0}
     - target: {fileID: 7084794048618911152, guid: 7cad7890578436c47bb5fdf516a27ab7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

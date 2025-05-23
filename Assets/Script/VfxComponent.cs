@@ -10,22 +10,17 @@ public class VfxComponent : MonoBehaviour
     }
     
     public void PlayAttackVFX(GameObject prefab)
-    {
+    {   
         if (prefab != null && vfxSpawnPoint != null)
             Instantiate(prefab, vfxSpawnPoint.position, Quaternion.identity);
     }
 
     public void PlayImpactVFX(GameObject prefab)
     {
-        if (prefab != null)
-            Instantiate(prefab, transform.position, Quaternion.identity);
-    }
+        if (prefab == null)
+            return;
 
-    public void PlayProjectileVFX(GameObject projectilePrefab, Vector3 offset, Transform target)
-    {
-        if (projectilePrefab == null || vfxSpawnPoint == null || target == null) return;
-
-        GameObject projectile = Instantiate(projectilePrefab, vfxSpawnPoint.position + offset, Quaternion.identity);
-        // Add projectile movement logic here if needed
+        Vector3 spawnPosition = vfxSpawnPoint != null ? vfxSpawnPoint.position : transform.position;
+        Instantiate(prefab, spawnPosition, Quaternion.identity);
     }
 }
