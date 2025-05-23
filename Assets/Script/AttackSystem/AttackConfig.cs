@@ -1,17 +1,21 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "AttackConfig", menuName = "Enemies/AttackConfig")]
 public class AttackConfig : ScriptableObject
 {
     public string attackName = "Default Attack";
     public int attackDamage = 10;
-    [HideInInspector] int attackInterval = 5; // Time between attacks -> Currently controlled by enemy.cs
-    public float attackDelay = 0.5f; // Delay after animation starts
+    public float attackDelay = 0.5f;
     public string animatorParameter = "AttackTrigger";
-    
+
     [Header("Visual Effects")]
     public GameObject attackVFX;
     public GameObject impactVFX;
     public bool useSceneVFXSpawnPoint = false;
+
+    [Header("Audio")]
+    [Tooltip("Sound to play when this attack is launched")]
+    public AudioClip attackSfx;
+    [Tooltip("Sound to play when this attack hits the target")]
+    public AudioClip impactSfx;
 }
