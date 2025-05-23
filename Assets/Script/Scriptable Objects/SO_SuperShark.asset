@@ -15,7 +15,7 @@ MonoBehaviour:
   attackName: Super Shark Attack
   attackDamage: 30
   attackDelay: 0.5
-  animatorParameter: AttackTrigger
+  animatorParameter: Attack1
   attackVFX: {fileID: 1766221612840815948, guid: 26923692564d1ab4a8f616939f4a135d, type: 3}
   impactVFX: {fileID: 0}
   useSceneVFXSpawnPoint: 1
