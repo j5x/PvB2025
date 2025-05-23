@@ -62,27 +62,33 @@ public class GreenSpecialController : MonoBehaviour
     {
         if (!isSwapInProgress) return;
 
-        // Add collected green candy to the bar
         if (_pendingCandy > 0)
-        {
             specialBar.AddCandy(_pendingCandy);
-            Debug.Log($"[GSC] Added {_pendingCandy} green candy");
-        }
 
-        // Fire SPECIAL attack only when bar is full
-        if (specialBar.IsBarFull())
+        var enemy = FindObjectOfType<Enemy>();
+        if (enemy != null)
         {
-            var enemy = FindObjectOfType<Enemy>();
-            if (enemy != null)
+            if (specialBar.IsBarFull())
             {
-                specialBar.ConsumeFullBar();
-                Debug.Log("[GSC] SPECIAL attack triggered!");
-                attackComponent.PerformAttackByIndex(specialIndex, enemy);
+                if (specialBar.ConsumeFullBar())
+                {
+                    Debug.Log("[GSC] SPECIAL attack triggered!");
+                    attackComponent.PerformAttackByIndex(specialIndex, enemy);
+                }
+            }
+            else
+            {
+                Debug.Log("[GSC] Normal attack triggered");
+                attackComponent.PerformAttackByIndex(0, enemy); // Index 0 = normal attack
             }
         }
-
+        else
+        {
+            Debug.LogWarning("[GSC] No Enemy found");
+        }
 
         _pendingCandy = 0;
         isSwapInProgress = false;
     }
+
 }
