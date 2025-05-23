@@ -24,6 +24,14 @@ public class EnemySpawner : MonoBehaviour
         }
 
         GameObject enemy = Instantiate(enemyPrefab, enemyParent.position, Quaternion.identity, enemyParent);
+
+        // ✅ Try to find HealthComponent in children
+        HealthComponent health = enemy.GetComponentInChildren<HealthComponent>();
+        if (health == null)
+        {
+            Debug.LogError($"[EnemySpawner] No HealthComponent found on or in children of '{enemy.name}'!");
+        }
+
         onSpawned?.Invoke(enemy);
     }
 
@@ -36,6 +44,14 @@ public class EnemySpawner : MonoBehaviour
         }
 
         GameObject enemy = Instantiate(enemyPrefab, enemyParent.position, Quaternion.identity, enemyParent);
+
+        // ✅ Try to find HealthComponent in children
+        HealthComponent health = enemy.GetComponentInChildren<HealthComponent>();
+        if (health == null)
+        {
+            Debug.LogError($"[EnemySpawner] No HealthComponent found on or in children of '{enemy.name}'!");
+        }
+
         return enemy;
     }
 
