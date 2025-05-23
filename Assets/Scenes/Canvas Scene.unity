@@ -242,7 +242,7 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 4850082150414317841, guid: 934d3a2234050604394f17f2c2a2150b, type: 3}
   - {fileID: 8518877810491051793, guid: 35cc5e7daf75c7841b1cc226fab86fdd, type: 3}
-  - {fileID: 5159956401323359322, guid: ba4ac59b12815094a836b71973c83a53, type: 3}
+  - {fileID: 1559756139352903122, guid: 0bc1456c7cf0f0f46becf376ff9642ea, type: 3}
   spawnDelay: 3
 --- !u!4 &79792853 stripped
 Transform:

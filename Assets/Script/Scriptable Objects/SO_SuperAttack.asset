@@ -15,7 +15,7 @@ MonoBehaviour:
   attackName: Super Lolly Attack
   attackDamage: 30
   attackDelay: 0.5
-  animatorParameter: AttackTrigger
+  animatorParameter: Attack1
   attackVFX: {fileID: 6192791463452573812, guid: b480d7e19c76d614c8195d90d23b8ea2, type: 3}
   impactVFX: {fileID: 0}
   useSceneVFXSpawnPoint: 1
