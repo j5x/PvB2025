@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SO_IcykaSpecial
   m_EditorClassIdentifier: 
   attackName: Special Ice
-  attackDamage: 25
+  attackDamage: 40
   attackDelay: 0.5
   animatorParameter: Attack1
   attackVFX: {fileID: 4740510007763289009, guid: cf57c02773058b8448fc5ea3997518f4, type: 3}
