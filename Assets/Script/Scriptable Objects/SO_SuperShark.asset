@@ -18,4 +18,4 @@ MonoBehaviour:
   animatorParameter: Attack1
   attackVFX: {fileID: 1766221612840815948, guid: 26923692564d1ab4a8f616939f4a135d, type: 3}
   impactVFX: {fileID: 0}
-  useSceneVFXSpawnPoint: 1
+  useSceneVFXSpawnPoint: 0

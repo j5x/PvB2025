@@ -15,12 +15,29 @@ public class VfxComponent : MonoBehaviour
             Instantiate(prefab, vfxSpawnPoint.position, Quaternion.identity);
     }
 
-    public void PlayImpactVFX(GameObject prefab)
+    public void PlayImpactVFX(GameObject prefab, bool forceScenePlayerImpactPoint = false)
     {
         if (prefab == null)
             return;
 
-        Vector3 spawnPosition = vfxSpawnPoint != null ? vfxSpawnPoint.position : transform.position;
+        Transform spawnPoint = vfxSpawnPoint;
+
+        // If enemy is hitting player, use scene-level PlayerImpactPoint
+        if (forceScenePlayerImpactPoint)
+        {
+            GameObject overridePoint = GameObject.FindWithTag("PlayerImpactPoint");
+            if (overridePoint != null)
+            {
+                spawnPoint = overridePoint.transform;
+            }
+            else
+            {
+                Debug.LogWarning("PlayerImpactPoint tag not found in scene.");
+            }
+        }
+
+        Vector3 spawnPosition = spawnPoint != null ? spawnPoint.position : transform.position;
         Instantiate(prefab, spawnPosition, Quaternion.identity);
     }
+    
 }

@@ -7,12 +7,12 @@ public class AttackComponent : MonoBehaviour
     [Header("Configs")]
     public List<AttackConfig> attackConfigs = new();
 
-    AttackConfig currentAttackConfig;
-    Animator animator;
-    VfxComponent vfx;
-    AudioSource audioSource;
-    Character character;
-    Character targetOverride;
+    private AttackConfig currentAttackConfig;
+    private Animator animator;
+    private VfxComponent vfx;
+    private AudioSource audioSource;
+    private Character character;
+    private Character targetOverride;
 
     private void Awake()
     {
@@ -20,43 +20,40 @@ public class AttackComponent : MonoBehaviour
         vfx = GetComponent<VfxComponent>();
         character = GetComponent<Character>();
 
-        // ensure there's an AudioSource
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
+        {
             audioSource = gameObject.AddComponent<AudioSource>();
+        }
         audioSource.playOnAwake = false;
     }
 
-    /// <summary>
-    /// Pre-select a config if you need to.
-    /// </summary>
     public void InitializeAttack(AttackConfig config)
     {
         currentAttackConfig = config;
     }
 
-    /// <summary>
-    /// Fire a random or specified attack by index.
-    /// </summary>
     public void PerformAttackByIndex(int? attackIndex = null, Character explicitTarget = null)
     {
-        if (attackConfigs.Count == 0) return;
+        if (attackConfigs.Count == 0)
+            return;
 
-        int idx = attackIndex ?? Random.Range(0, attackConfigs.Count);
-        if (idx < 0 || idx >= attackConfigs.Count) return;
+        int index = attackIndex ?? Random.Range(0, attackConfigs.Count);
+        if (index < 0 || index >= attackConfigs.Count)
+        {
+            Debug.LogWarning($"Invalid attack index {index} for {gameObject.name}!");
+            return;
+        }
 
-        currentAttackConfig = attackConfigs[idx];
+        currentAttackConfig = attackConfigs[index];
         PlayAttack(currentAttackConfig, explicitTarget);
     }
 
-    /// <summary>
-    /// **New**: Fire exactly this AttackConfig.
-    /// </summary>
     public void PerformAttackByConfig(AttackConfig config, Character explicitTarget = null)
     {
         if (config == null)
         {
-            Debug.LogWarning($"{name}: PerformAttackByConfig called with null config");
+            Debug.LogWarning($"{gameObject.name}: AttackConfig is null!");
             return;
         }
 
@@ -64,41 +61,72 @@ public class AttackComponent : MonoBehaviour
         PlayAttack(currentAttackConfig, explicitTarget);
     }
 
-    void PlayAttack(AttackConfig config, Character explicitTarget)
+    private void PlayAttack(AttackConfig config, Character explicitTarget)
     {
-        // 1) animation
+        // 1. Animation
         animator?.SetTrigger(config.animatorParameter);
 
-        // 2) attack‐launch SFX
+        // 2. Launch SFX
         if (config.attackSfx != null)
             audioSource.PlayOneShot(config.attackSfx);
 
-        // 3) schedule impact/damage
+        // 3. Target setup
         targetOverride = explicitTarget;
+
+        // 4. Invoke delayed logic
         Invoke(nameof(ExecuteAttackLogic), config.attackDelay);
     }
 
-    void ExecuteAttackLogic()
+    private void ExecuteAttackLogic()
     {
-        var target = targetOverride;
+        Character target = targetOverride;
         if (target == null)
         {
-            Debug.LogWarning($"{name}: No attack target assigned!");
+            Debug.LogWarning($"{gameObject.name}: No attack target assigned!");
             return;
         }
 
-        // damage
-        var hc = target.GetComponent<HealthComponent>();
-        if (hc != null)
-            hc.TakeDamage(currentAttackConfig.attackDamage);
+        // Damage
+        HealthComponent targetHealth = target.GetComponent<HealthComponent>();
+        if (targetHealth != null)
+            targetHealth.TakeDamage(currentAttackConfig.attackDamage);
 
-        // impact VFX
-        if (currentAttackConfig.impactVFX != null)
-            vfx.PlayImpactVFX(currentAttackConfig.impactVFX);
+        // Impact VFX on target
+        VfxComponent targetVfx = target.GetComponent<VfxComponent>();
+        if (targetVfx != null && currentAttackConfig.impactVFX != null)
+            targetVfx.PlayImpactVFX(currentAttackConfig.impactVFX);
 
-        // impact SFX
+        // Impact SFX
         if (currentAttackConfig.impactSfx != null)
             audioSource.PlayOneShot(currentAttackConfig.impactSfx);
+
+        // Optional: additional VFX on scene (e.g., slash trails)
+        if (vfx != null && currentAttackConfig.attackVFX != null)
+        {
+            Transform attackSpawn = null;
+
+            if (currentAttackConfig.useSceneVFXSpawnPoint)
+            {
+                GameObject attackPoint = GameObject.FindWithTag("AttackVFXPoint");
+                if (attackPoint != null)
+                    attackSpawn = attackPoint.transform;
+            }
+            else
+            {
+                GameObject specialPoint = GameObject.FindWithTag("SpecialVFXPoint");
+                if (specialPoint != null)
+                    attackSpawn = specialPoint.transform;
+            }
+
+            if (attackSpawn != null)
+            {
+                Instantiate(currentAttackConfig.attackVFX, attackSpawn.position, Quaternion.identity);
+            }
+            else
+            {
+                Debug.LogWarning("No appropriate VFX spawn point found in the scene.");
+            }
+        }
     }
 
     public void AIControlledAttackLoop(float interval)
@@ -106,9 +134,9 @@ public class AttackComponent : MonoBehaviour
         InvokeRepeating(nameof(LoopAttack), interval, interval);
     }
 
-    void LoopAttack()
+    private void LoopAttack()
     {
-        var player = FindObjectOfType<Player>();
-        PerformAttackByIndex(null, player);
+        Character target = FindObjectOfType<Player>();
+        PerformAttackByIndex(null, target);
     }
 }
