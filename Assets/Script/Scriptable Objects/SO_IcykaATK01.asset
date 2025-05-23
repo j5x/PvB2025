@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fe6ce564302d214aaa24a0dfd0a89f6, type: 3}
   m_Name: SO_IcykaATK01
   m_EditorClassIdentifier: 
-  attackName: Default Attack
+  attackName: Ice Attack
   attackDamage: 10
   attackDelay: 0.5
   animatorParameter: Attack1
-  attackVFX: {fileID: 6391476692491432735, guid: fdb042b30f80b0a4892b9c38a4e7d023, type: 3}
-  impactVFX: {fileID: 7126148255963881410, guid: 19a2f02bf48938b489f04c791d83601a, type: 3}
+  attackVFX: {fileID: 7126148255963881410, guid: 19a2f02bf48938b489f04c791d83601a, type: 3}
+  impactVFX: {fileID: 6391476692491432735, guid: fdb042b30f80b0a4892b9c38a4e7d023, type: 3}
+  useSceneVFXSpawnPoint: 0

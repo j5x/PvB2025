@@ -16,5 +16,6 @@ MonoBehaviour:
   attackDamage: 15
   attackDelay: 1
   animatorParameter: Attack1
-  attackVFX: {fileID: 350345223044171348, guid: de1b0cfd8d2c6ca4fbc3d07403c5c18a, type: 3}
-  impactVFX: {fileID: 0}
+  attackVFX: {fileID: 5204985999223566953, guid: be0f581e369206e4a95142fbbbf419f3, type: 3}
+  impactVFX: {fileID: 350345223044171348, guid: de1b0cfd8d2c6ca4fbc3d07403c5c18a, type: 3}
+  useSceneVFXSpawnPoint: 0

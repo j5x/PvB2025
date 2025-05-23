@@ -2874,7 +2874,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4740510007763289009, guid: cf57c02773058b8448fc5ea3997518f4, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7008786280900097242, guid: cf57c02773058b8448fc5ea3997518f4, type: 3}
       propertyPath: m_LocalScale.x
@@ -4896,6 +4896,10 @@ PrefabInstance:
     - target: {fileID: 1745251815124038990, guid: 7cad7890578436c47bb5fdf516a27ab7, type: 3}
       propertyPath: m_Name
       value: SpecialAttackSlider
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881462351285681327, guid: 7cad7890578436c47bb5fdf516a27ab7, type: 3}
+      propertyPath: maxCandy
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5301840011833931855, guid: 7cad7890578436c47bb5fdf516a27ab7, type: 3}
       propertyPath: m_AnchorMax.y

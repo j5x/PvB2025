@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SO_SuperShark
   m_EditorClassIdentifier: 
   attackName: Super Shark Attack
-  attackDamage: 35
+  attackDamage: 30
   attackDelay: 0.5
   animatorParameter: AttackTrigger
   attackVFX: {fileID: 1766221612840815948, guid: 26923692564d1ab4a8f616939f4a135d, type: 3}
