@@ -1127,7 +1127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 912b3b9b77eee9a49b5b724a142c8705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterPrefab: {fileID: 3418149732969637306, guid: 30fb68929d28591438b7d6d1621e8f2d, type: 3}
+  characterPrefab: {fileID: 4936975163870082946, guid: 88d25601b7697ca42b79728bb4eaef4f, type: 3}
   characterPanel: {fileID: 1220214051}
 --- !u!114 &1389645869
 MonoBehaviour:
