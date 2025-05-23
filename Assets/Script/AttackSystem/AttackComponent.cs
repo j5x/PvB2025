@@ -80,13 +80,34 @@ public class AttackComponent : MonoBehaviour
 
         if (vfx != null && currentAttackConfig.attackVFX != null)
         {
-            Transform attackSpawn = GameObject.FindWithTag("AttackVFXPoint")?.transform;
-            if (attackSpawn != null)
-                Instantiate(currentAttackConfig.attackVFX, attackSpawn.position, Quaternion.identity);
+            Transform attackSpawn = null;
+
+            if (currentAttackConfig.useSceneVFXSpawnPoint)
+            {
+                // Standard attack VFX
+                GameObject attackPoint = GameObject.FindWithTag("AttackVFXPoint");
+                if (attackPoint != null)
+                    attackSpawn = attackPoint.transform;
+            }
             else
-                Debug.LogWarning("Attack VFX Spawn Point not found in scene or prefab!");
+            {
+                // Special attack VFX
+                GameObject specialPoint = GameObject.FindWithTag("SpecialVFXPoint");
+                if (specialPoint != null)
+                    attackSpawn = specialPoint.transform;
+            }
+
+            if (attackSpawn != null)
+            {
+                Instantiate(currentAttackConfig.attackVFX, attackSpawn.position, Quaternion.identity);
+            }
+            else
+            {
+                Debug.LogWarning("No appropriate VFX spawn point found in the scene.");
+            }
         }
     }
+
 
     public void AIControlledAttackLoop(float interval)
     {
