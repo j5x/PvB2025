@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Gameplay.Match3;  // your GridManager namespace
+using Gameplay.Match3;
 
 [RequireComponent(typeof(AttackComponent))]
 public class GreenSpecialController : MonoBehaviour
@@ -16,9 +16,8 @@ public class GreenSpecialController : MonoBehaviour
     [Tooltip("Which slot in attackConfigs is your green special?")]
     [SerializeField] private int specialIndex = 1;
 
-    // — internal state to block cascades —
-    private bool _hasProcessedThisSwap = false;
     private int _pendingCandy = 0;
+    private bool isSwapInProgress = false;
 
     private void Awake()
     {
@@ -43,55 +42,47 @@ public class GreenSpecialController : MonoBehaviour
         gridManager.OnMatchMade -= HandleMatchMade;
     }
 
+    public void BeginSwap()
+    {
+        isSwapInProgress = true;
+        _pendingCandy = 0;
+    }
+
     private void HandleColorMatched(string color, int count)
     {
-        if (color != "Green")
-            return;
+        if (!isSwapInProgress) return;
 
-        // first green of a new swap? reset the block flag & tally:
-        if (_hasProcessedThisSwap && _pendingCandy == 0)
+        if (color == "Green")
         {
-            _hasProcessedThisSwap = false;
-            _pendingCandy = count * candyPerTile;
-        }
-        else if (!_hasProcessedThisSwap)
-        {
-            // still first-match in this swap → accumulate
             _pendingCandy += count * candyPerTile;
         }
-        // else: we’ve already fired for this swap, ignore cascades
     }
 
     private void HandleMatchMade()
     {
-        if (_hasProcessedThisSwap) return;  // one attack per swap only
+        if (!isSwapInProgress) return;
 
-        // 1) apply all green candy accrued
-        specialBar.AddCandy(_pendingCandy);
-
-        // 2) pick target
-        var enemy = FindObjectOfType<Enemy>();
-        if (enemy == null)
+        // Add collected green candy to the bar
+        if (_pendingCandy > 0)
         {
-            Debug.LogWarning("[GSC] No Enemy found — skipping attack");
+            specialBar.AddCandy(_pendingCandy);
+            Debug.Log($"[GSC] Added {_pendingCandy} green candy");
         }
-        else
+
+        // Fire SPECIAL attack only when bar is full
+        if (specialBar.IsBarFull())
         {
-            // 3) fire special or normal
-            if (specialBar.ConsumeFullBar())
+            var enemy = FindObjectOfType<Enemy>();
+            if (enemy != null)
             {
-                Debug.Log("[GSC] Bar full → SPECIAL attack");
+                specialBar.ConsumeFullBar();
+                Debug.Log("[GSC] SPECIAL attack triggered!");
                 attackComponent.PerformAttackByIndex(specialIndex, enemy);
             }
-            else
-            {
-                Debug.Log("[GSC] Bar not full → normal attack");
-                attackComponent.PerformAttackByIndex(null, enemy);
-            }
         }
 
-        // 4) block further cascades until next swap
-        _hasProcessedThisSwap = true;
+
         _pendingCandy = 0;
+        isSwapInProgress = false;
     }
 }

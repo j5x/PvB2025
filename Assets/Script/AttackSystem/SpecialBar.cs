@@ -1,4 +1,3 @@
-// SpecialBar.cs
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +9,7 @@ public class SpecialBar : MonoBehaviour
     private int currentCandy;
     public int CandyAmount => currentCandy;
     public int MaxCandy => maxCandy;
-    public bool IsFull => currentCandy >= maxCandy;
+    public bool IsFull => currentCandy >= maxCandy; // still fine for Inspector/logic
 
     private void Awake()
     {
@@ -37,5 +36,13 @@ public class SpecialBar : MonoBehaviour
         currentCandy = 0;
         barSlider.value = 0;
         return true;
+    }
+
+    /// <summary>
+    /// Returns true if the bar is full and ready to fire.
+    /// </summary>
+    public bool IsBarFull()
+    {
+        return currentCandy >= maxCandy;
     }
 }

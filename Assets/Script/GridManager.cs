@@ -151,8 +151,13 @@ namespace Gameplay.Match3
         private IEnumerator SwapAndCheckMatches(Tile tile1, Tile tile2)
         {
             ResetIdleTimer();
-            SwapTiles(tile1, tile2);
 
+            // 👇 NEW: Notify GreenSpecialController about the swap
+            GreenSpecialController gsc = FindObjectOfType<GreenSpecialController>();
+            if (gsc != null)
+                gsc.BeginSwap();
+
+            SwapTiles(tile1, tile2);
             yield return new WaitForSeconds(0.25f);
 
             if (!CheckMatches())
@@ -164,6 +169,7 @@ namespace Gameplay.Match3
                 Invoke(nameof(RefillGrid), 0.2f);
             }
         }
+
 
         private bool AreTilesAdjacent(Tile tile1, Tile tile2)
         {
