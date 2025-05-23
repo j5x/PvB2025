@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: pvb
-  productName: PvB2025
+  productName: Candy Dandy
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -140,10 +140,10 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 1.0.3
+  bundleVersion: 1.0.4
   preloadedAssets:
   - {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  - {fileID: -1956033549435602521, guid: 25c0a36bcf464784b84b9fd13f36319e, type: 2}
+  - {fileID: 8080951760766379497, guid: 25c0a36bcf464784b84b9fd13f36319e, type: 2}
   - {fileID: 11400000, guid: 28960fbdcf4e63745b6f6f5f8a535c7e, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
