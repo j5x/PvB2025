@@ -366,6 +366,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   creditsPanel: {fileID: 1199911643}
+  clickSfx: {fileID: 8300000, guid: fba3a5e7926aa9f43b2a97447e4cbbe8, type: 3}
+  loadDelay: 0.2
 --- !u!4 &431120776
 Transform:
   m_ObjectHideFlags: 0
@@ -1470,7 +1472,6 @@ GameObject:
   - component: {fileID: 2064263612}
   - component: {fileID: 2064263611}
   - component: {fileID: 2064263610}
-  - component: {fileID: 2064263613}
   - component: {fileID: 2064263614}
   m_Layer: 5
   m_Name: BTN_Start
@@ -1592,22 +1593,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2064263608}
   m_CullTransparentMesh: 1
---- !u!114 &2064263613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2064263608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 598640a2fb9de7d41aecc00f9f54efad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetSceneName: CharacterSelect
-  useLoadingScreen: 1
-  clickSfx: {fileID: 8300000, guid: fba3a5e7926aa9f43b2a97447e4cbbe8, type: 3}
-  loadDelay: 0.1
 --- !u!82 &2064263614
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1620,7 +1605,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

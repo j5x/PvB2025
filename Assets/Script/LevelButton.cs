@@ -2,7 +2,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(AudioSource))]
 public class LevelButton : MonoBehaviour
 {
     [Header("Target")]
@@ -20,14 +19,6 @@ public class LevelButton : MonoBehaviour
     [SerializeField] private float loadDelay = 0.1f;
 
     private const string kLoadingSceneName = "LoadingScene";
-    private AudioSource _audioSource;
-
-    private void Awake()
-    {
-        _audioSource = GetComponent<AudioSource>();
-        // We don't want it auto‐play anything
-        _audioSource.playOnAwake = false;
-    }
 
     public void LoadLevel()
     {
@@ -44,17 +35,29 @@ public class LevelButton : MonoBehaviour
             return;
         }
 
-        // Play click SFX
+        // 1) Spawn a temporary object that plays the click sound then self-destructs
         if (clickSfx != null)
-            _audioSource.PlayOneShot(clickSfx);
+            StartCoroutine(PlayAndDestroy(clickSfx));
 
-        // Kick off delayed load
+        // 2) Begin loading after a small delay
         StartCoroutine(DoLoadAfterDelay());
+    }
+
+    private IEnumerator PlayAndDestroy(AudioClip clip)
+    {
+        var go = new GameObject("OneShotAudio");
+        var src = go.AddComponent<AudioSource>();
+        src.playOnAwake = false;
+        src.clip = clip;
+        src.Play();
+        // Make sure this object survives scene loads:
+        DontDestroyOnLoad(go);
+        yield return new WaitForSeconds(clip.length);
+        Destroy(go);
     }
 
     private IEnumerator DoLoadAfterDelay()
     {
-        // Wait a bit so the click sound can start
         yield return new WaitForSeconds(loadDelay);
 
         if (useLoadingScreen)
